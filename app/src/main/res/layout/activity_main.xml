@@ -4,15 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#03A9F4"
+    android:backgroundTint="@color/white"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/focusButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="141dp"
+        android:layout_marginBottom="139dp"
+        android:onClick="goFocusPage"
+        android:text="Focus"
+        app:layout_constraintBottom_toTopOf="@+id/planningButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/flashMindButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:onClick="goFlashMindPage"
+        android:text="Flash Mind"
+        app:layout_constraintBaseline_toBaselineOf="@+id/focusButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:toggleCheckedStateOnClick="false" />
+
+    <Button
+        android:id="@+id/planningButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="328dp"
+        android:onClick="goPlanningPage"
+        android:text="Planning"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/todoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="79dp"
+        android:onClick="goToDoPage"
+        android:text="To Do"
+        app:layout_constraintBaseline_toBaselineOf="@+id/planningButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/analysisButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="296dp"
+        android:onClick="goAnalysisPage"
+        android:text="Analysis"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/planningButton"
+        app:layout_constraintStart_toStartOf="@+id/planningButton" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="home page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
