@@ -15,14 +15,12 @@ class AddingToDoActivity : AppCompatActivity() {
 
     private lateinit var addButton: Button
     private lateinit var plan: EditText
-    private lateinit var messages: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adding_to_do)
 
-        messages = intent.getStringArrayListExtra("all_plans") as ArrayList<String>
         plan= findViewById(R.id.toDoPlanText)
         addButton = findViewById(R.id.addButton)
         addButton.setOnClickListener {
@@ -30,11 +28,11 @@ class AddingToDoActivity : AppCompatActivity() {
                 Toast.makeText(this,"Please enter a plan",Toast.LENGTH_LONG).show()
             }
             else {
-                messages.add(plan.text.toString())
-                val resultIntent = Intent()
-                resultIntent.putExtra("updated_messages",messages)
-                setResult(Activity.RESULT_OK, resultIntent)
-                Toast.makeText(this,"The plan is added successfully",Toast.LENGTH_LONG).show()
+                val db: MyDataBaseHelper = MyDataBaseHelper(this)
+                db.addItem(plan.text.toString().trim())
+                Toast.makeText(this,"The plan is added succesfully",Toast.LENGTH_LONG).show()
+                val resultIntent = Intent(this,ToDoActivity::class.java)
+                setResult(Activity.RESULT_OK,resultIntent)
                 finish()
             }
         }

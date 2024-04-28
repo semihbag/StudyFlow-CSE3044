@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,6 +16,7 @@ class ToDoActivity : AppCompatActivity() {
     private lateinit var customAdapterToDo: CustomAdapterToDo
     private lateinit var recyclerView: RecyclerView
     private lateinit var addButton: FloatingActionButton
+    private lateinit var db: MyDataBaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -22,10 +24,11 @@ class ToDoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_to_do)
 
         recyclerView = findViewById(R.id.recyclerView)
+        db = MyDataBaseHelper(this)
+        storeDataInArray()
         addButton = findViewById(R.id.floatingActionButton)
         addButton.setOnClickListener{
             val intent = Intent(this,AddingToDoActivity::class.java)
-            intent.putExtra("all_plans",messages)
             startActivityForResult(intent,1)
         }
 
@@ -40,10 +43,23 @@ class ToDoActivity : AppCompatActivity() {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    messages = data.getStringArrayListExtra("updated_messages") as ArrayList<String>
+                    storeDataInArray()
                     customAdapterToDo = CustomAdapterToDo(this,this,messages)
                     recyclerView.adapter = customAdapterToDo
                     recyclerView.layoutManager = LinearLayoutManager(this)
+                }
+            }
+        }
+    }
+
+    private fun storeDataInArray() {
+
+        messages.clear()
+        val myCursor = db.readAllElements()
+        if ( myCursor != null) {
+            if (myCursor.count != 0) {
+                while (myCursor.moveToNext()) {
+                    messages.add(myCursor.getString(0))
                 }
             }
         }
