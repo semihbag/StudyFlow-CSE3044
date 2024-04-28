@@ -2,6 +2,7 @@ package com.example.studyflow
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,11 @@ class CustomAdapterToDo(activity: Activity, context: Context, messages: ArrayLis
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.messageText.text = messages[position]
+        holder.cardRow.setOnClickListener {
+            val intent = Intent(context,DeleteAndUpdatePlanActivity::class.java)
+            intent.putExtra("plan",holder.messageText.text)
+            activity.startActivityForResult(intent,2)
+        }
     }
 
     override fun getItemCount(): Int {
