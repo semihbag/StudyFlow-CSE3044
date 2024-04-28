@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StudyFlow</string>
+    <string name="addoperation">AddOperation</string>
 </resources>
