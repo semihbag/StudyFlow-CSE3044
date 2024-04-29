@@ -1,0 +1,43 @@
+pomodoro özellikleri
+
+* starttime = başladığı date
+* endtime = bittiği date
+* pomodorotime = pomodoro uzunluğu
+* break time = mola zamanı uzunluğu
+* stopcount = kaç defa durdurulu
+* inaktivetime = kaç dakika boyunca stop şekilde durdu
+* tag
+* id = database otomatik vercek (primary key)
+
+
+tag özellikleri
+* name
+* bu tag altında toplam yapılan pomodoro sayısı
+* toplam odaklanılan dakika = pomodorolar başarı ile bitince eklencek
+* bu tag altında toplam kaç defa pomodoro durdurulmuş yani tüm pomodoroların durdulma sayıları toplamı
+* toplam inaktive süre
+* toplam kart sayısı
+* toplam anlık doru sayısı
+
+
+card özellikleri
+* tag
+* title
+* en son cevap (t-f)
+* en son etkileşim tarihi
+* marked mı değil mi verisi
+* kart sorusu (image ya da text idleri ) 
+* kart cevabı (image ya da text idleri ) 
+
+
+todo
+* text
+* isdone
+
+
+planning
+* datetime
+* text
+
+
+

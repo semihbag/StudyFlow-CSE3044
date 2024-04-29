@@ -1,0 +1,135 @@
+functional req
+
+* home page
+	- antrenman
+		*veri ekleme (edit del add)
+		*anternman
+	- to do / planlama
+	- pomodoro
+	- analiz / istatik
+	******OPSİYONEL- ayarlar (türkçe - ingilizce, bildirim, tema)
+
+
+* tag page
+	* k etiketleri sıralayıp görebilir
+	* k etiket ekleyebilir
+	* k etiket silebilir
+	* k etiket düzenleyebilir
+	* k etiketlere renk verebilir
+
+
+* analiz page
+	* ufak info
+	* toplam çalışma süresi (günlük haftalık aylık)
+	* sonraları eklenebilir opsiyonel (hatırlama oranı)
+	* seçmeli olcak ama kaydırma da olcak aşağı sıralancak
+
+
+* planlama
+	* g h a planlam	 
+	* to do (opsiyonel)
+
+
+* pomodoro 
+	* k tag seçebilir (default empty)
+	* k süreyi seçebilir 
+	* k süre akışını görebilir ( kaçıncı dakikada oladugunu)
+	* k süre durdurabilir / oynatabilir
+	* k ses seçebilir (opsiyonel zaman kalırsa yazcaz)
+	
+
+* antrenman (flashmind)
+	KART 
+	- k veri girişi yapabilri(txt, png, *ses*, etiket)
+	- k veri silebilir
+	- k veri düzenleyebilir ********OPSİYONEL Mİ?
+	EGZERSİZ
+	- k antranman sayfasına girebilir
+		. k etiketleri görebilir
+		. k etiket seçip soru cevap antrenmanı yapabiilir
+
+
+
+SUBPAGES 
+---------
+TAGPAGE: yapılacakların özel isimleri (comporg, örgü etc.)
+TODOPAGE: listeler halinde gelen yanında checkbox eklediğimiz dümdük sayfa
+CALENDERPLANNİNGPAGE: takvim üzerinden güne özel etkinlik kaydedilen sayfa
+CARDSPAGE: kartları silebildiğimiz ve hepsini görebildiğimiz sayfa
+ADDCARDPAGE: bir cart eklemek istediğimizde (içine ne gömeceğiz, cevabı ne olacak vs.) yönlendirildiğimiz sayfa
+MARKEDTAGSPAGE: kaydeidlen kartlarda görmemiz gereken notifications varsa onların total bildirim sayısını gösteren sayfa
+CHECKCARDPAGE: tek kart özelinde cevapladığmız ve bir tagin sırasıyla kartlarını görebildiğimiz sayfa
+
+SomeClasses
+------------
+Pomodoro classında sadece bir seansın bilgilerini alıyor
+Analyzerda total yapılan pomodoroların datası tutuluyor sadece
+AnalyzerDatada iste tek tag için yapılan pomodoronun bilgisi tutuluyor
+Pomodoro classındaki end fonksiyonu seansın bittiği anlamını taşıyıp analysis kısmını tetikliyor ve güncelleme yapıyor findaAnalysisData metodunda isEqual ile doğru tagi bulup güncellenerek işlemtamamkaptan
+
+Geliştirilebilecekler
+----------------------
+Aylık takvim pomodoro grafiği 
+
+func about todolist
+---------------------
+kullanıcı yapacağı aktiviteleri listeye ekleyebilir
+kullanıcı yapacağı aktiviteleri görüntüleyebilir
+kullanıcı yaptığı aktiviteleri yapıldı olarak işaretleyebilir 
+kullanıcı girdiği aktiviteleri silebilir
+
+
+functionality about calender
+-------------------------------
+kullanıcı takvimden istediği bir günü seçebilir
+kullanıcı takvime istediği bir etkinliği girebilir
+kullanıcı takvime birden fazla etkinlik girebilir
+kullanıcı takvimde girdiği etkinlikleri görüntüleyebilir
+kullanıcı takvimden istediği bir etkinliği silebilir
+
+func about focus
+-------------------
+kullanıcı istediği süreyi belirler
+kullanıcı istediği tagi belirler
+kullanıcı istediğinde süreyi durdurabilir
+kullanıcı istediğinde pomodoroyu iptal edebilir
+
+func about analysis
+---------------------
+kullanıcı analiz sayfasına girerek kendi performasını grafiksel görebilir
+kullanıcı analiz sayfasında istediği analizi görebilir 
+kullanıcı analiz sayfasında performansını text olarak görebilir
+
+
+func about homepage
+--------------------
+kullanıcı planlama sayfasına tıklayarak geçiş yapabilir
+kullanıcı analiz sayfasına tıklayarak geçiş yapabilir
+kullanıcı focus sayfasına tıklayarak geçiş yapabilir
+kullanıcı antrenman (flashmind) sayfasına tıklayarak geçiş yapabilir 
+
+
+func about flashmind(antrenman)
+---------------------------------
+kullanıcı antrenman sayfasına girerek kart ve egzersiz sayfalarına ulaşabilir
+kullanıcı antrenman sayfasından kart sayfaısna gçeiş yapabilir
+kullanıcı antrenman sayfasından egzersiz sayfasına da geçiş yapabilir (vay:D)
+kullanıcı kart sayfasında elindeki kartları görebilir
+kullanıcı kart sayfasından kart ekleme sayfasına geçiş yapabilir
+kullanıcı kart ekleme sayfasında istediği tagi girerek ilgili tag ile istediği veri girişini yapabilir
+kullanıcı veri girişi olarak png ya da txt seçebilir
+kullanıcı kart sayfasında elindeki kartlardan herhangi birini silebilir
+kullanıcı antrenman sayfasından egzersiz sayfasına geçebilir
+kullanıcı egzersiz sayfasında hangi tag ile alakalı ne kadar kartı olduğunu görebilir
+kullanıcı egzersiz sayfasında herhangi bir tagi seçerek o tagin kartlarına ulaşabilir
+kullanıcı seçtiği tagin kartlarını doğru ya da yanlış olarak cevaplayabilir
+kullanıcı seçtiği tagin kartlarının cevaplarını görebilir
+
+
+
+
+
+
+
+
+	
