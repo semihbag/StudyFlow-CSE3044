@@ -21,7 +21,11 @@
         android:id="@+id/addingToDoFragment"
         android:name="com.example.studyflow.AddingToDoFragment"
         android:label="fragment_adding_to_do"
-        tools:layout="@layout/fragment_adding_to_do" />
+        tools:layout="@layout/fragment_adding_to_do" >
+        <action
+            android:id="@+id/action_addingToDoFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/deleteAndUpdatePlanFragment"
         android:name="com.example.studyflow.DeleteAndUpdatePlanFragment"
@@ -33,5 +37,8 @@
         <argument
             android:name="index"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_deleteAndUpdatePlanFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
     </fragment>
 </navigation>

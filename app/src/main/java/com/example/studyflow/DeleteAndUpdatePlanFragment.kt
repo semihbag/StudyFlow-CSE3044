@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.Navigation
+import kotlinx.coroutines.delay
 
 
 class DeleteAndUpdatePlanFragment : Fragment() {
@@ -36,6 +39,8 @@ class DeleteAndUpdatePlanFragment : Fragment() {
         planText = view.findViewById(R.id.toDoPlanUD)
         updateButton = view.findViewById(R.id.updateButton)
         deleteButton = view.findViewById(R.id.deleteButton)
+        deleteButton.visibility = View.VISIBLE
+        updateButton.visibility = View.VISIBLE
         var index = -1
 
         arguments?.let {
@@ -51,23 +56,34 @@ class DeleteAndUpdatePlanFragment : Fragment() {
                 statement.bindString(1,planText.text.toString())
                 statement.bindString(2,index.toString())
                 statement.execute()
-                Toast.makeText(it.context,"The Update Operation is successful",Toast.LENGTH_LONG).show()
+                Toast.makeText(it.context,"The Update Operation is successful",Toast.LENGTH_SHORT).show()
             }
             else {
-                Toast.makeText(it.context,"The Update Operation is not successful",Toast.LENGTH_LONG).show()
+                Toast.makeText(it.context,"The Update Operation is not successful",Toast.LENGTH_SHORT).show()
             }
+
         }
         deleteButton.setOnClickListener {
             val database = it.context.openOrCreateDatabase("StudyFlow", Context.MODE_PRIVATE,null)
             if (index != -1) {
-                val sqlString = "DELETE FROM toDoPlans  WHERE id = ?"
-                val statement = database.compileStatement(sqlString)
-                statement.bindString(1,index.toString())
-                statement.execute()
-                Toast.makeText(it.context,"The Delete Operation is successful",Toast.LENGTH_LONG).show()
+                val builder = AlertDialog.Builder(it.context)
+                builder.setTitle("Delete " + planText.text.toString() + " ?")
+                builder.setMessage("Are you sure want to delete " + planText.text.toString() + " ?")
+                builder.setPositiveButton("Yes") { _, _ ->
+                    val sqlString = "DELETE FROM toDoPlans  WHERE id = ?"
+                    val statement = database.compileStatement(sqlString)
+                    statement.bindString(1,index.toString())
+                    statement.execute()
+                    deleteButton.visibility = View.INVISIBLE
+                    updateButton.visibility = View.INVISIBLE
+                    Toast.makeText(it.context,"The Delete Operation is successful",Toast.LENGTH_SHORT).show()
+                }
+                builder.setNegativeButton("No") { _, _ ->
+                }
+                builder.show()
             }
             else {
-                Toast.makeText(it.context,"The Delete Operation is not successful",Toast.LENGTH_LONG).show()
+                Toast.makeText(it.context,"The Delete Operation is not successful",Toast.LENGTH_SHORT).show()
             }
         }
     }
