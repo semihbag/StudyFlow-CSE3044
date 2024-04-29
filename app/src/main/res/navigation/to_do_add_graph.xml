@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/to_do_add_graph"
+    app:startDestination="@id/toDoFragment">
+
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.example.studyflow.ToDoFragment"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do" >
+        <action
+            android:id="@+id/action_toDoFragment_to_addingToDoFragment"
+            app:destination="@id/addingToDoFragment" />
+        <action
+            android:id="@+id/action_toDoFragment_to_deleteAndUpdatePlanFragment"
+            app:destination="@id/deleteAndUpdatePlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addingToDoFragment"
+        android:name="com.example.studyflow.AddingToDoFragment"
+        android:label="fragment_adding_to_do"
+        tools:layout="@layout/fragment_adding_to_do" />
+    <fragment
+        android:id="@+id/deleteAndUpdatePlanFragment"
+        android:name="com.example.studyflow.DeleteAndUpdatePlanFragment"
+        android:label="fragment_delete_and_update_plan"
+        tools:layout="@layout/fragment_delete_and_update_plan" >
+        <argument
+            android:name="plan"
+            app:argType="string" />
+        <argument
+            android:name="index"
+            app:argType="integer" />
+    </fragment>
+</navigation>

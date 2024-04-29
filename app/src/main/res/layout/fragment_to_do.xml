@@ -2,34 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddingToDoActivity">
+    tools:context=".ToDoFragment">
 
-    <EditText
-        android:id="@+id/toDoPlanText"
-        android:layout_width="330dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="413dp"
-        android:ems="10"
-        android:hint="Enter Plan"
-        android:inputType="text"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addButton"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="35dp"
-        android:text="Add"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="36dp"
+        android:clickable="true"
+        android:contentDescription="@string/addoperation"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoPlanText" />
+        app:srcCompat="@drawable/ic_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

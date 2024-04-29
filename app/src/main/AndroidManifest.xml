@@ -12,20 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyFlow"
         tools:targetApi="31">
-        <activity
-            android:name=".DeleteAndUpdatePlanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddingToDoActivity"
-            android:exported="false" />
+
         <activity
             android:name=".AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".ToDoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
             android:exported="false" />
         <activity
             android:name=".PlanningActivity"
