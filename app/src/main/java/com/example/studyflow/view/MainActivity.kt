@@ -14,31 +14,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
-    // CHANGE PAGE FUNCTIONS
-    fun goFocusPage(view: View) {
-        val focusPageButton = findViewById<Button>(R.id.focusButton)
-        focusPageButton.setOnClickListener {
-            val action =
-        }
-    }
-    fun goFlashMindPage(view: View) {
-
-    }
-    fun goPlanningPage(view: View) {
-
-    }
-    fun goToDoPage(view: View) {
-
-    }
-    fun goAnalysisPage(view: View) {
-
-    }
-
-    fun goTagPage(view: View) {
-
-    }
 }
