@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.studyflow.view.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_analysisFragment"
+            app:destination="@id/analysisFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_focusFragment"
+            app:destination="@id/focusFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_planningFragment"
+            app:destination="@id/planningFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_flashMindFragment"
+            app:destination="@id/flashMindFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/analysisFragment"
+        android:name="com.example.studyflow.view.AnalysisFragment"
+        android:label="fragment_analysis"
+        tools:layout="@layout/fragment_analysis" />
+    <fragment
+        android:id="@+id/focusFragment"
+        android:name="com.example.studyflow.view.FocusFragment"
+        android:label="fragment_focus"
+        tools:layout="@layout/fragment_focus" />
+    <fragment
+        android:id="@+id/planningFragment"
+        android:name="com.example.studyflow.view.PlanningFragment"
+        android:label="fragment_planning"
+        tools:layout="@layout/fragment_planning" />
+    <fragment
+        android:id="@+id/flashMindFragment"
+        android:name="com.example.studyflow.view.FlashMindFragment"
+        android:label="fragment_flash_mind"
+        tools:layout="@layout/fragment_flash_mind" />
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.example.studyflow.view.ToDoFragment"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do" />
+</navigation>
