@@ -60,5 +60,10 @@ class HomePageFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
 
+        val tagsButton = view.findViewById<Button>(R.id.myTagsButton)
+        toDoButton.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToTagsFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }

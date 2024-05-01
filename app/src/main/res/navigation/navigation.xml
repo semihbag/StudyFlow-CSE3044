@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_toDoFragment"
             app:destination="@id/toDoFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_tagsFragment"
+            app:destination="@id/tagsFragment" />
     </fragment>
     <fragment
         android:id="@+id/analysisFragment"
@@ -75,4 +78,9 @@
             android:name="index"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/tagsFragment"
+        android:name="com.example.studyflow.view.tagsView.TagsFragment"
+        android:label="fragment_tags"
+        tools:layout="@layout/fragment_tags" />
 </navigation>
