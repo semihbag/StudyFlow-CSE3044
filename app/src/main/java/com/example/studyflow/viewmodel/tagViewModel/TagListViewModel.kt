@@ -13,5 +13,6 @@ class TagListViewModel : ViewModel() {
         val tag3 = Tag("data3",300,300,750,20,81,75)
 
         val tagList = arrayListOf<Tag>(tag1,tag2,tag3)
+        tags.value = tagList
     }
 }
