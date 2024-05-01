@@ -41,6 +41,7 @@
                 android:padding="3dp"
                 android:visibility="visible">
 
+                <!-- TOTAL POMODORO-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,12 +50,30 @@
                     app:layout_row="0" />
 
                 <TextView
+                    android:id="@+id/totalPomodoro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_row="0" />
+
+
+                <!-- TOTAL CARD-->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Cards:"
                     app:layout_column="0"
                     app:layout_row="1" />
 
+                <TextView
+                    android:id="@+id/totalCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_row="1" />
+
+
+                <!-- TOTAL FOCUSED TIME-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,12 +82,30 @@
                     app:layout_row="2" />
 
                 <TextView
+                    android:id="@+id/totalFocused"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_row="2" />
+
+
+                <!-- TOTAL OUT OF FOCUSED TIME-->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Out of Focused Time:"
                     app:layout_column="0"
                     app:layout_row="3" />
 
+                <TextView
+                    android:id="@+id/totalOutOfFocused"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_row="3" />
+
+
+                <!-- TOTAL STOP-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,6 +114,15 @@
                     app:layout_row="4" />
 
                 <TextView
+                    android:id="@+id/totalStop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_column="1"
+                    app:layout_row="4" />
+
+
+                <!-- CARD RATIO-->
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Card Ratio:"
@@ -84,15 +130,15 @@
                     app:layout_row="5" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
+                    android:id="@+id/cardRatioProgressBar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:progress="100"
                     app:layout_column="1"
                     app:layout_row="5" />
 
                 <TextView
+                    android:id="@+id/cardRatio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="31/62"
