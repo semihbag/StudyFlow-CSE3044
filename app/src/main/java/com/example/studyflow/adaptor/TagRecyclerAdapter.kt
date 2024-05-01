@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.model.Tag
 
-class TagRecyclerAdapter(val tagList : ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>() {
+class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>() {
     // create class
     class TagViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
