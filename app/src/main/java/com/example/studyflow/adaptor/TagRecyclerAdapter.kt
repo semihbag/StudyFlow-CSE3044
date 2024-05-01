@@ -15,6 +15,8 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
     class TagViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
+    private var selectedPosition = RecyclerView.NO_POSITION
+
     // override functions (came from RecyclerView.Adapter)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
         val inflater =  LayoutInflater.from(parent.context)
@@ -45,8 +47,13 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
         holder.itemView.findViewById<TextView>(R.id.cardRatio).text = ratioStr
 
         holder.itemView.setOnClickListener {
-            holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility = View.VISIBLE
-            println(numberOfTotalCard)
+            val visibility = holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility
+            if (visibility == View.GONE) {
+                holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility =View.VISIBLE
+            }
+            else {
+                holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility =View.GONE
+            }
         }
     }
 
