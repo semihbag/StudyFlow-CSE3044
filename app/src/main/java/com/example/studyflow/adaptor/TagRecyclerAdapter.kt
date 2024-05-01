@@ -3,6 +3,7 @@ package com.example.studyflow.adaptor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +43,11 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
         // ratio as a string
         val ratioStr = "$numberOfCorrectAnswer $numberOfTotalCard"
         holder.itemView.findViewById<TextView>(R.id.cardRatio).text = ratioStr
+
+        holder.itemView.setOnClickListener {
+            holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility = View.VISIBLE
+            println(numberOfTotalCard)
+        }
     }
 
     fun updateTagList(newTagList : List<Tag>) {
