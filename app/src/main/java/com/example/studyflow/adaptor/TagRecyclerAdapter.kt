@@ -39,7 +39,12 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
         // calculate the ratio of correct answer
         val numberOfCorrectAnswer = tagList[position].totalNumberOfCurrentCorrectAnswer
         val numberOfTotalCard = tagList[position].totalNumberOfCard
-        val progressResult = (numberOfCorrectAnswer / numberOfTotalCard) * 100
+        var progressResult = 0
+        if (numberOfTotalCard != 0) {
+            progressResult = (numberOfCorrectAnswer.toDouble() / numberOfTotalCard.toDouble() * 100).toInt()
+        }
+
+        println(progressResult)
         holder.itemView.findViewById<ProgressBar>(R.id.cardRatioProgressBar).progress = progressResult
 
         // ratio as a string

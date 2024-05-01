@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:padding="3dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <!-- TOTAL POMODORO-->
                 <TextView
@@ -136,8 +136,9 @@
                 <ProgressBar
                     android:id="@+id/cardRatioProgressBar"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
+                    android:progress="50"
                     app:layout_column="1"
                     app:layout_row="5" />
 
