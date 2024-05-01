@@ -43,11 +43,12 @@ class TagsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = recyclerAdapter
 
+        observeLiveData()
     }
 
     // burada gözlenebilir verilei gözleme fonksiyonlarını yazdım
     fun observeLiveData() {
-        viewModel.tags.observe(this, Observer { tags ->
+        viewModel.tags.observe(viewLifecycleOwner, Observer { tags ->
             tags.let {
                 view?.findViewById<RecyclerView>(R.id.tagsRecyclerView)?.visibility = View.VISIBLE
                 recyclerAdapter.updateTagList(tags)
