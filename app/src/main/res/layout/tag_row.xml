@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="430dp"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +21,6 @@
             android:layout_height="wrap_content"
             android:background="#EDA4A4"
             android:orientation="vertical">
-
 
             <TextView
                 android:id="@+id/tagTittle"
