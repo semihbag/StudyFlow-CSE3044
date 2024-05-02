@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.tagsView.TagsFragment">
+    tools:context=".view.tagsView.TagsFragment"
+    android:background="#f8f4f4" >
 
 
     <LinearLayout
@@ -16,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#3FA9E3"
+            android:background="#ffffff"
             android:orientation="vertical">
 
             <TextView
@@ -36,10 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="3dp"
             android:layout_marginBottom="8dp"
-            app:cardBackgroundColor="#D5DCF3"
+            app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -52,16 +53,17 @@
                     android:layout_weight="10"
                     android:orientation="vertical">
 
-
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:text="+"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textSize="33sp">
+                        android:layout_gravity="center"
+                        android:textSize="34sp"
+                        android:text="+"
+                        >
 
                     </TextView>
+
 
                 </LinearLayout>
 
