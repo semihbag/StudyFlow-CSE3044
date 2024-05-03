@@ -47,7 +47,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="5dp"
+                    >
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -55,15 +58,15 @@
                         android:layout_weight="5"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="+"
-                            android:textAlignment="center"
-                            android:textSize="34sp">
+                        <ImageView
+                            android:padding="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/plus_icon"
+                            android:background="@null"
+                            >
 
-                        </TextView>
+                        </ImageView>
 
                     </LinearLayout>
 
@@ -96,6 +99,7 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/send_icon"
                             android:scaleType="centerInside"
+                            android:background="@null"
                             >
 
                         </ImageButton>
