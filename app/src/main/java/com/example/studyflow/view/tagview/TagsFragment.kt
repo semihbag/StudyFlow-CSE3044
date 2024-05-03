@@ -69,15 +69,15 @@ class TagsFragment : Fragment() {
             val tagTittle = view.findViewById<EditText>(R.id.edit_text_add_tag).text.toString()
             val tag = Tag(tagName = tagTittle)
             viewModel.storeTagToDB(tag)
+            view.findViewById<EditText>(R.id.edit_text_add_tag).text.clear()
         }
 
         val editText = view.findViewById<EditText>(R.id.edit_text_add_tag)
         editText.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                println("Enter tuşuna bastım")
-
                 val tag = Tag(tagName = editText.text.toString())
                 viewModel.storeTagToDB(tag)
+                editText.text.clear()
                 return@setOnKeyListener true
             }
             false
