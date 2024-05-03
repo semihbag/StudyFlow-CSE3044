@@ -34,32 +34,7 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
         holder.view.tag = tagList[position]
-
-
-        /*
-        // calculate the ratio of correct answer
-        val numberOfCorrectAnswer = tagList[position].totalNumberOfCurrentCorrectAnswer
-        val numberOfTotalCard = tagList[position].totalNumberOfCard
-        var progressResult = 0
-        if (numberOfTotalCard != 0) {
-            progressResult = (numberOfCorrectAnswer.toDouble() / numberOfTotalCard.toDouble() * 100).toInt()
-        }
-        holder.itemView.findViewById<ProgressBar>(R.id.cardRatioProgressBar).progress = progressResult
-
-        // ratio as a string
-        val ratioStr = "$numberOfCorrectAnswer $numberOfTotalCard"
-        holder.itemView.findViewById<TextView>(R.id.cardRatio).text = ratioStr
-
-        holder.itemView.setOnClickListener {
-            val visibility = holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility
-            if (visibility == View.GONE) {
-                holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility =View.VISIBLE
-            }
-            else {
-                holder.itemView.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout).visibility =View.GONE
-            }
-        }
-        */
+        holder.view.listener = this
     }
 
     fun updateTagList(newTagList : List<Tag>) {
@@ -69,7 +44,7 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
     }
 
     override fun clickTag(view: View) {
-
-
+        val gridLayout = view.findViewById<androidx.gridlayout.widget.GridLayout>(R.id.gridLayout)
+        gridLayout.visibility = if (gridLayout.visibility == View.GONE) View.VISIBLE else View.GONE
     }
 }
