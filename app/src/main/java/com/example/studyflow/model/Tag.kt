@@ -7,6 +7,7 @@ data class Tag (
     val totalNumberOfFocusedMinute: Int = 0,
     val totalNumberOfOutOfFocusedMinute: Int = 0,
     val totalNumberOfStop: Int = 0,
-    val totalNumberOfCurrentCorrectAnswer: Int = 0
+    val totalNumberOfCurrentCorrectAnswer: Int = 0,
+    val cardRatio: Int = 0
     ) {
 }
