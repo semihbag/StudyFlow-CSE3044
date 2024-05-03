@@ -23,6 +23,9 @@ interface TagDAO {
 
     // bu fonksiyonlar room kütüpün fonksiyonları biz bunları özellştiriyoruz
     @Insert
+    suspend fun insertTag(tag : Tag) : Long
+
+    @Insert
     suspend fun insertAllTag(vararg tag: Tag) : List<Long>
 
     @Query("SELECT * FROM tag")
@@ -35,6 +38,6 @@ interface TagDAO {
     suspend fun deleteAllTag()
 
     @Query("DELETE FROM tag WHERE uuid = :tagId")
-    suspend fun deleteTag(tagId :Int): Tag
+    suspend fun deleteTag(tagId :Int)
 
 }

@@ -8,7 +8,7 @@ import com.example.studyflow.model.Tag
 
 // burada ne kadar entity varsa table olması için manuel eklememiz gerekli yazdıkça ekleriz şuan sadece tag ekliyorum
 @Database(entities = arrayOf(Tag::class), version = 1)
-abstract class StduyFlowDB : RoomDatabase() {
+abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
 
 
@@ -25,7 +25,7 @@ abstract class StduyFlowDB : RoomDatabase() {
                 instance = it
             }
         }
-        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StduyFlowDB::class.java, "studyflowdatabase").build()
+        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
 
     }
 

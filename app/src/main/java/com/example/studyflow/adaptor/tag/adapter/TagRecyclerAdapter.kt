@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
+import com.example.studyflow.adaptor.tag.adapter.TagClickListener
 import com.example.studyflow.databinding.TagRowBinding
 import com.example.studyflow.model.Tag
 
-class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(),
-    TagClickListener {
+class TagRecyclerAdapter(private val tagList: ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(), TagClickListener {
     // create class
     class TagViewHolder(var view: TagRowBinding) : RecyclerView.ViewHolder(view.root) {
     }
@@ -18,11 +18,18 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
     // override functions (came from RecyclerView.Adapter)
     // bu fonksiyon aslında RecyclerView.Adapter classsının fonksiyonu ve onu override etmemiz lazım
     // mantık olarak bu bir holder ise biizm yazdığımız holder layoutuna (tagı tutan xml - front) göre uyumlu hale getirmek lazım
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagViewHolder {
-        val inflater =  LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
+
         // bu databinding olmadan önce kullanılan çağırma yöntemi idi
         //val view = inflater.inflate(R.layout.tag_row,parent,false)
-        val view = DataBindingUtil.inflate<TagRowBinding>(inflater, R.layout.tag_row, parent, false)        // burda yazdığım layout ile bağlantısını kuruyorum artık holder neye benzeyeceğini biliyor
+        val view = DataBindingUtil.inflate<TagRowBinding>(
+            inflater,
+            R.layout.tag_row,
+            parent,
+            false
+        )        // burda yazdığım layout ile bağlantısını kuruyorum artık holder neye benzeyeceğini biliyor
         return TagViewHolder(view)
     }
 
@@ -40,7 +47,7 @@ class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Ad
         // clickTag fonksiyonu da zaten bunun için overrride edildi (aşağıda)
     }
 
-    fun updateTagList(newTagList : List<Tag>) {
+    fun updateTagList(newTagList: List<Tag>) {
         tagList.clear()
         tagList.addAll(newTagList)
         notifyDataSetChanged()

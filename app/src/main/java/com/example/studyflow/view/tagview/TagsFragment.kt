@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adaptor.tag.adapter.TagRecyclerAdapter
 import com.example.studyflow.model.Tag
-import com.example.studyflow.viewmodel.tagViewModel.TagListViewModel
+import com.example.studyflow.viewmodel.tagViewModel.TagViewModel
 
 class TagsFragment : Fragment() {
     // fragmana viewmodel ve adapterleri ekledim. arkadaki işleri bu ikisi yapıyor çünkü
     // viewmodel henüz oluşturmadım ama adapter oluşturdum ilk olarak da adaptere boş array verdim
-    private lateinit var viewModel : TagListViewModel
+    private lateinit var viewModel : TagViewModel
     private val recyclerAdapter = TagRecyclerAdapter(ArrayList<Tag>())
 
     // bunu ellemeye gerek yok
@@ -41,9 +44,9 @@ class TagsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // burada kendi yazdığımız viewmodel classını bağladık bu sayede fonksiyonlarını çağırabileceğiz en yukarda tanımlamıştık sadece
-        viewModel = ViewModelProvider(this).get(TagListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(TagViewModel::class.java)
         // tagları çağırdım vievmodel classtan, çünkü db işlerini bu yapıyor
-        viewModel.getTagsFromDB()
+        viewModel.loadTagsFromDB()
 
         // recyclerı birbirine bağlayacağız
         // yukarda bi adapter oluşturduk ama oluşturduğumuz gibi kalmıştı
@@ -54,13 +57,23 @@ class TagsFragment : Fragment() {
 
         // her şeyi birbirine bağladık şimdi de bakalım gözlemleyelim neler  oluyor neler bitiyor
         observeLiveData()
+
+        // buton buldum işte klasik
+
+        val button = view.findViewById<ImageButton>(R.id.btn)
+        button.setOnClickListener {
+            println("click")
+            val tagTittle = view.findViewById<EditText>(R.id.edit_text_add_tag).text.toString()
+            val tag = Tag(tagName = tagTittle)
+            viewModel.storeTagToDB(tag)
+        }
     }
 
     // burada gözlenebilir verilei gözleme fonksiyonlarını yazdım
     // buradad viewmodelin tag arrayiini gözlemliyorum zaten onu da orada mutable olarak tanımladım
     //  taglarde bi değişiklik olur olmaz update edeceğiz her birine bi tetikleyici kurduk yani
     fun observeLiveData() {
-        viewModel.tags.observe(viewLifecycleOwner, Observer { tags ->
+        viewModel.mutableTags.observe(viewLifecycleOwner, Observer { tags ->
             tags.let {
                 view?.findViewById<RecyclerView>(R.id.tagsRecyclerView)?.visibility = View.VISIBLE
                 recyclerAdapter.updateTagList(tags)
