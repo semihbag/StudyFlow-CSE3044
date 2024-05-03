@@ -1,10 +1,12 @@
 package com.example.studyflow.view.tagview
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -58,15 +60,36 @@ class TagsFragment : Fragment() {
         // her şeyi birbirine bağladık şimdi de bakalım gözlemleyelim neler  oluyor neler bitiyor
         observeLiveData()
 
-        // buton buldum işte klasik
 
+
+
+        // buton buldum işte klasik
         val button = view.findViewById<ImageButton>(R.id.btn)
         button.setOnClickListener {
-            println("click")
             val tagTittle = view.findViewById<EditText>(R.id.edit_text_add_tag).text.toString()
             val tag = Tag(tagName = tagTittle)
             viewModel.storeTagToDB(tag)
         }
+
+        val editText = view.findViewById<EditText>(R.id.edit_text_add_tag)
+        editText.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                println("Enter tuşuna bastım")
+
+                val tag = Tag(tagName = editText.text.toString())
+                viewModel.storeTagToDB(tag)
+                return@setOnKeyListener true
+            }
+            false
+        }
+
+
+
+
+
+
+
+
     }
 
     // burada gözlenebilir verilei gözleme fonksiyonlarını yazdım
