@@ -1,4 +1,4 @@
-package com.example.studyflow.adaptor
+package com.example.studyflow.adaptor.tag.adapter
 
 import android.view.View
 

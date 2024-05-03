@@ -1,4 +1,4 @@
-package com.example.studyflow.view.tagsView
+package com.example.studyflow.view.tagview
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
-import com.example.studyflow.adaptor.TagRecyclerAdapter
+import com.example.studyflow.adaptor.tag.adapter.TagRecyclerAdapter
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.tagViewModel.TagListViewModel
 

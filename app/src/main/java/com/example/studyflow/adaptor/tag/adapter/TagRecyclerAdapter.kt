@@ -1,18 +1,16 @@
-package com.example.studyflow.adaptor
+package com.example.studyflow.adaptor.tag.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.TagRowBinding
 import com.example.studyflow.model.Tag
 
-class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(), TagClickListener {
+class TagRecyclerAdapter(private val tagList : ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(),
+    TagClickListener {
     // create class
     class TagViewHolder(var view: TagRowBinding) : RecyclerView.ViewHolder(view.root) {
     }

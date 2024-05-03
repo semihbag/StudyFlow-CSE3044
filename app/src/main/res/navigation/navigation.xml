@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/tagsFragment"
-        android:name="com.example.studyflow.view.tagsView.TagsFragment"
+        android:name="com.example.studyflow.view.tagview.TagsFragment"
         android:label="fragment_tags"
         tools:layout="@layout/fragment_tags" />
 </navigation>
