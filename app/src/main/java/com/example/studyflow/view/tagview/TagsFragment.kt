@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.lifecycle.Observer
@@ -47,6 +45,7 @@ class TagsFragment : Fragment() {
 
         // burada kendi yazdığımız viewmodel classını bağladık bu sayede fonksiyonlarını çağırabileceğiz en yukarda tanımlamıştık sadece
         viewModel = ViewModelProvider(this).get(TagViewModel::class.java)
+
         // tagları çağırdım vievmodel classtan, çünkü db işlerini bu yapıyor
         viewModel.loadTagsFromDB()
 
@@ -63,7 +62,8 @@ class TagsFragment : Fragment() {
 
 
 
-        // buton buldum işte klasik
+
+        // buton buldum işte klasik ekleme butonu
         val button = view.findViewById<ImageButton>(R.id.btn)
         button.setOnClickListener {
             val tagTittle = view.findViewById<EditText>(R.id.edit_text_add_tag).text.toString()
@@ -103,4 +103,6 @@ class TagsFragment : Fragment() {
             }
         })
     }
+
+
 }

@@ -35,16 +35,6 @@ class TagViewModel(application: Application) : BaseViewModel(application) {
             val currentTags = dao.getAllTag()
             mutableTags.value = currentTags
         }
-
-
-        /*
-        val tag1 = Tag("data1",100,100,250,20,81,25)
-        val tag2 = Tag("data2",200,200,500,20,81,50)
-        val tag3 = Tag("data3",300,300,750,20,81,277)
-
-        val tagList = arrayListOf<Tag>(tag1,tag2,tag3)
-        mutableTags.value = tagList
-        */
     }
 
     fun storeTagToDB(tag: Tag) {
