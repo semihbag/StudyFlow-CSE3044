@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#03A9F4"
     android:backgroundTint="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <Button
         android:id="@+id/focusButton"

@@ -4,41 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/to_do_add_graph"
     app:startDestination="@id/toDoFragment">
-
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.example.studyflow.ToDoFragment"
+        android:name="com.example.studyflow.view.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do" >
         <action
-            android:id="@+id/action_toDoFragment_to_addingToDoFragment"
+            android:id="@+id/action_toDoFragment_to_addingToDoFragment3"
             app:destination="@id/addingToDoFragment" />
         <action
-            android:id="@+id/action_toDoFragment_to_deleteAndUpdatePlanFragment"
+            android:id="@+id/action_toDoFragment_to_deleteAndUpdatePlanFragment5"
             app:destination="@id/deleteAndUpdatePlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/addingToDoFragment"
-        android:name="com.example.studyflow.AddingToDoFragment"
+        android:name="com.example.studyflow.view.AddingToDoFragment"
         android:label="fragment_adding_to_do"
-        tools:layout="@layout/fragment_adding_to_do" >
-        <action
-            android:id="@+id/action_addingToDoFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_adding_to_do" />
     <fragment
         android:id="@+id/deleteAndUpdatePlanFragment"
-        android:name="com.example.studyflow.DeleteAndUpdatePlanFragment"
+        android:name="com.example.studyflow.view.DeleteAndUpdatePlanFragment"
         android:label="fragment_delete_and_update_plan"
         tools:layout="@layout/fragment_delete_and_update_plan" >
         <argument
-            android:name="plan"
-            app:argType="string" />
-        <argument
-            android:name="index"
+            android:name="id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_deleteAndUpdatePlanFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
     </fragment>
 </navigation>

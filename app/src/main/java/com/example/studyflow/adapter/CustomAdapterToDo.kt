@@ -1,8 +1,6 @@
-package com.example.studyflow
+package com.example.studyflow.adapter
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,19 +9,17 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studyflow.R
+import com.example.studyflow.model.ToDoPlan
+import com.example.studyflow.view.ToDoFragmentDirections
 
-class CustomAdapterToDo(plans: ArrayList<String>,is_checks: ArrayList<Int>, indices: ArrayList<Int>): RecyclerView.Adapter<CustomAdapterToDo.MyViewHolder>() {
+class CustomAdapterToDo(plans: ArrayList<ToDoPlan>): RecyclerView.Adapter<CustomAdapterToDo.MyViewHolder>() {
 
 
-    private var plans: ArrayList<String>
-    private var is_checks: ArrayList<Int>
-    private var indices: ArrayList<Int>
+    private var plans: ArrayList<ToDoPlan>
 
     init {
-
         this.plans = plans
-        this.is_checks = is_checks
-        this.indices = indices
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,8 +29,8 @@ class CustomAdapterToDo(plans: ArrayList<String>,is_checks: ArrayList<Int>, indi
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.toDoText.text = plans[position]
-        if (is_checks[position] == 0) {
+        holder.toDoText.text = plans[position].plan
+        if (plans[position].is_check == 0) {
             holder.checkBox.isChecked = false
         }
         else {
@@ -47,25 +43,31 @@ class CustomAdapterToDo(plans: ArrayList<String>,is_checks: ArrayList<Int>, indi
             if (holder.checkBox.isChecked) {
                 val sqlString = "UPDATE toDoPlans SET is_checked = 1 WHERE id = ?"
                 val statement = database.compileStatement(sqlString)
-                statement.bindString(1,indices[position].toString())
+                statement.bindString(1,plans[position].id.toString())
                 statement.execute()
             }
             else {
                 val sqlString = "UPDATE toDoPlans SET is_checked = 0 WHERE id = ?"
                 val statement = database.compileStatement(sqlString)
-                statement.bindString(1,indices[position].toString())
+                statement.bindString(1,plans[position].id.toString())
                 statement.execute()
             }
         }
 
         holder.cardRow.setOnClickListener {
-            val action = ToDoFragmentDirections.actionToDoFragmentToDeleteAndUpdatePlanFragment(holder.toDoText.text.toString(),indices[position])
+            val action = com.example.studyflow.view.ToDoFragmentDirections.actionToDoFragmentToDeleteAndUpdatePlanFragment5(plans[position].id)
             Navigation.findNavController(it).navigate(action)
         }
     }
 
     override fun getItemCount(): Int {
         return plans.size
+    }
+
+    fun updateList(newPlans: List<ToDoPlan> ) {
+        plans.clear()
+        plans.addAll(newPlans)
+        notifyDataSetChanged()
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
