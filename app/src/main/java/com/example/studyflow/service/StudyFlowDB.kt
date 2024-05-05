@@ -5,9 +5,27 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.studyflow.model.Tag
+import com.example.studyflow.model.ToDo
 
 // burada ne kadar entity varsa table olması için manuel eklememiz gerekli yazdıkça ekleriz şuan sadece tag ekliyorum
-@Database(entities = arrayOf(Tag::class), version = 1)
+
+
+/*
+
+
+    ÖNEMMLİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİİ
+
+    BURDA DAHA ÖNCE VERSİON 1 İDİ
+    SONRA BAŞKA ENTİTY DAHA EKLEDİM DB YE
+    YANİ ARKPALNDA YENİ TABLO OLUŞTURMALI
+    O YÜZDEN VERSİON 2 YAPTIM
+    HER SEFERİNDE VERSİON YÜKSELMELİ
+    BU ÖNEMLİ
+
+    DAO YU DA EKLEMEYİ UNUTMAYIN
+
+*/
+@Database(entities = [Tag::class, ToDo::class], version = 2)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
 

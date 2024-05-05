@@ -108,7 +108,6 @@ class TagsFragment : Fragment(), TagFragmentClickListener {
     override fun clickDeleteTag(view: View) {
         val binding = DataBindingUtil.findBinding<TagRowBinding>(view)
         binding?.let {
-            println(it.tagUuid.text.toString().toInt())
             viewModel.deleteTagFromDB(it.tagUuid.text.toString().toInt())
         }
     }
