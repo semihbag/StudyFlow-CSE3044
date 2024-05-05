@@ -11,8 +11,12 @@
             type="com.example.studyflow.model.Tag" />
 
         <variable
-            name="listener"
+            name="listenerAdapter"
             type="com.example.studyflow.interfaces.tag.TagRecyclerAdapterClickListener" />
+
+        <variable
+            name="listenerFragment"
+            type="com.example.studyflow.interfaces.tag.TagFragmentClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
-        android:onClick="clickTag">
+        android:onClick="@{listenerAdapter::clickTag}"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -61,8 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -70,6 +74,7 @@
                             android:layout_margin="7dp"
                             android:background="@null"
                             android:scaleType="centerInside"
+                            android:onClick="@{listenerFragment::clickDeleteTag}"
                             android:src="@drawable/icon_bin">
 
                         </ImageView>

@@ -5,6 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.tagview.TagsFragment">
 
+    <data>
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.tag.TagFragmentClickListener" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -94,13 +99,13 @@
                         android:layout_weight="5">
 
                         <ImageButton
-                            android:id="@+id/btn"
+                            android:id="@+id/add_tag_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_send"
-                            android:scaleType="centerInside"
                             android:background="@null"
-                            >
+                            android:scaleType="centerInside"
+                            android:onClick="@{listener::clickAddTag}"
+                            android:src="@drawable/icon_send">
 
                         </ImageButton>
 

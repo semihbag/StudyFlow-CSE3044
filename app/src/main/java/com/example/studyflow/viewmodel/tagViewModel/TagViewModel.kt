@@ -54,4 +54,15 @@ class TagViewModel(application: Application) : BaseViewModel(application) {
             mutableTags.value = currentTags
         }
     }
+
+    fun deleteTagFromDB(tagId : Int) {
+
+        launch {
+            val dao = StudyFlowDB(getApplication()).tagDao()
+            dao.deleteTag(tagId)
+            val currentTags = mutableTags.value?.toMutableList() ?: mutableListOf()
+            currentTags.removeAll { it.uuid == tagId }
+            mutableTags.value = currentTags
+        }
+    }
 }

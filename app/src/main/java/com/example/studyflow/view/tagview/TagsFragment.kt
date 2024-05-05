@@ -8,20 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adaptor.tag.adapter.TagRecyclerAdapter
+import com.example.studyflow.databinding.FragmentTagsBinding
+import com.example.studyflow.databinding.TagRowBinding
+import com.example.studyflow.interfaces.tag.TagFragmentClickListener
+import com.example.studyflow.interfaces.tag.TagRecyclerAdapterClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.tagViewModel.TagViewModel
 
-class TagsFragment : Fragment() {
+class TagsFragment : Fragment(), TagFragmentClickListener {
     // fragmana viewmodel ve adapterleri ekledim. arkadaki işleri bu ikisi yapıyor çünkü
     // viewmodel henüz oluşturmadım ama adapter oluşturdum ilk olarak da adaptere boş array verdim
     private lateinit var viewModel : TagViewModel
-    private val recyclerAdapter = TagRecyclerAdapter(ArrayList<Tag>())
+    private val recyclerAdapter = TagRecyclerAdapter(ArrayList<Tag>(), this)
 
     // bunu ellemeye gerek yok
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +37,17 @@ class TagsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        // layout (xml)ile fragman bağlantısını yaptım yukarda da viewmodel adapter bağlamıştım. şimdi her şey bağlandı
-        // adı üzerinde onCreateView(görünüm oluşurken yani) ilk başta bi xml ile bağlantı kurmak lazım
-        return inflater.inflate(R.layout.fragment_tags, container, false)
+        val binding: FragmentTagsBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_tags, container, false)
+
+        // Viewmodel'i bağlama işlemi
+        binding.listener = this
+        // LiveData'yi gözlemleme işlemi
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
+
 
     // hemen yukarda xml ile bağlantı kurduk görüntü taslağımız hazır peki içinde ne göstericez o hazırlıkları yapıyoruz burda da
     // adı üzerinde onViewCreted (görünüm oluştuktan sonra)
@@ -60,36 +71,19 @@ class TagsFragment : Fragment() {
         observeLiveData()
 
 
-
-
-
-        // buton buldum işte klasik ekleme butonu
-        val button = view.findViewById<ImageButton>(R.id.btn)
-        button.setOnClickListener {
-            val tagTittle = view.findViewById<EditText>(R.id.edit_text_add_tag).text.toString()
-            val tag = Tag(tagName = tagTittle)
-            viewModel.storeTagToDB(tag)
-            view.findViewById<EditText>(R.id.edit_text_add_tag).text.clear()
-        }
-
-        val editText = view.findViewById<EditText>(R.id.edit_text_add_tag)
-        editText.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                val tag = Tag(tagName = editText.text.toString())
-                viewModel.storeTagToDB(tag)
-                editText.text.clear()
-                return@setOnKeyListener true
+        // burada eğer textte enter bastıysa ekleme yapıyoruz
+        val binding = DataBindingUtil.findBinding<FragmentTagsBinding>(view)
+        binding?.let {
+            it.editTextAddTag.setOnKeyListener { v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    val tag = Tag(binding.editTextAddTag.text.toString())
+                    viewModel.storeTagToDB(tag)
+                    binding.editTextAddTag.text.clear()
+                    return@setOnKeyListener true
+                }
+                false
             }
-            false
         }
-
-
-
-
-
-
-
-
     }
 
     // burada gözlenebilir verilei gözleme fonksiyonlarını yazdım
@@ -105,4 +99,20 @@ class TagsFragment : Fragment() {
     }
 
 
+    override fun clickAddTag(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentTagsBinding>(view)
+        binding?.let {
+            val tag = Tag(binding.editTextAddTag.text.toString())
+            viewModel.storeTagToDB(tag)
+            binding.editTextAddTag.text.clear()
+        }
+    }
+
+    override fun clickDeleteTag(view: View) {
+        val binding = DataBindingUtil.findBinding<TagRowBinding>(view)
+        binding?.let {
+            println(it.tagUuid.text.toString().toInt())
+            viewModel.deleteTagFromDB(it.tagUuid.text.toString().toInt())
+        }
+    }
 }

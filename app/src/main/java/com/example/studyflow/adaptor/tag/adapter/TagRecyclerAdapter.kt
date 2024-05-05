@@ -7,10 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.TagRowBinding
+import com.example.studyflow.interfaces.tag.TagFragmentClickListener
 import com.example.studyflow.interfaces.tag.TagRecyclerAdapterClickListener
 import com.example.studyflow.model.Tag
 
-class TagRecyclerAdapter(private val tagList: ArrayList<Tag>) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>() {
+class TagRecyclerAdapter(private val tagList: ArrayList<Tag>, private val listenerFragment : TagFragmentClickListener) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(), TagRecyclerAdapterClickListener {
 
     // create class
     class TagViewHolder(var view: TagRowBinding) : RecyclerView.ViewHolder(view.root) {
@@ -24,12 +25,7 @@ class TagRecyclerAdapter(private val tagList: ArrayList<Tag>) : RecyclerView.Ada
 
         // bu databinding olmadan önce kullanılan çağırma yöntemi idi
         //val view = inflater.inflate(R.layout.tag_row,parent,false)
-        val view = DataBindingUtil.inflate<TagRowBinding>(
-            inflater,
-            R.layout.tag_row,
-            parent,
-            false
-        )        // burda yazdığım layout ile bağlantısını kuruyorum artık holder neye benzeyeceğini biliyor
+        val view = DataBindingUtil.inflate<TagRowBinding>(inflater, R.layout.tag_row, parent, false)        // burda yazdığım layout ile bağlantısını kuruyorum artık holder neye benzeyeceğini biliyor
         return TagViewHolder(view)
     }
 
@@ -42,16 +38,10 @@ class TagRecyclerAdapter(private val tagList: ArrayList<Tag>) : RecyclerView.Ada
         // holder aslında bi TagViewHolder yani tek bir tagı tutan container adının holder olmasına gerek yok ama mantıklı olan bu
         // ayrıca bu TagViewHolder i da yukarda kendim tanımladım
         holder.view.tag = tagList[position]
-
-        // holder.view.listener = this
+        holder.view.listenerAdapter = this
+        holder.view.listenerFragment = listenerFragment
         // yukadaki listener aslında bir interface. bu sınıf o interfaceden extend edildiği için this yazabilirim. üzerinde tıklama işini yapacak
         // clickTag fonksiyonu da zaten bunun için overrride edildi (aşağıda)
-
-
-        holder.view.root.setOnClickListener {
-            val gridLayout =  holder.view.gridLayout
-            gridLayout.visibility = if (gridLayout.visibility == View.GONE) View.VISIBLE else View.GONE
-        }
 
 
     }
@@ -62,8 +52,10 @@ class TagRecyclerAdapter(private val tagList: ArrayList<Tag>) : RecyclerView.Ada
         notifyDataSetChanged()
     }
 
-
-
-
-
+    override fun clickTag(view: View) {
+        val binding = DataBindingUtil.findBinding<TagRowBinding>(view)
+        binding?.let {
+            it.gridLayout.visibility = if (it.gridLayout.visibility == View.GONE) View.VISIBLE else View.GONE
+        }
+    }
 }
