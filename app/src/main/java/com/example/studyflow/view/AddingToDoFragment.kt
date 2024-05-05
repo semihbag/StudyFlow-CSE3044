@@ -50,7 +50,7 @@ class AddingToDoFragment : Fragment() {
                     Toast.makeText(context,"Please enter a plan",Toast.LENGTH_LONG).show()
                 }
                 else {
-                    context?.let { it1 -> modelView.insertPlan(it1) }
+                    modelView.insertPlan()
                     view.findViewById<EditText>(R.id.toDoPlanText).setText("")
                     modelView.setPlan(view)
                 }

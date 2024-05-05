@@ -43,7 +43,7 @@ class ToDoFragment : Fragment() {
         }
 
         modelView = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ToDoFragmentModelView::class.java]
-        modelView.initializePlansFromDB(view.context)
+        modelView.initializePlansFromDB()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)

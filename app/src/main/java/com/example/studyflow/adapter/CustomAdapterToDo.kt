@@ -36,13 +36,7 @@ class CustomAdapterToDo(plans: ArrayList<ToDoPlan>): RecyclerView.Adapter<Custom
         holder.view.plan = plans[position]
         holder.view.listener = this
 
-        if (holder.view.plan.is_check == 0) {
-            holder.checkBox.isChecked = false
-        }
-        else {
-            holder.checkBox.isChecked = true
-        }
-
+        
     }
 
     override fun getItemCount(): Int {

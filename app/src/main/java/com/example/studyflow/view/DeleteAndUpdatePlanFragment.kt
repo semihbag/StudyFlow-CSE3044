@@ -50,32 +50,29 @@ class DeleteAndUpdatePlanFragment : Fragment() {
         arguments?.let {
             index = DeleteAndUpdatePlanFragmentArgs.fromBundle(it).id
         }
-        modelView.initializePlan(view,index)
-        observe(view.context,index,"none")
+        modelView.initializePlan(index)
+        observe(index,"none")
 
         updateButton.setOnClickListener {
-            observe(it.context,index,"update")
+            observe(index,"update")
         }
         deleteButton.setOnClickListener {
-            observe(it.context,index,"delete")
+            observe(index,"delete")
             deleteButton.visibility = View.INVISIBLE
             updateButton.visibility = View.INVISIBLE
         }
     }
 
-    private fun observe(context: Context, id: Int, operation: String) {
+    private fun observe(id: Int, operation: String) {
     modelView.toDoPlan.observe(viewLifecycleOwner, Observer {
         if (operation == "none") {
             planText.setText(it.plan)
         }
         else if (operation == "update") {
-            this.view?.let { it1 ->
-                modelView.updatePlan(it1,id) }
+            modelView.updatePlan(planText.text.toString(),id)
         }
         else if (operation == "delete") {
-            this.view?.let { it1 ->
-                modelView.deletePlan(it1,id)
-            }
+            modelView.deletePlan(id)
         }
     })
     }
