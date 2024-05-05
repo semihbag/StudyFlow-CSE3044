@@ -1,9 +1,11 @@
 package com.example.studyflow.service
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.studyflow.model.ToDo
 
+@Dao
 interface ToDoDAO {
     @Insert
     suspend fun insertToDo(toDo : ToDo) : Long

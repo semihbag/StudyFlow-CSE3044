@@ -69,7 +69,7 @@
                                 android:id="@+id/select_tag_for_to_do_button"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:onClick="@{listener::showTagList}"
+                                android:onClick="@{listener::clickShowTagList}"
                                 android:background="@null"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/icon_tag">
@@ -107,6 +107,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
+                                android:onClick="@{listener::clickAddToDo}"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/icon_send">
 

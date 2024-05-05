@@ -28,6 +28,7 @@ import com.example.studyflow.model.ToDo
 @Database(entities = [Tag::class, ToDo::class], version = 2)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
+    abstract fun toDoDao() : ToDoDAO
 
 
     // SINGLETON - OOP DERSINDE DE GORMUSTUK BUNU BI DESING PATTERN

@@ -8,6 +8,9 @@
         <variable
             name="tag"
             type="com.example.studyflow.model.Tag" />
+        <variable
+            name="listenerFragment"
+            type="com.example.studyflow.interfaces.todo.ToDoFragmentClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,8 +20,10 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{listenerFragment::clickSelectTag}"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="10dp"
             app:layout_constrainedHeight="false"
@@ -52,6 +57,7 @@
                     android:layout_weight="1">
 
                     <TextView
+                        android:id="@+id/tag_title_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{tag.tagName}"

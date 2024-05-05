@@ -1,5 +1,6 @@
 package com.example.studyflow.view.todoview
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adapter.todo.ToDoSelectTagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
+import com.example.studyflow.databinding.ToDoSelectTagRowBinding
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.Tag
+import com.example.studyflow.model.ToDo
 import com.example.studyflow.viewmodel.todoviewmodel.ToDoViewModel
 
 
 class ToDoFragment : Fragment(), ToDoFragmentClickListener {
-    private lateinit var viewModel : ToDoViewModel
-    private val recyclerSelecetTagAdapter = ToDoSelectTagRecyclerAdapter(ArrayList<Tag>())
+    private lateinit var viewModel: ToDoViewModel
+    private val recyclerSelecetTagAdapter = ToDoSelectTagRecyclerAdapter(ArrayList<Tag>(), this)
+    private var selectedTagId = 0
+    private lateinit var selectedTagBinding : ToDoSelectTagRowBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +37,8 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : FragmentToDoBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_to_do, container,false
+        val binding: FragmentToDoBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_to_do, container, false
         )
 
         binding.listener = this
@@ -48,7 +53,8 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         viewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
         viewModel.loadSelectTagFromDB()
 
-        val selectTagRecyclerView = view.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)
+        val selectTagRecyclerView =
+            view.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)
         selectTagRecyclerView.layoutManager = LinearLayoutManager(context)
         selectTagRecyclerView.adapter = recyclerSelecetTagAdapter
 
@@ -57,24 +63,45 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     }
 
     fun observeLiveData() {
-        viewModel.mutableSelectTagList.observe(viewLifecycleOwner, Observer { tags->
+        viewModel.mutableSelectTagList.observe(viewLifecycleOwner, Observer { tags ->
             tags.let {
-                view?.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)?.visibility = View.VISIBLE
+                view?.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)?.visibility =
+                    View.VISIBLE
                 recyclerSelecetTagAdapter.updateSelectTagList(tags)
             }
         })
     }
 
-    override fun addToDo(view: View) {
-        TODO("Not yet implemented")
-    }
-
-    override fun showTagList(view: View) {
-        val binding  = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
+    override fun clickSelectTag(view: View) {
+        val binding = DataBindingUtil.findBinding<ToDoSelectTagRowBinding>(view)
         binding?.let {
-            it.selecTagForToDoList.visibility = if (it.selecTagForToDoList.visibility == View.GONE) View.VISIBLE else View.GONE
+            val tag = it.tag
+            tag?.let {
+                if (::selectedTagBinding.isInitialized) {
+                    selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+                }
+                selectedTagBinding = binding
+                selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#E3D8D8"))
+                selectedTagId = it.uuid
+            }
         }
     }
 
+    override fun clickAddToDo(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
+        binding?.let {
+            val toDoText = it.editTextAddToDo.text.toString()
+            val toDo = ToDo(toDoText,selectedTagId,false)
+            viewModel.storeToDoToDB(toDo)
+            binding.editTextAddToDo.text.clear()
+        }
+    }
 
+    override fun clickShowTagList(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
+        binding?.let {
+            it.selecTagForToDoList.visibility =
+                if (it.selecTagForToDoList.visibility == View.GONE) View.VISIBLE else View.GONE
+        }
+    }
 }

@@ -7,9 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.ToDoSelectTagRowBinding
+import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 
 
-class ToDoSelectTagRecyclerAdapter (private val selectTagList : ArrayList<com.example.studyflow.model.Tag>) : RecyclerView.Adapter<ToDoSelectTagRecyclerAdapter.ToDoSelectTagViewHolder>() {
+class ToDoSelectTagRecyclerAdapter (private val selectTagList : ArrayList<com.example.studyflow.model.Tag>, private  val listenerFragment : ToDoFragmentClickListener) : RecyclerView.Adapter<ToDoSelectTagRecyclerAdapter.ToDoSelectTagViewHolder>() {
 
     class ToDoSelectTagViewHolder(var view : ToDoSelectTagRowBinding) : RecyclerView.ViewHolder(view.root)
 
@@ -25,6 +26,7 @@ class ToDoSelectTagRecyclerAdapter (private val selectTagList : ArrayList<com.ex
 
     override fun onBindViewHolder(holder: ToDoSelectTagViewHolder, position: Int) {
         holder.view.tag = selectTagList[position]
+        holder.view.listenerFragment = listenerFragment
     }
 
     fun updateSelectTagList(newSelecTagList : List<com.example.studyflow.model.Tag>) {
