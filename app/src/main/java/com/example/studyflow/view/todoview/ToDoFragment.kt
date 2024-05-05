@@ -2,6 +2,7 @@ package com.example.studyflow.view.todoview
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,24 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
         observeLiveData()
 
+        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
+        binding?.let {
+            it.editTextAddToDo.setOnKeyListener { v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    val toDo = ToDo(it.editTextAddToDo.text.toString(), selectedTagId, false)
+                    viewModel.storeToDoToDB(toDo)
+                    binding.editTextAddToDo.text.clear()
+                    selectedTagId = 0
+                    return@setOnKeyListener true
+                }
+                false
+            }
+        }
+
+
+
+
+
     }
 
     fun observeLiveData() {
@@ -94,6 +113,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
             val toDo = ToDo(toDoText,selectedTagId,false)
             viewModel.storeToDoToDB(toDo)
             binding.editTextAddToDo.text.clear()
+            selectedTagId = 0
         }
     }
 

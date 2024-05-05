@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:onClick="@{listenerFragment::clickSelectTag}"
             app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:layout_constrainedHeight="false"
             app:layout_constrainedWidth="false">
 

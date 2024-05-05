@@ -29,7 +29,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
             var currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
             currentToDos.add(toDo)
             mutableToDoList.value = currentToDos
-            println(currentToDos.size)
+            println(id)
         }
     }
 }
