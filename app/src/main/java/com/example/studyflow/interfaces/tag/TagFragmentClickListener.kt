@@ -2,7 +2,7 @@ package com.example.studyflow.interfaces.tag
 
 import android.view.View
 
-interface TagFragmentClickListener {
+open interface TagFragmentClickListener {
 
     fun clickAddTag(view: View)
 

@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.todoview.ToDoFragment">
 
+    <data>
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.todo.ToDoFragmentClickListener" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -64,6 +69,7 @@
                                 android:id="@+id/select_tag_for_to_do_button"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="@{listener::showTagList}"
                                 android:background="@null"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/icon_tag">
@@ -131,6 +137,7 @@
                             </TextView>
 
                             <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/to_do_select_tag_recyclerview"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
