@@ -56,7 +56,7 @@ class TagViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun deleteTagFromDB(tagId : Int) {
-
+        println(tagId)
         launch {
             val dao = StudyFlowDB(getApplication()).tagDao()
             dao.deleteTag(tagId)
