@@ -6,19 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
-import com.example.studyflow.adaptor.tag.adapter.TagRecyclerAdapter
+import com.example.studyflow.adapter.tag.TagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentTagsBinding
 import com.example.studyflow.databinding.TagRowBinding
 import com.example.studyflow.interfaces.tag.TagFragmentClickListener
-import com.example.studyflow.interfaces.tag.TagRecyclerAdapterClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.tagViewModel.TagViewModel
 

@@ -23,11 +23,11 @@
             android:id="@+id/action_homePageFragment_to_flashMindFragment"
             app:destination="@id/flashMindFragment" />
         <action
-            android:id="@+id/action_homePageFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
-        <action
             android:id="@+id/action_homePageFragment_to_tagsFragment"
             app:destination="@id/tagsFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
     </fragment>
     <fragment
         android:id="@+id/analysisFragment"
@@ -50,37 +50,13 @@
         android:label="fragment_flash_mind"
         tools:layout="@layout/fragment_flash_mind" />
     <fragment
-        android:id="@+id/toDoFragment"
-        android:name="com.example.studyflow.view.ToDoFragment"
-        android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" >
-        <action
-            android:id="@+id/action_toDoFragment_to_addingToDoFragment"
-            app:destination="@id/addingToDoFragment" />
-        <action
-            android:id="@+id/action_toDoFragment_to_deleteAndUpdatePlanFragment"
-            app:destination="@id/deleteAndUpdatePlanFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addingToDoFragment"
-        android:name="com.example.studyflow.view.toDoView.AddingToDoFragment"
-        android:label="fragment_adding_to_do"
-        tools:layout="@layout/fragment_adding_to_do" />
-    <fragment
-        android:id="@+id/deleteAndUpdatePlanFragment"
-        android:name="com.example.studyflow.view.toDoView.DeleteAndUpdatePlanFragment"
-        android:label="fragment_delete_and_update_plan"
-        tools:layout="@layout/fragment_delete_and_update_plan" >
-        <argument
-            android:name="plan"
-            app:argType="string" />
-        <argument
-            android:name="index"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/tagsFragment"
         android:name="com.example.studyflow.view.tagview.TagsFragment"
         android:label="fragment_tags"
         tools:layout="@layout/fragment_tags" />
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.example.studyflow.view.todoview.ToDoFragment"
+        android:label="fragment_to_do"
+        tools:layout="@layout/fragment_to_do" />
 </navigation>
