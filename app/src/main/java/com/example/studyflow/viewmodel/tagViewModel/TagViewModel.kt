@@ -1,13 +1,9 @@
-package com.example.studyflow.viewmodel.tagViewModel
+package com.example.studyflow.viewmodel.tagviewmodel
 
 import android.app.Application
-import android.view.View
-import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
-import com.example.studyflow.R
 import com.example.studyflow.model.Tag
 import com.example.studyflow.service.StudyFlowDB
-import com.example.studyflow.view.tagview.TagsFragment
 import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -25,7 +21,7 @@ import kotlinx.coroutines.launch
 
 */
 
-class TagViewModel(application: Application) : BaseViewModel(application) {
+open class TagViewModel(application: Application) : BaseViewModel(application) {
     val mutableTags = MutableLiveData<List<Tag>>()
 
     fun loadTagsFromDB() {

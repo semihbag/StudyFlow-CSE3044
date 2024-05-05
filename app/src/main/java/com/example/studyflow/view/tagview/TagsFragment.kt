@@ -17,7 +17,7 @@ import com.example.studyflow.databinding.FragmentTagsBinding
 import com.example.studyflow.databinding.TagRowBinding
 import com.example.studyflow.interfaces.tag.TagFragmentClickListener
 import com.example.studyflow.model.Tag
-import com.example.studyflow.viewmodel.tagViewModel.TagViewModel
+import com.example.studyflow.viewmodel.tagviewmodel.TagViewModel
 
 class TagsFragment : Fragment(), TagFragmentClickListener {
     // fragmana viewmodel ve adapterleri ekledim. arkadaki işleri bu ikisi yapıyor çünkü
@@ -34,6 +34,7 @@ class TagsFragment : Fragment(), TagFragmentClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         val binding: FragmentTagsBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_tags, container, false)
 
