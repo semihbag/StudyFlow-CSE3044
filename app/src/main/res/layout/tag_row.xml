@@ -73,8 +73,8 @@
                             android:layout_height="match_parent"
                             android:layout_margin="7dp"
                             android:background="@null"
-                            android:scaleType="centerInside"
                             android:onClick="@{listenerFragment::clickDeleteTag}"
+                            android:scaleType="centerInside"
                             android:src="@drawable/icon_bin">
 
                         </ImageView>
