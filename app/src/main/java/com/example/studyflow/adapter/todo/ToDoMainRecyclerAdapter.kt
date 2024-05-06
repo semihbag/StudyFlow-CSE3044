@@ -39,10 +39,16 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
     override fun onBindViewHolder(holder: ToDoMainRecyclerItemViewHolder, position: Int) {
 
         holder.view.mainItem = toDoMainRecyclerItemList[position]
+
         holder.view.innerToToRecyclerview.layoutManager = LinearLayoutManager(context)
+
         val innerAdapter = ToDoRecyclerAdapter(toDoMainRecyclerItemList[position].toDoList)
         holder.view.innerToToRecyclerview.adapter = innerAdapter
+
+      //  innerAdapter.updateToDoList(toDoMainRecyclerItemList[position].toDoList)
+
         innerAdapterList.add(innerAdapter)
+
         println(toDoMainRecyclerItemList[position].toDoList.size)
     }
 
@@ -50,20 +56,17 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
         toDoMainRecyclerItemList.clear()
         toDoMainRecyclerItemList.addAll(newlist)
 
-        innerAdapterList.clear() // İç adapter listesini temizle
+        innerAdapterList.clear()
 
-        notifyDataSetChanged()
-
-        // Yeni iç adapterler oluştur ve iç adapter listesini güncelle
         for (item in newlist) {
             val innerAdapter = ToDoRecyclerAdapter(item.toDoList)
             innerAdapterList.add(innerAdapter)
         }
 
-        // Güncellenmiş iç adapterlere değişiklik olduğunu bildir
         for (adapter in innerAdapterList) {
             adapter.notifyDataSetChanged()
         }
+        notifyDataSetChanged()
     }
 
 }

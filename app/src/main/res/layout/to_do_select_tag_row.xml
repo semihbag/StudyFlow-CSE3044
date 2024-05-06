@@ -23,6 +23,7 @@
             android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
             android:onClick="@{listenerFragment::clickSelectTag}"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="5dp"
@@ -35,21 +36,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="22dp"
-                    android:layout_weight="10">
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                    </RadioButton>
-
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
