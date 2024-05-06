@@ -17,7 +17,7 @@ import com.example.studyflow.databinding.FragmentTagsBinding
 import com.example.studyflow.databinding.TagRowBinding
 import com.example.studyflow.interfaces.tag.TagFragmentClickListener
 import com.example.studyflow.model.Tag
-import com.example.studyflow.viewmodel.tagviewmodel.TagViewModel
+import com.example.studyflow.viewmodel.tag.TagViewModel
 
 class TagsFragment : Fragment(), TagFragmentClickListener {
     // fragmana viewmodel ve adapterleri ekledim. arkadaki işleri bu ikisi yapıyor çünkü
@@ -67,7 +67,6 @@ class TagsFragment : Fragment(), TagFragmentClickListener {
 
         // her şeyi birbirine bağladık şimdi de bakalım gözlemleyelim neler  oluyor neler bitiyor
         observeLiveData()
-
 
         // burada eğer textte enter bastıysa ekleme yapıyoruz
         val binding = DataBindingUtil.findBinding<FragmentTagsBinding>(view)

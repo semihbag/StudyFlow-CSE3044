@@ -1,4 +1,4 @@
-package com.example.studyflow.viewmodel.tagviewmodel
+package com.example.studyflow.viewmodel.tag
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData

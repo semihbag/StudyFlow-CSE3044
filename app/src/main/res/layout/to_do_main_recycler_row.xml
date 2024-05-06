@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="tag"
-            type="com.example.studyflow.model.Tag" />
+            name="mainItem"
+            type="com.example.studyflow.model.ToDoMainRecyclerItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{tag.tagName}">
+                    android:text="@{mainItem.tag.tagName}"
+                    android:layout_height="wrap_content">
 
                 </TextView>
             </LinearLayout>
@@ -36,6 +36,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/inner_to_to_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>

@@ -22,10 +22,14 @@ interface ToDoDAO {
     @Query("SELECT * FROM todo WHERE tagId = :givenTagId")
     suspend fun getAllToDoWithGivenTagId(givenTagId : Int) : List<ToDo>
 
+
+    @Query("SELECT * FROM todo WHERE tagId = :givenTagId and done = :givenDone")
+    suspend fun  getAllToDoWithGivenTagIdAndGivenDone(givenTagId : Int, givenDone : Boolean) : List<ToDo>
+
+
     @Query("DELETE FROM todo")
     suspend fun deleteAllToDo()
 
     @Query("DELETE FROM todo WHERE uuid = :toDoId")
     suspend fun deleteToDo(toDoId :Int)
-
 }

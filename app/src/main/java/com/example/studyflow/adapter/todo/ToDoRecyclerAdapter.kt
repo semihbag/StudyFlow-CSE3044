@@ -8,6 +8,9 @@ import com.example.studyflow.R
 import com.example.studyflow.databinding.ToDoRowBinding
 import com.example.studyflow.model.ToDo
 
+/*
+    BU İÇERİDEKİ RECYCLER ADAPTER OLACAK
+ */
 class ToDoRecyclerAdapter(private val toDoList: ArrayList<ToDo>) : RecyclerView.Adapter<ToDoRecyclerAdapter.ToDoViewHolder>() {
     class ToDoViewHolder(var view : ToDoRowBinding) : RecyclerView.ViewHolder(view.root) {
     }

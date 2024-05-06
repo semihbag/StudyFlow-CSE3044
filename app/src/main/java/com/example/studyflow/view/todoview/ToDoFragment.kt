@@ -13,18 +13,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
+import com.example.studyflow.adapter.todo.ToDoMainRecyclerAdapter
 import com.example.studyflow.adapter.todo.ToDoSelectTagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
 import com.example.studyflow.databinding.ToDoSelectTagRowBinding
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
+import com.example.studyflow.model.ToDoMainRecyclerItem
 import com.example.studyflow.viewmodel.todoviewmodel.ToDoViewModel
 
 
 class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     private lateinit var viewModel: ToDoViewModel
     private val recyclerSelecetTagAdapter = ToDoSelectTagRecyclerAdapter(ArrayList<Tag>(), this)
+    private lateinit var recyclerToDoMainAdapter : ToDoMainRecyclerAdapter
     private var selectedTagId = 0
     private lateinit var selectedTagBinding : ToDoSelectTagRowBinding
 
@@ -53,11 +56,16 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
         viewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
         viewModel.loadSelectTagFromDB()
+        viewModel.setToDoMainRecyclerItemList()
 
-        val selectTagRecyclerView =
-            view.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)
+        val selectTagRecyclerView = view.findViewById<RecyclerView>(R.id.to_do_select_tag_recyclerview)
         selectTagRecyclerView.layoutManager = LinearLayoutManager(context)
         selectTagRecyclerView.adapter = recyclerSelecetTagAdapter
+
+        val toDoMainRecyclerView = view.findViewById<RecyclerView>(R.id.to_do_main_recycler)
+        toDoMainRecyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(),requireContext())
+        toDoMainRecyclerView.adapter = recyclerToDoMainAdapter
 
         observeLiveData()
 
@@ -89,7 +97,25 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
                 recyclerSelecetTagAdapter.updateSelectTagList(tags)
             }
         })
+
+        viewModel.mutableToDoList.observe(viewLifecycleOwner, Observer { todos ->
+            todos.let {
+                viewModel.setToDoMainRecyclerItemList()
+            }
+        })
+
+        viewModel.mutableToDoMainRecyclerItem.observe(viewLifecycleOwner, Observer { items ->
+            items.let {
+                view?.findViewById<RecyclerView>(R.id.to_do_main_recycler)?.visibility = View.VISIBLE
+                recyclerToDoMainAdapter.updateToDoMainRecyclerItemList(ArrayList(items))
+            }
+        })
     }
+
+
+
+
+
 
     override fun clickSelectTag(view: View) {
         val binding = DataBindingUtil.findBinding<ToDoSelectTagRowBinding>(view)
