@@ -35,7 +35,6 @@
 
                     <CheckBox
                         android:id="@+id/radioButton"
-                        android:layout_marginHorizontal="3dp"
                         android:layout_width="match_parent"
                         android:text="@{toDo.toDoText}"
                         android:textSize="18sp"
