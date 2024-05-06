@@ -27,7 +27,6 @@ class ToDoRecyclerAdapter(private val toDoList: ArrayList<ToDo>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         holder.view.toDo = toDoList[position]
-        println(position.toString() + " " + toDoList[position].toDoText)
     }
 
     fun updateToDoList(newToDoList : List<ToDo>) {

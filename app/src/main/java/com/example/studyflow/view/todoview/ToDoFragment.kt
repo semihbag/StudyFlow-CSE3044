@@ -21,7 +21,7 @@ import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
 import com.example.studyflow.model.ToDoMainRecyclerItem
-import com.example.studyflow.viewmodel.todoviewmodel.ToDoViewModel
+import com.example.studyflow.viewmodel.todo.ToDoViewModel
 
 
 class ToDoFragment : Fragment(), ToDoFragmentClickListener {
@@ -77,7 +77,9 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
                     viewModel.storeToDoToDB(toDo)
                     binding.editTextAddToDo.text.clear()
                     selectedTagId = 0
-                    selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+                    if (::selectedTagBinding.isInitialized) {
+                        selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+                    }
                     it.selecTagForToDoList.visibility = View.GONE
                     return@setOnKeyListener true
                 }
@@ -142,7 +144,9 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
             viewModel.storeToDoToDB(toDo)
             binding.editTextAddToDo.text.clear()
             selectedTagId = 0
-            selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            if (::selectedTagBinding.isInitialized) {
+                selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            }
             it.selecTagForToDoList.visibility = View.GONE
         }
     }

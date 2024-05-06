@@ -1,4 +1,4 @@
-package com.example.studyflow.viewmodel.todoviewmodel
+package com.example.studyflow.viewmodel.todo
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -36,18 +36,28 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     fun setToDoMainRecyclerItemList() {
         val newToDoMainRecyclerItemList = ArrayList<ToDoMainRecyclerItem>()
 
+
         launch {
             val daoToDo = StudyFlowDB(getApplication()).toDoDao()
             val daoTag = StudyFlowDB(getApplication()).tagDao()
 
+            // burası general todolar ,.,n burdaki tag geçici db de yer almayacak sadece general başlığı için
+            val generalTag = Tag("General")
+            val generalTodos = daoToDo.getAllToDoWithGivenTagId(0)
+            if (generalTodos.size != 0) {
+                val generalToDoMainRecyclerItem = ToDoMainRecyclerItem(generalTag, ArrayList(generalTodos))
+                newToDoMainRecyclerItemList.add(generalToDoMainRecyclerItem)
+            }
+
             val allTags = daoTag.getAllTag()
             for (tag in allTags){
-                val toDoListInSpecificTag = daoToDo.getAllToDoWithGivenTagIdAndGivenDone(tag.uuid, false)
+                val toDoListInSpecificTag = daoToDo.getAllToDoWithGivenTagId(tag.uuid)
                 if (toDoListInSpecificTag.size != 0) {
                     val mainItem = ToDoMainRecyclerItem(tag, ArrayList(toDoListInSpecificTag))
                     newToDoMainRecyclerItemList.add(mainItem)
                 }
             }
+
             mutableToDoMainRecyclerItem.value = newToDoMainRecyclerItemList
         }
     }
