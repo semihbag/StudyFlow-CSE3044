@@ -69,6 +69,8 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
         observeLiveData()
 
+
+        // burayı enter bastı mı diye dinliyorum
         val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
         binding?.let {
             it.editTextAddToDo.setOnKeyListener { v, keyCode, event ->
@@ -136,6 +138,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         }
     }
 
+
     override fun clickAddToDo(view: View) {
         val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
         binding?.let {
@@ -150,6 +153,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
             it.selecTagForToDoList.visibility = View.GONE
         }
     }
+
 
     override fun clickShowTagList(view: View) {
         val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
