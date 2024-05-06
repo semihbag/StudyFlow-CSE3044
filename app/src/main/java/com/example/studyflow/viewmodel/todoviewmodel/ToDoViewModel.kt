@@ -43,8 +43,10 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
             val allTags = daoTag.getAllTag()
             for (tag in allTags){
                 val toDoListInSpecificTag = daoToDo.getAllToDoWithGivenTagIdAndGivenDone(tag.uuid, false)
-                val mainItem = ToDoMainRecyclerItem(tag, ArrayList(toDoListInSpecificTag))
-                newToDoMainRecyclerItemList.add(mainItem)
+                if (toDoListInSpecificTag.size != 0) {
+                    val mainItem = ToDoMainRecyclerItem(tag, ArrayList(toDoListInSpecificTag))
+                    newToDoMainRecyclerItemList.add(mainItem)
+                }
             }
             mutableToDoMainRecyclerItem.value = newToDoMainRecyclerItemList
         }

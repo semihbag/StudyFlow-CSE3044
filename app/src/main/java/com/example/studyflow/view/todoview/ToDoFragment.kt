@@ -77,6 +77,8 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
                     viewModel.storeToDoToDB(toDo)
                     binding.editTextAddToDo.text.clear()
                     selectedTagId = 0
+                    selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+                    it.selecTagForToDoList.visibility = View.GONE
                     return@setOnKeyListener true
                 }
                 false
@@ -140,6 +142,8 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
             viewModel.storeToDoToDB(toDo)
             binding.editTextAddToDo.text.clear()
             selectedTagId = 0
+            selectedTagBinding.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"))
+            it.selecTagForToDoList.visibility = View.GONE
         }
     }
 
