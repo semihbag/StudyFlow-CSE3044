@@ -49,7 +49,7 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
 
         innerAdapterList.add(innerAdapter)
 
-        println(toDoMainRecyclerItemList[position].toDoList.size)
+
     }
 
     fun updateToDoMainRecyclerItemList(newlist: ArrayList<ToDoMainRecyclerItem>) {
@@ -63,9 +63,6 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
             innerAdapterList.add(innerAdapter)
         }
 
-        for (adapter in innerAdapterList) {
-            adapter.notifyDataSetChanged()
-        }
         notifyDataSetChanged()
     }
 
