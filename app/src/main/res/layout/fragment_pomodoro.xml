@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.FocusFragment"
+    tools:context=".view.pomodoroView.PomodoroFragment"
     >
+
+    <data>
+        <variable
+            name="pomodoro"
+            type="com.example.studyflow.model.Pomodoro" />
+
+        <variable
+            name="tag"
+            type="com.example.studyflow.model.Tag" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.FocusFragment">
 
     <Button
         android:id="@+id/startButton"
@@ -36,7 +50,7 @@
         android:id="@+id/tagName"
         android:layout_width="184dp"
         android:layout_height="103dp"
-        android:text="Tag Name"
+        android:text="@{tag.tagName.toString()}"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,5 +88,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.676" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
