@@ -25,7 +25,6 @@ import com.example.studyflow.viewmodel.todo.ToDoViewModel
 class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     private lateinit var viewModel: ToDoViewModel
     private lateinit var recyclerToDoMainAdapter: ToDoMainRecyclerAdapter
-    private var selectedTagId = 0
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
