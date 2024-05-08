@@ -7,6 +7,11 @@
         <variable
             name="toDo"
             type="com.example.studyflow.model.ToDo" />
+
+        <variable
+            name="listenerFragment"
+            type="com.example.studyflow.interfaces.todo.ToDoFragmentClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,11 +35,14 @@
 
 
                 <CheckBox
-                    android:id="@+id/radioButton"
+                    android:id="@+id/checkBox"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:checked="@{toDo.done}"
+                    android:onClick="@{listenerFragment::clickDone}"
                     android:text="@{toDo.toDoText}"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content">
+                    android:textSize="16sp">
 
                 </CheckBox>
 

@@ -8,9 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.ToDoMainRecyclerRowBinding
+import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.ToDoMainRecyclerItem
 
-class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<ToDoMainRecyclerItem>, private val context: Context) :
+class ToDoMainRecyclerAdapter(
+    private val toDoMainRecyclerItemList: ArrayList<ToDoMainRecyclerItem>,
+    private val context: Context,
+    private val toDoFragmentClickListener: ToDoFragmentClickListener
+) :
     RecyclerView.Adapter<ToDoMainRecyclerAdapter.ToDoMainRecyclerItemViewHolder>() {
     class ToDoMainRecyclerItemViewHolder(var view: ToDoMainRecyclerRowBinding) :
         RecyclerView.ViewHolder(view.root) {
@@ -42,10 +47,10 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
 
         holder.view.innerToToRecyclerview.layoutManager = LinearLayoutManager(context)
 
-        val innerAdapter = ToDoRecyclerAdapter(toDoMainRecyclerItemList[position].toDoList)
+        val innerAdapter = ToDoRecyclerAdapter(toDoMainRecyclerItemList[position].toDoList,toDoFragmentClickListener)
         holder.view.innerToToRecyclerview.adapter = innerAdapter
 
-      //  innerAdapter.updateToDoList(toDoMainRecyclerItemList[position].toDoList)
+        //  innerAdapter.updateToDoList(toDoMainRecyclerItemList[position].toDoList)
 
         innerAdapterList.add(innerAdapter)
 
@@ -59,7 +64,7 @@ class ToDoMainRecyclerAdapter(private val toDoMainRecyclerItemList: ArrayList<To
         innerAdapterList.clear()
 
         for (item in newlist) {
-            val innerAdapter = ToDoRecyclerAdapter(item.toDoList)
+            val innerAdapter = ToDoRecyclerAdapter(item.toDoList, toDoFragmentClickListener)
             innerAdapterList.add(innerAdapter)
         }
 

@@ -10,14 +10,19 @@ import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
 class ToDoViewModel (application: Application) : BaseViewModel(application) {
+    private val dB = StudyFlowDB(getApplication())
+    private val daoTag = dB.tagDao()
+    private val daoToDo = dB.toDoDao()
+
+
+
     val mutableSelectTagList = MutableLiveData<List<Tag>>()
     val mutableToDoList = MutableLiveData<List<ToDo>>()
     val mutableToDoMainRecyclerItem = MutableLiveData<List<ToDoMainRecyclerItem>>()
 
     fun loadSelectTagFromDB() {
         launch {
-            val dao = StudyFlowDB(getApplication()).tagDao()
-            val currentSelectTags = dao.getAllTag()
+            val currentSelectTags = daoTag.getAllTag()
             mutableSelectTagList.value = currentSelectTags
         }
     }
@@ -25,10 +30,9 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     fun storeToDoToDB(toDo : ToDo) {
 
         launch {
-            val dao = StudyFlowDB(getApplication()).toDoDao()
-            val id = dao.insertToDo(toDo)
+            val id = daoToDo.insertToDo(toDo)
             toDo.uuid = id.toInt()
-            var currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
+            val currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
             currentToDos.add(toDo)
             mutableToDoList.value = currentToDos
         }
@@ -36,10 +40,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     fun setToDoMainRecyclerItemList() {
         val newToDoMainRecyclerItemList = ArrayList<ToDoMainRecyclerItem>()
 
-
         launch {
-            val daoToDo = StudyFlowDB(getApplication()).toDoDao()
-            val daoTag = StudyFlowDB(getApplication()).tagDao()
 
             // burası general todolar ,.,n burdaki tag geçici db de yer almayacak sadece general başlığı için
             val generalTag = Tag("General")
@@ -61,4 +62,12 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
             mutableToDoMainRecyclerItem.value = newToDoMainRecyclerItemList
         }
     }
+
+    fun updateToDo(todo : ToDo) {
+        println(todo.done)
+        launch {
+            daoToDo.updateToDo(todo)
+        }
+    }
+
 }

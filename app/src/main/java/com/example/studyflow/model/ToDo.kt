@@ -11,7 +11,7 @@ class ToDo (
     @ColumnInfo(name = "tagId")
     val tagId : Int = 0,
     @ColumnInfo(name = "done")
-    val done : Boolean
+    var done : Boolean
 ) {
     @PrimaryKey(true)
     var uuid : Int = 0

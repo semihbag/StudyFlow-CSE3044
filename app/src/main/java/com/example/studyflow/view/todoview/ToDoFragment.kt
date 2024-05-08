@@ -16,6 +16,7 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.todo.ToDoMainRecyclerAdapter
 import com.example.studyflow.adapter.todo.ToDoSelectTagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
+import com.example.studyflow.databinding.ToDoRowBinding
 import com.example.studyflow.databinding.ToDoSelectTagRowBinding
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.Tag
@@ -64,7 +65,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
         val toDoMainRecyclerView = view.findViewById<RecyclerView>(R.id.to_do_main_recycler)
         toDoMainRecyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(),requireContext())
+        recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(),requireContext(),this)
         toDoMainRecyclerView.adapter = recyclerToDoMainAdapter
 
         observeLiveData()
@@ -160,6 +161,16 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         binding?.let {
             it.selecTagForToDoList.visibility =
                 if (it.selecTagForToDoList.visibility == View.GONE) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun clickDone(view: View) {
+        val binding = DataBindingUtil.findBinding<ToDoRowBinding>(view)
+        binding?.let {
+            it.toDo?.let {
+                it.done = binding.checkBox.isChecked
+                viewModel.updateToDo(it)
+            }
         }
     }
 }
