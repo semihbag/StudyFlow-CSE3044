@@ -22,6 +22,7 @@ import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
 import com.example.studyflow.model.ToDoMainRecyclerItem
+import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
 
 
@@ -31,6 +32,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     private lateinit var recyclerToDoMainAdapter : ToDoMainRecyclerAdapter
     private var selectedTagId = 0
     private lateinit var selectedTagBinding : ToDoSelectTagRowBinding
+    private lateinit var tagBottomSheetDialogFragment : TagBottomSheetDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +69,15 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         toDoMainRecyclerView.layoutManager = LinearLayoutManager(context)
         recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(),requireContext(),this)
         toDoMainRecyclerView.adapter = recyclerToDoMainAdapter
+
+        val tagBottomSheetList = viewModel.mutableSelectTagList.value
+        if (tagBottomSheetList == null) {
+            println("kocanıza sahip çıkın abilerim ")
+        }
+        tagBottomSheetList?.let {
+            println("nerde o sosa süt koymüüüür diyennn")
+            tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(ArrayList(it))
+        }
 
         observeLiveData()
 
@@ -157,11 +168,9 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
 
     override fun clickShowTagList(view: View) {
-        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
-        binding?.let {
-            it.selecTagForToDoList.visibility =
-                if (it.selecTagForToDoList.visibility == View.GONE) View.VISIBLE else View.GONE
-        }
+        tagBottomSheetDialogFragment.show(childFragmentManager, tagBottomSheetDialogFragment.tag)
+
+
     }
 
     override fun clickDone(view: View) {
