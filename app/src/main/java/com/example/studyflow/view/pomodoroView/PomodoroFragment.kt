@@ -21,6 +21,8 @@ import com.example.studyflow.viewmodel.todo.ToDoViewModel
 class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
     private lateinit var viewModel: PomodoroViewModel
+    private lateinit var minutes: EditText
+    private lateinit var seconds: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,17 +48,20 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
+        minutes = view.findViewById(R.id.Minutes)
+        seconds = view.findViewById(R.id.Seconds)
+        observeLiveData(view)
 
     }
 
     private fun observeLiveData(view: View) {
 
-        if (viewModel.focusingMinutes.value != 0.toLong()) {
+        if (viewModel.focusingMinutes.value != 0L) {
             viewModel.focusingMinutes.observe(viewLifecycleOwner, Observer {
                 viewModel.countDownTime(view)
             })
         }
-        else if(viewModel.focusingSeconds.value != 0.toLong()) {
+        else if(viewModel.focusingSeconds.value != 0L) {
             viewModel.focusingMinutes.observe(viewLifecycleOwner, Observer {
                 viewModel.countDownTime(view)
             })
@@ -69,16 +74,18 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         // create a pomodoro object and start it
         // önce dakika ve saniyeyi atama yapmak lazım sonra
         // ikisi de 00 mı değil mi onun kontorlu lazım
-        val minutes = view.findViewById<EditText>(R.id.Minutes).toString().toLong()
-        val seconds =  view.findViewById<EditText>(R.id.Seconds).toString().toLong()
-        if (!(minutes == 0.toLong() && seconds == 0.toLong())) {
-            viewModel.setMinuteAndSecond(minutes,seconds)
+        val minutes = minutes.text.toString().toLong()
+        val seconds = seconds.text.toString().toLong()
+        if (!(minutes == 0L && seconds == 0L)) {
+            viewModel.setMinuteAndSecond(minutes, seconds)
             observeLiveData(view)
         }
     }
 
     override fun onStop(view: View) {
+
     }
+
 
     override fun onPause(view: View) {
     }
