@@ -19,6 +19,7 @@ class AddingToDoModelView(application: Application): BaseViewModel(application) 
 
     fun setPlan(view: View) {
         add_Plan.value = view.findViewById<EditText>(R.id.toDoPlanText).text.toString()
+        println(add_Plan.value.toString())
     }
 
     fun insertPlan() {

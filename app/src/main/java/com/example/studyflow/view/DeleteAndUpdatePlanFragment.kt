@@ -40,7 +40,7 @@ class DeleteAndUpdatePlanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        modelView = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[DeleteAndUpdateModelView::class.java]
+        modelView = ViewModelProvider(this)[DeleteAndUpdateModelView::class.java]
         planText = view.findViewById(R.id.toDoPlanUD)
         updateButton = view.findViewById(R.id.updateButton)
         deleteButton = view.findViewById(R.id.deleteButton)
