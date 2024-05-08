@@ -36,7 +36,7 @@ class AddingToDoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val addButton = view.findViewById<Button>(R.id.addButton)
-        modelView = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[AddingToDoModelView::class.java]
+        modelView = ViewModelProvider(this)[AddingToDoModelView::class.java]
         addButton.setOnClickListener {
             modelView.setPlan(view)
             observe(view)

@@ -42,7 +42,7 @@ class ToDoFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
 
-        modelView = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ToDoFragmentModelView::class.java]
+        modelView = ViewModelProvider(this)[ToDoFragmentModelView::class.java]
         modelView.initializePlansFromDB(view.context)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)

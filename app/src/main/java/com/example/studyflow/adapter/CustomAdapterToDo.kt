@@ -36,10 +36,10 @@ class CustomAdapterToDo(plans: ArrayList<ToDoPlan>): RecyclerView.Adapter<Custom
         holder.view.plan = plans[position]
         holder.view.listener = this
 
-        if (holder.view.plan.is_check == 0) {
+        val toDoPlan = holder.view.plan as ToDoPlan
+        if (toDoPlan.is_check == 0) {
             holder.checkBox.isChecked = false
-        }
-        else {
+        } else {
             holder.checkBox.isChecked = true
         }
 
