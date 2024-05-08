@@ -5,10 +5,15 @@
         <variable
             name="tag"
             type="com.example.studyflow.model.Tag" />
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener" />
+
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_marginVertical="1dp"
         android:layout_width="match_parent"
+        android:onClick="@{listener::clickSelectTag}"
         android:layout_height="wrap_content">
 
         <TextView

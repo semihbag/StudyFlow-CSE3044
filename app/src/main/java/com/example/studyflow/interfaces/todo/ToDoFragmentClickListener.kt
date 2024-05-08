@@ -7,7 +7,5 @@ interface ToDoFragmentClickListener {
 
     fun clickShowTagList(view: View)
 
-    fun clickSelectTag(view: View)
-
     fun clickDone(view: View)
 }

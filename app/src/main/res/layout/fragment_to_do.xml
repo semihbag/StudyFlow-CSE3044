@@ -122,33 +122,8 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/selec_tag_for_to_do_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <TextView
-                                android:layout_marginHorizontal="3dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Select a tag">
-
-                            </TextView>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/to_do_select_tag_recyclerview"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                            </androidx.recyclerview.widget.RecyclerView>
-                        </LinearLayout>
-                    </LinearLayout>
                 </LinearLayout>
 
 
