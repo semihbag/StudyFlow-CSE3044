@@ -13,8 +13,8 @@ import com.example.studyflow.databinding.TagBottomSheetDialogBinding
 import com.example.studyflow.model.Tag
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class TagBottomSheetDialogFragment (val tagList : ArrayList<Tag>): BottomSheetDialogFragment() {
-
+class TagBottomSheetDialogFragment (): BottomSheetDialogFragment() {
+    val tagBottomSheetDialogRecyclerAdapter = TagBottomSheetDialogRecyclerAdapter(ArrayList<Tag>())
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,6 +32,10 @@ class TagBottomSheetDialogFragment (val tagList : ArrayList<Tag>): BottomSheetDi
 
         val tagBottomSheetDialogRecyclerView = view.findViewById<RecyclerView>(R.id.tag_bottom_sheet_dialog_recyclerview)
         tagBottomSheetDialogRecyclerView.layoutManager = LinearLayoutManager(context)
-        tagBottomSheetDialogRecyclerView.adapter = TagBottomSheetDialogRecyclerAdapter(tagList)
+        tagBottomSheetDialogRecyclerView.adapter = tagBottomSheetDialogRecyclerAdapter
+    }
+
+    fun updateAdapterList(newTagList : List<Tag>) {
+        tagBottomSheetDialogRecyclerAdapter.updateTagList(newTagList)
     }
 }
