@@ -36,12 +36,23 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             val calendarObject = Calendar.getInstance()
             calendarObject.timeInMillis = currentTimeInMill
             calendarStart.value = calendarObject
+            
         }
 
         object : CountDownTimer(totalTime,1000) {
             override fun onTick(millisUntilFinished: Long) {
-                minutesEditText.setText((millisUntilFinished / 60000).toString())
-                secondsEditText.setText(((millisUntilFinished % 60000) / 1000).toString())
+                if ( (millisUntilFinished / 60000) < 10) {
+                    minutesEditText.setText("0" + (millisUntilFinished / 60000).toString())
+                }
+                else {
+                    minutesEditText.setText((millisUntilFinished / 60000).toString())
+                }
+                if ( ((millisUntilFinished % 60000) / 1000) < 10) {
+                    secondsEditText.setText("0" + ((millisUntilFinished % 60000) / 1000).toString())
+                }
+                else {
+                    secondsEditText.setText(((millisUntilFinished % 60000) / 1000).toString())
+                }
             }
 
             override fun onFinish() {
@@ -51,7 +62,6 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 val calendarObject = Calendar.getInstance()
                 calendarObject.timeInMillis = currentTimeInMill
                 calendarEnd.value = calendarObject
-
             }
 
         }.start()
