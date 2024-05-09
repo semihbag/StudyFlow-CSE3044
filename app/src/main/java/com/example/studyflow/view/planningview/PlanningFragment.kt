@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.studyflow.R
+import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 
-class PlanningFragment : Fragment() {
+class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,15 @@ class PlanningFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_planning, container, false)
+    }
+
+    //BU METODU YAZARKEN KTÜPHANENİN METOTLARINI KULLAN VE DENE BAKALIM OLUYOR MU
+    override fun clickCalenderDay(view: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun clickAddPlanningButton(view: View) {
+        TODO("Not yet implemented")
     }
 
 

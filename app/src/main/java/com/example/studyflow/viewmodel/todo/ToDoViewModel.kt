@@ -13,7 +13,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     private val dB = StudyFlowDB(getApplication())
     private val daoTag = dB.tagDao()
     private val daoToDo = dB.toDoDao()
-
+    //yukarda oluşturmuş tek farkı bu mal zenep ğpodwefplweğp
 
 
     val mutableSelectTagList = MutableLiveData<List<Tag>>()
@@ -24,6 +24,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
         launch {
             val currentSelectTags = daoTag.getAllTag()
             mutableSelectTagList.value = currentSelectTags
+            //load yapacağı şeyler sadece seçilen todolar
         }
     }
 
