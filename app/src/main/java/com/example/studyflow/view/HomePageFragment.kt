@@ -32,7 +32,7 @@ class HomePageFragment : Fragment() {
 
         val focusButton = view.findViewById<Button>(R.id.focusButton)
         focusButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToFocusFragment()
+            val action = HomePageFragmentDirections.actionHomePageFragmentToPomodoroFragment()
             Navigation.findNavController(it).navigate(action)
         }
 

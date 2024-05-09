@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    tools:context=".view.pomodoroView.PomodoroFragment"
     >
 
     <data>
@@ -26,15 +26,14 @@
         android:layout_width="409dp"
         android:layout_height="657dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:context=".view.pomodoroView.PomodoroFragment"
-        >
+        tools:layout_editor_absoluteY="1dp">
 
         <Button
             android:id="@+id/startButton"
             android:layout_width="116dp"
             android:layout_height="56dp"
             android:text="Start"
+            android:onClick="@{listener::onStart}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.718"
@@ -69,32 +68,67 @@
 
             />
 
-        <TextView
-            android:id="@+id/timerText"
-            android:layout_width="288dp"
-            android:layout_height="227dp"
-            android:gravity="center"
-            android:text="00:00"
-            android:textAlignment="center"
-            android:textSize="60sp"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.356" />
-
         <Button
             android:id="@+id/pauseButton"
             android:layout_width="115dp"
             android:layout_height="65dp"
             android:text="Pause"
+            android:onClick="@{listener::onPause}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.243"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.676" />
+
+        <EditText
+            android:id="@+id/Minutes"
+            android:layout_width="131dp"
+            android:layout_height="84dp"
+            android:background="#FFFFFF"
+            android:digits="0123456789"
+            android:ems="10"
+            android:enabled="true"
+            android:text="00"
+            android:textAlignment="textEnd"
+            android:textSize="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.143"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.378" />
+
+        <EditText
+            android:id="@+id/Seconds"
+            android:layout_width="131dp"
+            android:layout_height="84dp"
+            android:background="#FFFFFF"
+            android:digits="0123456789"
+            android:ems="10"
+            android:enabled="true"
+            android:text="00"
+            android:textAlignment="textStart"
+            android:textSize="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.874"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.378" />
+
+        <TextView
+            android:id="@+id/colon"
+            android:layout_width="16dp"
+            android:layout_height="66dp"
+            android:text=":"
+            android:textAlignment="center"
+            android:textSize="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.367" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

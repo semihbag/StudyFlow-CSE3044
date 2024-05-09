@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_toDoFragment"
             app:destination="@id/toDoFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_pomodoroFragment"
+            app:destination="@id/pomodoroFragment" />
     </fragment>
     <fragment
         android:id="@+id/analysisFragment"
@@ -59,4 +62,8 @@
         android:name="com.example.studyflow.view.todoview.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do" />
+    <fragment
+        android:id="@+id/pomodoroFragment"
+        android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
+        android:label="PomodoroFragment" />
 </navigation>
