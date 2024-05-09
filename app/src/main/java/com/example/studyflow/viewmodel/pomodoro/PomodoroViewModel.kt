@@ -87,8 +87,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                     println("Buraya girdi")
 
                     insertPomodoro(Pomodoro(calendarStart.value!!.timeInMillis,
-                        calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!,0,calculateInActiveTime(),-1))
-
+                        calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1))
 
                 }
             }
