@@ -31,16 +31,16 @@ class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
 
     //BU METODU YAZARKEN KTÜPHANENİN METOTLARINI KULLAN VE DENE BAKALIM OLUYOR MU
     override fun clickCalenderDay(view: View) {
+        println("tıkladım")
         val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
         picker.addOnPositiveButtonClickListener { selection ->
             val selectedDate = Date(selection)
-            println("tıkladım")
         }
     }
 
     override fun clickAddPlanningButton(view: View) {
-        TODO("Not yet implemented")
+        println("aaa")
     }
 
 
