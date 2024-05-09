@@ -80,7 +80,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="55dp"
-                    android:onClick="@(planningAddButton::clickAddPlanningButton)"
+                    android:onClick="@{planningAddButton::clickAddPlanningButton}"
                     app:srcCompat="@drawable/ic_add" />
             </LinearLayout>
         </LinearLayout>
