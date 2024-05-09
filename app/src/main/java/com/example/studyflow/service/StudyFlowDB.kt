@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.studyflow.model.Pomodoro
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
 
@@ -25,10 +26,12 @@ import com.example.studyflow.model.ToDo
     DAO YU DA EKLEMEYİ UNUTMAYIN
 
 */
-@Database(entities = [Tag::class, ToDo::class], version = 2)
+@Database(entities = [Tag::class, ToDo::class, Pomodoro::class], version = 3)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO
+
+    abstract fun pomodoroDao(): PomodoroDAO
 
 
     // SINGLETON - OOP DERSINDE DE GORMUSTUK BUNU BI DESING PATTERN
@@ -44,7 +47,8 @@ abstract class StudyFlowDB : RoomDatabase() {
                 instance = it
             }
         }
-        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
+        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase")
+            .build()
 
     }
 
