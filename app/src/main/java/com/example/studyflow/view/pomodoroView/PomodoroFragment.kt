@@ -55,14 +55,13 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
     }
 
     private fun observeLiveData(view: View) {
-
-        if (viewModel.focusingMinutes.value != 0L) {
+        if (viewModel.focusingMinutes.value != null && viewModel.focusingMinutes.value != 0L) {
             viewModel.focusingMinutes.observe(viewLifecycleOwner, Observer {
                 viewModel.countDownTime(view)
             })
         }
-        else if(viewModel.focusingSeconds.value != 0L) {
-            viewModel.focusingMinutes.observe(viewLifecycleOwner, Observer {
+        else if(viewModel.focusingSeconds.value != null && viewModel.focusingSeconds.value != 0L) {
+            viewModel.focusingSeconds.observe(viewLifecycleOwner, Observer {
                 viewModel.countDownTime(view)
             })
         }
@@ -71,6 +70,10 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
     // click listener functions
     override fun onStart(view: View) {
+        // make not editable the text fields
+        minutes.isEnabled = false
+        seconds.isEnabled = false
+
         // create a pomodoro object and start it
         // önce dakika ve saniyeyi atama yapmak lazım sonra
         // ikisi de 00 mı değil mi onun kontorlu lazım

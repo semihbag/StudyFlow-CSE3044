@@ -86,36 +86,36 @@
             android:layout_width="131dp"
             android:layout_height="84dp"
             android:background="#FFFFFF"
+            android:digits="0123456789"
             android:ems="10"
-            android:inputType="number"
             android:enabled="true"
-            android:text="0"
+            android:text="00"
             android:textAlignment="textEnd"
             android:textSize="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintHorizontal_bias="0.143"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.366" />
+            app:layout_constraintVertical_bias="0.378" />
 
         <EditText
             android:id="@+id/Seconds"
             android:layout_width="131dp"
             android:layout_height="84dp"
             android:background="#FFFFFF"
+            android:digits="0123456789"
             android:ems="10"
-            android:inputType="number"
             android:enabled="true"
-            android:text="0"
+            android:text="00"
             android:textAlignment="textStart"
             android:textSize="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.802"
+            app:layout_constraintHorizontal_bias="0.874"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.364" />
+            app:layout_constraintVertical_bias="0.378" />
 
         <TextView
             android:id="@+id/colon"

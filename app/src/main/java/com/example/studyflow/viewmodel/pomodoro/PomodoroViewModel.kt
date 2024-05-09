@@ -35,12 +35,15 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             calendarStart.value = Calendar.getInstance()
         }
 
-        object: CountDownTimer(totalTime,1000) {
-
+        class PomodoroCountDownTimer(view: View, totalTime: Long, interval: Long = 1000): CountDownTimer(totalTime, interval) {
+            private val view: View
+            init {
+                this.view = view
+            }
             // Her bir arrivale ulaştığında güncelle
             override fun onTick(millisUntilFinished: Long) {
-                view.findViewById<EditText>(R.id.Minutes).setText((totalTime / 60000).toString())
-                view.findViewById<EditText>(R.id.Seconds).setText((totalTime % 60000).toString())
+                this.view.findViewById<EditText>(R.id.Minutes).setText((totalTime / 60000).toString())
+                this.view.findViewById<EditText>(R.id.Seconds).setText((totalTime % 60000).toString())
             }
 
             override fun onFinish() {
@@ -51,6 +54,8 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             }
 
         }
+        val pomodoroCountDownTimer = PomodoroCountDownTimer(view, totalTime.toLong())
+        pomodoroCountDownTimer.start()
     }
 
 }
