@@ -58,5 +58,17 @@
         android:id="@+id/toDoFragment"
         android:name="com.example.studyflow.view.todoview.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" />
+        tools:layout="@layout/fragment_to_do" >
+        <action
+            android:id="@+id/action_toDoFragment_to_tagBottomSheetDialogFragment"
+            app:destination="@id/tagBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/tagBottomSheetDialogFragment"
+        android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
+        android:label="TagBottomSheetDialogFragment" >
+        <action
+            android:id="@+id/action_tagBottomSheetDialogFragment_to_tagsFragment"
+            app:destination="@id/tagsFragment" />
+    </dialog>
 </navigation>

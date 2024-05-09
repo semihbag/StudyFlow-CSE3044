@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
@@ -25,7 +26,6 @@ import com.example.studyflow.viewmodel.todo.ToDoViewModel
 class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     private lateinit var viewModel: ToDoViewModel
     private lateinit var recyclerToDoMainAdapter: ToDoMainRecyclerAdapter
-    private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,18 +51,13 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ToDoViewModel::class.java)
-        viewModel.loadSelectTagFromDB()
         viewModel.setToDoMainRecyclerItemList()
-
 
 
         val toDoMainRecyclerView = view.findViewById<RecyclerView>(R.id.to_do_main_recycler)
         toDoMainRecyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerToDoMainAdapter =
-            ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(), requireContext(), this)
+        recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(), requireContext(), this)
         toDoMainRecyclerView.adapter = recyclerToDoMainAdapter
-
-        tagBottomSheetDialogFragment = TagBottomSheetDialogFragment()
 
 
         observeLiveData()
@@ -73,10 +68,16 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         binding?.let {
             it.editTextAddToDo.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    val toDo = ToDo(it.editTextAddToDo.text.toString(), tagBottomSheetDialogFragment.selectedTagUuid, false)
+
+                    val toDoSelectedTagUuid = 0
+
+
+                    /// BURDA UUİD ALMAN LAZIM ARFUMANLARDA UNUTMAA
+
+
+                    val toDo = ToDo(it.editTextAddToDo.text.toString(), toDoSelectedTagUuid, false)
                     viewModel.storeToDoToDB(toDo)
                     binding.editTextAddToDo.text.clear()
-                    tagBottomSheetDialogFragment.updateSelectedTagUuid(0)
                     return@setOnKeyListener true
                 }
                 false
@@ -87,13 +88,6 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     }
 
     fun observeLiveData() {
-        viewModel.mutableSelectTagList.observe(viewLifecycleOwner, Observer { tags ->
-            tags.let {
-                view?.findViewById<RecyclerView>(R.id.tag_bottom_sheet_dialog_recyclerview)?.visibility =
-                    View.VISIBLE
-                tagBottomSheetDialogFragment.updateAdapterList(tags)
-            }
-        })
 
         viewModel.mutableToDoList.observe(viewLifecycleOwner, Observer { todos ->
             todos.let {
@@ -115,16 +109,23 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
         binding?.let {
             val toDoText = it.editTextAddToDo.text.toString()
-            val toDo = ToDo(toDoText, tagBottomSheetDialogFragment.selectedTagUuid, false)
+
+            val toDoSelectedTagUuid = 0
+
+
+            /// BURDA UUİD ALMAN LAZIM ARFUMANLARDA UNUTMAA
+
+
+            val toDo = ToDo(toDoText, toDoSelectedTagUuid, false)
             viewModel.storeToDoToDB(toDo)
             binding.editTextAddToDo.text.clear()
-            tagBottomSheetDialogFragment.updateSelectedTagUuid(0)
         }
     }
 
 
     override fun clickShowTagList(view: View) {
-        tagBottomSheetDialogFragment.show(childFragmentManager, tagBottomSheetDialogFragment.tag)
+        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment()
+        Navigation.findNavController(view).navigate(action)
     }
 
     override fun clickDone(view: View) {

@@ -16,16 +16,9 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
 
 
 
-    val mutableSelectTagList = MutableLiveData<List<Tag>>()
     val mutableToDoList = MutableLiveData<List<ToDo>>()
     val mutableToDoMainRecyclerItem = MutableLiveData<List<ToDoMainRecyclerItem>>()
 
-    fun loadSelectTagFromDB() {
-        launch {
-            val currentSelectTags = daoTag.getAllTag()
-            mutableSelectTagList.value = currentSelectTags
-        }
-    }
 
     fun storeToDoToDB(toDo : ToDo) {
 
