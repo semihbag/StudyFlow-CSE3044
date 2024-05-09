@@ -45,25 +45,13 @@
             android:layout_width="156dp"
             android:layout_height="75dp"
             android:gravity="center"
-            android:text="@{tag.tagName.toString()}"
+            android:text="@{tag.tagName}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.722"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.078"
-
-            />
-
-        <TextView
-            android:layout_width="156dp"
-            android:layout_height="75dp"
-            android:gravity="center"
-            android:text="@{tag.tagName.toString()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
             />
 
@@ -173,14 +161,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.367" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="119dp"
-            android:layout_height="59dp"
-            android:text="POMODORO"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="538dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

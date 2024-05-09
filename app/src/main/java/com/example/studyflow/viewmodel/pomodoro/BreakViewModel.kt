@@ -2,24 +2,16 @@ package com.example.studyflow.viewmodel.pomodoro
 
 import android.app.Application
 import android.os.CountDownTimer
-import android.renderscript.ScriptGroup.Binding
 import android.view.View
 import android.widget.EditText
-import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat.FocusDirection
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.example.studyflow.R
-import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.model.Pomodoro
 import com.example.studyflow.service.StudyFlowDB
-import com.example.studyflow.view.FocusFragment
 import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 import java.util.*
-open class PomodoroViewModel(application: Application) : BaseViewModel(application) {
+open class BreakViewModel(application: Application) : BaseViewModel(application) {
 
     // pomodoro variables
     val focusingMinutes = MutableLiveData<Long>()
@@ -58,7 +50,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         return  ((minToSec + secDif).times(1000) - totalTimeInMilsec.value!!).toLong()
     }
     // Verilen süreyi geri sayma işlemi burada yapılacak
-    fun countDownTime(binding: FragmentPomodoroBinding): CountDownTimer {
+    fun countDownTime(minutesEditText: EditText, secondsEditText: EditText): CountDownTimer {
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
             // Anlık zamanı milisaniye türünde alma
@@ -72,16 +64,16 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             override fun onTick(millisUntilFinished: Long) {
                 remaingTimeInMilsec.value = remaingTimeInMilsec.value?.minus(1000L)
                 if ( (millisUntilFinished / 60000) < 10) {
-                    binding.Minutes.setText("0" + (millisUntilFinished / 60000).toString())
+                    minutesEditText.setText("0" + (millisUntilFinished / 60000).toString())
                 }
                 else {
-                    binding.Minutes.setText((millisUntilFinished / 60000).toString())
+                    minutesEditText.setText((millisUntilFinished / 60000).toString())
                 }
                 if ( ((millisUntilFinished % 60000) / 1000) < 10) {
-                    binding.Seconds.setText("0" + ((millisUntilFinished % 60000) / 1000).toString())
+                    secondsEditText.setText("0" + ((millisUntilFinished % 60000) / 1000).toString())
                 }
                 else {
-                    binding.Seconds.setText(((millisUntilFinished % 60000) / 1000).toString())
+                    secondsEditText.setText(((millisUntilFinished % 60000) / 1000).toString())
                 }
             }
 
@@ -95,9 +87,6 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                     insertPomodoro(Pomodoro(calendarStart.value!!.timeInMillis,
                         calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1))
 
-                    // navigate to the break page
-                    val args = bundleOf("pomodoroID" to 12 ) // get the tagID and set here
-                    binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
                 }
             }
 
