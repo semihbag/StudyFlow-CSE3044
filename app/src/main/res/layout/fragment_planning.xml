@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="clickCalenderListener"
+            type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
 
 
     </data>
@@ -39,7 +41,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_leftmargin="5dp"
+                    android:layout_margin="5dp"
                     android:text="PLANNER"
                     android:textAlignment="viewStart"
                     android:textSize="24sp"
@@ -54,7 +56,8 @@
                 <CalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:onClick="clickCalenderListener"/>
             </LinearLayout>
 
             <LinearLayout

@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.studyflow.R
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.util.Date
+
 
 class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
 
@@ -28,7 +31,12 @@ class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
 
     //BU METODU YAZARKEN KTÜPHANENİN METOTLARINI KULLAN VE DENE BAKALIM OLUYOR MU
     override fun clickCalenderDay(view: View) {
-        TODO("Not yet implemented")
+        val builder = MaterialDatePicker.Builder.datePicker()
+        val picker = builder.build()
+        picker.addOnPositiveButtonClickListener { selection ->
+            val selectedDate = Date(selection)
+            println("tıkladım")
+        }
     }
 
     override fun clickAddPlanningButton(view: View) {
