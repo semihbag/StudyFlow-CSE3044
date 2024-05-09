@@ -22,40 +22,33 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
     }
 
     // Verilen süreyi geri sayma işlemi burada yapılacak
-    fun countDownTime(view: View) {
+    fun countDownTime(minutesEditText: EditText, secondsEditText: EditText) {
 
         // Hepsini milisecond türünden tutuyorum
         var totalMin = focusingMinutes.value!!.times(60000)
         var totalSec = focusingSeconds.value!!.times(1000)
         var totalTime = totalMin + totalSec
-
         // Her starta basıldığında countDownTime çalışmalı
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
             calendarStart.value = Calendar.getInstance()
         }
 
-        class PomodoroCountDownTimer(view: View, totalTime: Long, interval: Long = 1000): CountDownTimer(totalTime, interval) {
-            private val view: View
-            init {
-                this.view = view
-            }
-            // Her bir arrivale ulaştığında güncelle
+        object : CountDownTimer(totalTime,1000) {
             override fun onTick(millisUntilFinished: Long) {
-                this.view.findViewById<EditText>(R.id.Minutes).setText((totalTime / 60000).toString())
-                this.view.findViewById<EditText>(R.id.Seconds).setText((totalTime % 60000).toString())
+                minutesEditText.setText((millisUntilFinished / 60000).toString())
+                secondsEditText.setText(((millisUntilFinished % 60000) / 1000).toString())
             }
 
             override fun onFinish() {
                 // Toplam süre bittiğinde de obje initialize edilip
                 // focus kısma geçilmeli
                 calendarEnd.value = Calendar.getInstance()
-                println("The operation is done")
+
             }
 
-        }
-        val pomodoroCountDownTimer = PomodoroCountDownTimer(view, totalTime.toLong())
-        pomodoroCountDownTimer.start()
+        }.start()
+
     }
 
 }
