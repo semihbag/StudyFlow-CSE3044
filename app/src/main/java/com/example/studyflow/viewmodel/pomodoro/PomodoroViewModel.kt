@@ -13,15 +13,22 @@ import kotlinx.coroutines.launch
 import java.util.*
 open class PomodoroViewModel(application: Application) : BaseViewModel(application) {
 
+    // pomodoro variables
     val focusingMinutes = MutableLiveData<Long>()
     val focusingSeconds = MutableLiveData<Long>()
     val calendarStart = MutableLiveData<Calendar>()
     val calendarEnd = MutableLiveData<Calendar>()
 
+    // counter variables
+    val totalTimeInMilsec = MutableLiveData<Long>()
+    val remaingTimeInMilsec = MutableLiveData<Long>()
+
     // Dakika ve Saniyeleri ilk başta değer atıcaz
     fun setMinuteAndSecond(minutes: Long, seconds: Long) {
         focusingMinutes.value = minutes
         focusingSeconds.value = seconds
+        totalTimeInMilsec.value = (minutes * 60000) + (seconds * 1000)
+        remaingTimeInMilsec.value = totalTimeInMilsec.value
     }
 
     // Insert new Pomodoro Item to the Database
@@ -43,25 +50,19 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         return  (minToSec + secDif).times(1000).toLong()
     }
     // Verilen süreyi geri sayma işlemi burada yapılacak
-    fun countDownTime(minutesEditText: EditText, secondsEditText: EditText) {
-
-        // Hepsini milisecond türünden tutuyorum
-        var totalMin = focusingMinutes.value!!.times(60000)
-        var totalSec = focusingSeconds.value!!.times(1000)
-        var totalTime = totalMin + totalSec
-        // Her starta basıldığında countDownTime çalışmalı
+    fun countDownTime(minutesEditText: EditText, secondsEditText: EditText): CountDownTimer {
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
             // Anlık zamanı milisaniye türünde alma
-            val currentTimeInMill = System.currentTimeMillis()
             val calendarObject = Calendar.getInstance()
-            calendarObject.timeInMillis = currentTimeInMill
+            calendarObject.timeInMillis = System.currentTimeMillis()
             calendarStart.value = calendarObject
 
         }
 
-        object : CountDownTimer(totalTime,1000) {
+        val counter =  object : CountDownTimer(remaingTimeInMilsec.value!!, 1000L) {
             override fun onTick(millisUntilFinished: Long) {
+              remaingTimeInMilsec.value = remaingTimeInMilsec.value?.minus(1000L)
                 if ( (millisUntilFinished / 60000) < 10) {
                     minutesEditText.setText("0" + (millisUntilFinished / 60000).toString())
                 }
@@ -79,9 +80,8 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             override fun onFinish() {
                 // Toplam süre bittiğinde de obje initialize edilip
                 // focus kısma geçilmeli
-                val currentTimeInMill = System.currentTimeMillis()
                 val calendarObject = Calendar.getInstance()
-                calendarObject.timeInMillis = currentTimeInMill
+                calendarObject.timeInMillis = System.currentTimeMillis()
                 calendarEnd.value = calendarObject
                 if (calendarStart.value != null && calendarEnd.value != null) {
                     println("Buraya girdi")
@@ -89,7 +89,9 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                         calendarEnd.value!!.timeInMillis,totalTime,0,calculateInActiveTime(),-1))
                 }
             }
-        }.start()
+
+        }
+        return counter
 
     }
 
