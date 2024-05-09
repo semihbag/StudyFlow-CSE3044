@@ -28,19 +28,6 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="116dp"
-            android:layout_height="56dp"
-            android:text="Start"
-            android:onClick="@{listener::onStart}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.718"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.677" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="103dp"
@@ -69,17 +56,61 @@
             />
 
         <Button
+            android:id="@+id/startButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:text="Start"
+            android:onClick="@{listener::onStart}"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.677" />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:text="Stop"
+            android:visibility="gone"
+            android:onClick="@{listener::onStop}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.677" />
+
+        <Button
             android:id="@+id/pauseButton"
             android:layout_width="115dp"
             android:layout_height="65dp"
             android:text="Pause"
             android:onClick="@{listener::onPause}"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.243"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.676" />
+
+        <Button
+            android:id="@+id/resmuseButton"
+            android:layout_width="115dp"
+            android:layout_height="65dp"
+            android:text="Resume"
+            android:onClick="@{listener::onResume}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.676" />
+
 
         <EditText
             android:id="@+id/Minutes"
