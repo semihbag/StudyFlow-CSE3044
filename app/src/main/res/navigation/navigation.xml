@@ -41,7 +41,7 @@
         tools:layout="@layout/fragment_focus" />
     <fragment
         android:id="@+id/planningFragment"
-        android:name="com.example.studyflow.view.PlanningFragment"
+        android:name="com.example.studyflow.view.planningview.PlanningFragment"
         android:label="fragment_planning"
         tools:layout="@layout/fragment_planning" />
     <fragment
