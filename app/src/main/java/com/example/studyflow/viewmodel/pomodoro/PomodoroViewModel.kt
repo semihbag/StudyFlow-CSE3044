@@ -47,7 +47,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         val minToSec = (calendarEnd.value!!.get(Calendar.MINUTE) - calendarStart.value!!.get(Calendar.MINUTE)).times(60)
         val secDif = calendarEnd.value!!.get(Calendar.SECOND) - calendarStart.value!!.get(Calendar.SECOND)
         // farkı milisaniye olarak depoluyorum
-        return  (minToSec + secDif).times(1000).toLong()
+        return  ((minToSec + secDif).times(1000) - totalTimeInMilsec.value!!).toLong()
     }
     // Verilen süreyi geri sayma işlemi burada yapılacak
     fun countDownTime(minutesEditText: EditText, secondsEditText: EditText): CountDownTimer {
@@ -62,7 +62,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
 
         val counter =  object : CountDownTimer(remaingTimeInMilsec.value!!, 1000L) {
             override fun onTick(millisUntilFinished: Long) {
-              remaingTimeInMilsec.value = remaingTimeInMilsec.value?.minus(1000L)
+                remaingTimeInMilsec.value = remaingTimeInMilsec.value?.minus(1000L)
                 if ( (millisUntilFinished / 60000) < 10) {
                     minutesEditText.setText("0" + (millisUntilFinished / 60000).toString())
                 }
@@ -84,8 +84,6 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 calendarObject.timeInMillis = System.currentTimeMillis()
                 calendarEnd.value = calendarObject
                 if (calendarStart.value != null && calendarEnd.value != null) {
-                    println("Buraya girdi")
-
                     insertPomodoro(Pomodoro(calendarStart.value!!.timeInMillis,
                         calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1))
 
