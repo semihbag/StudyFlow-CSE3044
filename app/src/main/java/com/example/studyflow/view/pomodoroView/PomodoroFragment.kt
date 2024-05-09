@@ -50,19 +50,17 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
         minutes = view.findViewById(R.id.Minutes)
         seconds = view.findViewById(R.id.Seconds)
-        observeLiveData(view)
+
 
     }
 
     private fun observeLiveData(view: View) {
         if (viewModel.focusingMinutes.value != null && viewModel.focusingMinutes.value != 0L) {
             viewModel.focusingMinutes.observe(viewLifecycleOwner, Observer {
-                viewModel.countDownTime(view)
             })
         }
         else if(viewModel.focusingSeconds.value != null && viewModel.focusingSeconds.value != 0L) {
             viewModel.focusingSeconds.observe(viewLifecycleOwner, Observer {
-                viewModel.countDownTime(view)
             })
         }
 
@@ -77,11 +75,11 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         // create a pomodoro object and start it
         // önce dakika ve saniyeyi atama yapmak lazım sonra
         // ikisi de 00 mı değil mi onun kontorlu lazım
-        val minutes = minutes.text.toString().toLong()
-        val seconds = seconds.text.toString().toLong()
-        if (!(minutes == 0L && seconds == 0L)) {
-            viewModel.setMinuteAndSecond(minutes, seconds)
-            observeLiveData(view)
+        val minute = minutes.text.toString().toLong()
+        val second = seconds.text.toString().toLong()
+        if (!(minute == 0L && second == 0L)) {
+            viewModel.setMinuteAndSecond(minute, second)
+            viewModel.countDownTime(minutes,seconds)
         }
     }
 
