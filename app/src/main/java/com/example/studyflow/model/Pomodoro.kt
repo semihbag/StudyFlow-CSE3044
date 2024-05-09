@@ -14,7 +14,7 @@ data class Pomodoro (
     @ColumnInfo(name = "pomodoroTime")
     val pomodoroTime: Long,
     @ColumnInfo(name = "breakTime")
-    val breakTime: Int,
+    val breakTime: Long,
     @ColumnInfo(name = "inactiveTime")
     val inactiveTime: Long,
     @ColumnInfo(name= "tagId")
