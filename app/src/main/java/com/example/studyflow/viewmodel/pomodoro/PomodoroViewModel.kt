@@ -31,7 +31,11 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         // Her starta basıldığında countDownTime çalışmalı
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
-            calendarStart.value = Calendar.getInstance()
+            // Anlık zamanı milisaniye türünde alma
+            val currentTimeInMill = System.currentTimeMillis()
+            val calendarObject = Calendar.getInstance()
+            calendarObject.timeInMillis = currentTimeInMill
+            calendarStart.value = calendarObject
         }
 
         object : CountDownTimer(totalTime,1000) {
@@ -43,7 +47,10 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             override fun onFinish() {
                 // Toplam süre bittiğinde de obje initialize edilip
                 // focus kısma geçilmeli
-                calendarEnd.value = Calendar.getInstance()
+                val currentTimeInMill = System.currentTimeMillis()
+                val calendarObject = Calendar.getInstance()
+                calendarObject.timeInMillis = currentTimeInMill
+                calendarEnd.value = calendarObject
 
             }
 
