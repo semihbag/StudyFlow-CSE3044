@@ -6,7 +6,10 @@ import android.view.View
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import com.example.studyflow.R
+import com.example.studyflow.model.Pomodoro
+import com.example.studyflow.service.StudyFlowDB
 import com.example.studyflow.viewmodel.BaseViewModel
+import kotlinx.coroutines.launch
 import java.util.*
 open class PomodoroViewModel(application: Application) : BaseViewModel(application) {
 
@@ -21,6 +24,24 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         focusingSeconds.value = seconds
     }
 
+    // Insert new Pomodoro Item to the Database
+    fun insertPomodoro(pomodoro: Pomodoro) {
+
+        launch {
+            val dao = StudyFlowDB(getApplication()).pomodoroDao()
+            val id = dao.insertPomodoro(pomodoro)
+            pomodoro.uuid = id.toInt()
+        }
+    }
+
+    // InActiveTıme = EndTime - StartTime milisaniye türünde
+    fun calculateInActiveTime(): Long {
+
+        val minToSec = (calendarEnd.value!!.get(Calendar.MINUTE) - calendarStart.value!!.get(Calendar.MINUTE)).times(60)
+        val secDif = calendarEnd.value!!.get(Calendar.SECOND) - calendarStart.value!!.get(Calendar.SECOND)
+        // farkı milisaniye olarak depoluyorum
+        return  (minToSec + secDif).times(1000).toLong()
+    }
     // Verilen süreyi geri sayma işlemi burada yapılacak
     fun countDownTime(minutesEditText: EditText, secondsEditText: EditText) {
 
@@ -36,7 +57,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
             val calendarObject = Calendar.getInstance()
             calendarObject.timeInMillis = currentTimeInMill
             calendarStart.value = calendarObject
-            
+
         }
 
         object : CountDownTimer(totalTime,1000) {
@@ -62,8 +83,12 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 val calendarObject = Calendar.getInstance()
                 calendarObject.timeInMillis = currentTimeInMill
                 calendarEnd.value = calendarObject
+                if (calendarStart.value != null && calendarEnd.value != null) {
+                    println("Buraya girdi")
+                    insertPomodoro(Pomodoro(calendarStart.value!!.timeInMillis,
+                        calendarEnd.value!!.timeInMillis,totalTime,0,calculateInActiveTime(),-1))
+                }
             }
-
         }.start()
 
     }
