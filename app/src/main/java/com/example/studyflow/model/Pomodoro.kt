@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 @Entity
 data class Pomodoro (
     @ColumnInfo(name = "startTime")
-    val startTime: Int,
+    val startTime: Long,
     @ColumnInfo(name = "endTime")
-    val endTime: Int,
+    val endTime: Long,
     @ColumnInfo(name = "pomodoroTime")
-    val pomodoroTime: Int,
+    val pomodoroTime: Long,
     @ColumnInfo(name = "breakTime")
     val breakTime: Int,
     @ColumnInfo(name = "inactiveTime")
-    val inactiveTime: Int,
+    val inactiveTime: Long,
     @ColumnInfo(name= "tagId")
     val tagId: Int
 ) {
