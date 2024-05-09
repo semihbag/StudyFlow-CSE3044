@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,16 +17,23 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.tag.TagBottomSheetDialogRecyclerAdapter
 import com.example.studyflow.databinding.TagBottomSheetDialogBinding
 import com.example.studyflow.databinding.TagBottomSheetDialogRowBinding
+import com.example.studyflow.enums.MyNavigationActionDirection
 import com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener
 import com.example.studyflow.model.Tag
-import com.example.studyflow.view.HomePageFragmentDirections
 import com.example.studyflow.viewmodel.tag.TagBottomSheetDialogViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class TagBottomSheetDialogFragment() : BottomSheetDialogFragment(), TagBottomSheetDialogClickListener {
     private lateinit var viewModel : TagBottomSheetDialogViewModel
     private lateinit var tagBottomSheetDialogRecyclerAdapter : TagBottomSheetDialogRecyclerAdapter
+    private lateinit var nextActionDirection : MyNavigationActionDirection
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            nextActionDirection = TagBottomSheetDialogFragmentArgs.fromBundle(it).nextActionDirection
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,9 +77,7 @@ class TagBottomSheetDialogFragment() : BottomSheetDialogFragment(), TagBottomShe
 
 
     override fun clickAddTagFromTagBottomSheetDialog(view: View) {
-        println("tıkla baboli")
-        val action =
-            TagBottomSheetDialogFragmentDirections.actionTagBottomSheetDialogFragmentToTagsFragment()
+        val action = TagBottomSheetDialogFragmentDirections.actionTagBottomSheetDialogFragmentToTagsFragment()
 
         Navigation.findNavController(view).navigate(action)
     }
@@ -80,8 +86,12 @@ class TagBottomSheetDialogFragment() : BottomSheetDialogFragment(), TagBottomShe
         val binding = DataBindingUtil.findBinding<TagBottomSheetDialogRowBinding>(view)
         binding?.let {
             it.tag?.let {
-
-                this.dismiss()
+                println(nextActionDirection)
+                val action : NavDirections
+                when(nextActionDirection) {
+                    MyNavigationActionDirection.TO_DO -> action = TagBottomSheetDialogFragmentDirections.actionTagBottomSheetDialogFragmentToToDoFragment(it)
+                }
+                Navigation.findNavController(view).navigate(action)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.studyflow.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Tag (
@@ -22,7 +23,7 @@ data class Tag (
     val totalNumberOfCurrentCorrectAnswer: Int = 0,
     @ColumnInfo(name = "cardRatio")
     val cardRatio: Int = 0
-) {
+) : Serializable {
     @PrimaryKey(true)
     var uuid : Int = 0
 }

@@ -62,6 +62,10 @@
         <action
             android:id="@+id/action_toDoFragment_to_tagBottomSheetDialogFragment"
             app:destination="@id/tagBottomSheetDialogFragment" />
+        <argument
+            android:name="selectedTag"
+            app:argType="com.example.studyflow.model.Tag"
+            app:nullable="true" />
     </fragment>
     <dialog
         android:id="@+id/tagBottomSheetDialogFragment"
@@ -70,5 +74,11 @@
         <action
             android:id="@+id/action_tagBottomSheetDialogFragment_to_tagsFragment"
             app:destination="@id/tagsFragment" />
+        <action
+            android:id="@+id/action_tagBottomSheetDialogFragment_to_toDoFragment"
+            app:destination="@id/toDoFragment" />
+        <argument
+            android:name="nextActionDirection"
+            app:argType="com.example.studyflow.enums.MyNavigationActionDirection" />
     </dialog>
 </navigation>

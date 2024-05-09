@@ -16,10 +16,10 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.todo.ToDoMainRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
 import com.example.studyflow.databinding.ToDoRowBinding
+import com.example.studyflow.enums.MyNavigationActionDirection
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.ToDo
 import com.example.studyflow.model.ToDoMainRecyclerItem
-import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
 
 
@@ -124,7 +124,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
 
 
     override fun clickShowTagList(view: View) {
-        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment()
+        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment(MyNavigationActionDirection.TO_DO)
         Navigation.findNavController(view).navigate(action)
     }
 
