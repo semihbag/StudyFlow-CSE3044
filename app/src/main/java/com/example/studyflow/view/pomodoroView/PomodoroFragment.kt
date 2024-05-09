@@ -19,6 +19,7 @@ import com.example.studyflow.interfaces.pomodoro.PomodoroFragmentClickListener
 import com.example.studyflow.viewmodel.BaseViewModel
 import com.example.studyflow.viewmodel.pomodoro.PomodoroViewModel
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
+import java.util.UUID
 
 
 class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
@@ -27,6 +28,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
     // counter
     private lateinit var counter: CountDownTimer
+    private lateinit var tagID: UUID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +61,16 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
     override fun onStart(view: View) {
         val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
         binding?.let{
+            // change the text field to not editable
             binding.Minutes.isEnabled = false
             binding.Seconds.isEnabled = false
-
+            // change the buttons (stop will be visible)
             binding.startButton.visibility = View.GONE
             binding.stopButton.visibility = View.VISIBLE
+
+            // set the tagID
+
+
 
             val minute = binding.Minutes.text.toString().toLong()
             val second = binding.Seconds.text.toString().toLong()
