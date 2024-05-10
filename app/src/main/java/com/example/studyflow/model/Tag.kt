@@ -13,6 +13,8 @@ data class Tag (
     val totalNumberOfPomodoro: Int = 0,
     @ColumnInfo(name = "totalNumberOfCard")
     val totalNumberOfCard: Int = 0,
+    @ColumnInfo(name = "totalNumberOfTodos")
+    var totalNumberOfTodos: Int = 0,
     @ColumnInfo(name = "totalNumberOfFocusedMinute")
     val totalNumberOfFocusedMinute: Int = 0,
     @ColumnInfo(name = "totalNumberOfOutOfFocusedMinute")
@@ -22,7 +24,11 @@ data class Tag (
     @ColumnInfo(name = "totalNumberOfCurrentCorrectAnswer")
     val totalNumberOfCurrentCorrectAnswer: Int = 0,
     @ColumnInfo(name = "cardRatio")
-    val cardRatio: Int = 0
+    val cardRatio: Int = 0,
+    @ColumnInfo("totalNumberOfTodoDone")
+    var totalNumberOfTodoDone: Int = 0,
+    @ColumnInfo("todoRatio")
+    var todoRatio : Int = 0
 ) : Serializable {
     @PrimaryKey(true)
     var uuid : Int = 0

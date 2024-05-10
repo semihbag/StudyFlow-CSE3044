@@ -41,5 +41,7 @@ interface TagDAO {
     @Query("DELETE FROM tag WHERE uuid = :tagId")
     suspend fun deleteTag(tagId :Int)
 
+    @Update
+    suspend fun updateTag(tag : Tag)
 
 }

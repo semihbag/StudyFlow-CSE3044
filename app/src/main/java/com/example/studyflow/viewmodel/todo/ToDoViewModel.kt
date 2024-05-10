@@ -23,6 +23,14 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     fun storeToDoToDB(toDo : ToDo) {
 
         launch {
+
+            // update linked tag
+            val tagUuid = toDo.tagId
+            val tag = daoTag.getTag(tagUuid)
+            tag.totalNumberOfTodos = tag.totalNumberOfTodos + 1
+            daoTag.updateTag(tag)
+
+            // store to do
             val id = daoToDo.insertToDo(toDo)
             toDo.uuid = id.toInt()
             val currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
@@ -57,8 +65,17 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     }
 
     fun updateToDo(todo : ToDo) {
-        println(todo.done)
         launch {
+
+            // update linked tag
+            val tagUuid = todo.tagId
+            val tag = daoTag.getTag(tagUuid)
+            if (todo.done) tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone + 1 else tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone - 1
+            tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
+            println(tag.todoRatio)
+            daoTag.updateTag(tag)
+
+            // update to do
             daoToDo.updateToDo(todo)
         }
     }
