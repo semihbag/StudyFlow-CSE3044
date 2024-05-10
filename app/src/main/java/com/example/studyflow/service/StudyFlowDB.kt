@@ -25,10 +25,12 @@ import com.example.studyflow.model.ToDo
     DAO YU DA EKLEMEYİ UNUTMAYIN
 
 */
-@Database(entities = [Tag::class, ToDo::class], version = 2)
+@Database(entities = [Tag::class, ToDo::class], version = 3)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO
+
+    
 
 
     // SINGLETON - OOP DERSINDE DE GORMUSTUK BUNU BI DESING PATTERN
