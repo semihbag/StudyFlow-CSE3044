@@ -65,5 +65,13 @@
     <fragment
         android:id="@+id/pomodoroFragment"
         android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
-        android:label="PomodoroFragment" />
+        android:label="PomodoroFragment" >
+        <action
+            android:id="@+id/action_pomodoroFragment_to_breakFragment"
+            app:destination="@id/breakFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breakFragment"
+        android:name="com.example.studyflow.view.pomodoroView.BreakFragment"
+        android:label="BreakFragment" />
 </navigation>
