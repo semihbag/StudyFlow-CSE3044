@@ -61,17 +61,18 @@
         android:id="@+id/toDoFragment"
         android:name="com.example.studyflow.view.todoview.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" />
-    <fragment
-        android:id="@+id/pomodoroFragment"
-        android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
-        android:label="PomodoroFragment" >
+        tools:layout="@layout/fragment_to_do" >
         <action
-            android:id="@+id/action_pomodoroFragment_to_breakFragment"
-            app:destination="@id/breakFragment" />
+            android:id="@+id/action_toDoFragment_to_tagBottomSheetDialogFragment"
+            app:destination="@id/tagBottomSheetDialogFragment" />
+        <argument
+            android:name="selectedTag"
+            app:argType="com.example.studyflow.model.Tag"
+            app:nullable="true" />
     </fragment>
-    <fragment
-        android:id="@+id/breakFragment"
-        android:name="com.example.studyflow.view.pomodoroView.BreakFragment"
-        android:label="BreakFragment" />
+    <dialog
+        android:id="@+id/tagBottomSheetDialogFragment"
+        android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
+        android:label="TagBottomSheetDialogFragment" />
+
 </navigation>

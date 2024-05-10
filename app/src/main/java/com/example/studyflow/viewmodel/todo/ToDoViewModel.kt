@@ -10,25 +10,30 @@ import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
 class ToDoViewModel (application: Application) : BaseViewModel(application) {
-    val mutableSelectTagList = MutableLiveData<List<Tag>>()
+    private val dB = StudyFlowDB(getApplication())
+    private val daoTag = dB.tagDao()
+    private val daoToDo = dB.toDoDao()
+
+
+
     val mutableToDoList = MutableLiveData<List<ToDo>>()
     val mutableToDoMainRecyclerItem = MutableLiveData<List<ToDoMainRecyclerItem>>()
 
-    fun loadSelectTagFromDB() {
-        launch {
-            val dao = StudyFlowDB(getApplication()).tagDao()
-            val currentSelectTags = dao.getAllTag()
-            mutableSelectTagList.value = currentSelectTags
-        }
-    }
 
     fun storeToDoToDB(toDo : ToDo) {
 
         launch {
-            val dao = StudyFlowDB(getApplication()).toDoDao()
-            val id = dao.insertToDo(toDo)
+
+            // update linked tag
+            val tagUuid = toDo.tagId
+            val tag = daoTag.getTag(tagUuid)
+            tag.totalNumberOfTodos = tag.totalNumberOfTodos + 1
+            daoTag.updateTag(tag)
+
+            // store to do
+            val id = daoToDo.insertToDo(toDo)
             toDo.uuid = id.toInt()
-            var currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
+            val currentToDos = mutableToDoList.value?.toMutableList() ?: mutableListOf()
             currentToDos.add(toDo)
             mutableToDoList.value = currentToDos
         }
@@ -36,10 +41,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
     fun setToDoMainRecyclerItemList() {
         val newToDoMainRecyclerItemList = ArrayList<ToDoMainRecyclerItem>()
 
-
         launch {
-            val daoToDo = StudyFlowDB(getApplication()).toDoDao()
-            val daoTag = StudyFlowDB(getApplication()).tagDao()
 
             // burası general todolar ,.,n burdaki tag geçici db de yer almayacak sadece general başlığı için
             val generalTag = Tag("General")
@@ -61,4 +63,21 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
             mutableToDoMainRecyclerItem.value = newToDoMainRecyclerItemList
         }
     }
+
+    fun updateToDo(todo : ToDo) {
+        launch {
+
+            // update linked tag
+            val tagUuid = todo.tagId
+            val tag = daoTag.getTag(tagUuid)
+            if (todo.done) tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone + 1 else tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone - 1
+            tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
+            println(tag.todoRatio)
+            daoTag.updateTag(tag)
+
+            // update to do
+            daoToDo.updateToDo(todo)
+        }
+    }
+
 }

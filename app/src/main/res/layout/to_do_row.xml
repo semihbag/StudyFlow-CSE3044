@@ -7,6 +7,11 @@
         <variable
             name="toDo"
             type="com.example.studyflow.model.ToDo" />
+
+        <variable
+            name="listenerFragment"
+            type="com.example.studyflow.interfaces.todo.ToDoFragmentClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,24 +30,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    >
 
-                    <CheckBox
-                        android:id="@+id/radioButton"
-                        android:layout_width="match_parent"
-                        android:text="@{toDo.toDoText}"
-                        android:textSize="18sp"
-                        android:layout_height="wrap_content">
+                    android:checked="@{toDo.done}"
+                    android:onClick="@{listenerFragment::clickDone}"
+                    android:text="@{toDo.toDoText}"
+                    android:textSize="16sp">
 
-                    </CheckBox>
-
-                </LinearLayout>
+                </CheckBox>
 
 
 

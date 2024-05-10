@@ -26,7 +26,8 @@ import com.example.studyflow.model.ToDo
     DAO YU DA EKLEMEYİ UNUTMAYIN
 
 */
-@Database(entities = [Tag::class, ToDo::class, Pomodoro::class], version = 4)
+
+@Database(entities = [Tag::class, ToDo::class, Pomodoro::class], version = 6)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO
@@ -47,9 +48,13 @@ abstract class StudyFlowDB : RoomDatabase() {
                 instance = it
             }
         }
-        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase")
-            .build()
+        
+         private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
+        // database versiyon sıkıntısı yaşadığımızda aşağıdaki kodu bi kere çalıştırmak lazım sonra yukardakinden deavm
+        // geliştirme aşamasında db deki verileri zaten salladığımız için önemli değil
 
+
+        // private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
     }
 
 
