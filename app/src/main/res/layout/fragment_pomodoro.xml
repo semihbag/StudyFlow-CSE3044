@@ -175,12 +175,16 @@
             app:layout_constraintVertical_bias="0.367" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/InfoText"
             android:layout_width="119dp"
             android:layout_height="59dp"
+            android:layout_marginBottom="64dp"
             android:text="POMODORO"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="538dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

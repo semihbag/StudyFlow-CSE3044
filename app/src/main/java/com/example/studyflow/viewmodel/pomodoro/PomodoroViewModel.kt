@@ -28,16 +28,22 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
     val calendarEnd = MutableLiveData<Calendar>()
     val pomodoroId = MutableLiveData<Int>()
 
+    // Pomodro mu Break mı onu ayırmak için bir variable
+    // Defaultly 0 --> Pomodoro
+    // 1 --> Break
+    var check_p_b = 0
+
     // counter variables
     val totalTimeInMilsec = MutableLiveData<Long>()
     val remaingTimeInMilsec = MutableLiveData<Long>()
 
     // Dakika ve Saniyeleri ilk başta değer atıcaz
-    fun setMinuteAndSecond(minutes: Long, seconds: Long) {
+    fun setMinuteAndSecond(minutes: Long, seconds: Long, fragmentType: Int) {
         focusingMinutes.value = minutes
         focusingSeconds.value = seconds
         totalTimeInMilsec.value = (minutes * 60000) + (seconds * 1000)
         remaingTimeInMilsec.value = totalTimeInMilsec.value
+        check_p_b = fragmentType
     }
 
     // Insert new Pomodoro Item to the Database
@@ -51,6 +57,14 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         }
     }
 
+    fun updatePomodoro(breakTimeInMills: Long, pomodoro_id: Int) {
+
+        launch {
+            val dao = StudyFlowDB(getApplication()).pomodoroDao()
+            dao.updateBreakTime(breakTimeInMills,pomodoro_id)
+        }
+    }
+
     // InActiveTıme = EndTime - StartTime milisaniye türünde
     fun calculateInActiveTime(): Long {
 
@@ -60,7 +74,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         return  ((minToSec + secDif).times(1000) - totalTimeInMilsec.value!!).toLong()
     }
     // Verilen süreyi geri sayma işlemi burada yapılacak
-    fun countDownTime(binding: FragmentPomodoroBinding): CountDownTimer {
+    fun countDownTime(binding: FragmentPomodoroBinding, pomodoro_id: Int): CountDownTimer {
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
             // Anlık zamanı milisaniye türünde alma
@@ -94,8 +108,13 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 calendarObject.timeInMillis = System.currentTimeMillis()
                 calendarEnd.value = calendarObject
                 if (calendarStart.value != null && calendarEnd.value != null) {
-                    val pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1)
-                    insertPomodoro(pomodoro)
+                    if (check_p_b == 0) {
+                        val pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1)
+                        insertPomodoro(pomodoro)
+                    }
+                    else {
+                        updatePomodoro(totalTimeInMilsec.value!!,pomodoro_id)
+                    }
                 }
             }
         }

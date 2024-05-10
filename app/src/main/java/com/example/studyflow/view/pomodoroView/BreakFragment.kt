@@ -13,11 +13,10 @@ import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentBreakBinding
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.interfaces.pomodoro.PomodoroFragmentClickListener
-import com.example.studyflow.viewmodel.pomodoro.BreakViewModel
 import com.example.studyflow.viewmodel.pomodoro.PomodoroViewModel
 
 class BreakFragment: Fragment(), PomodoroFragmentClickListener {
-    private lateinit var viewModel: BreakViewModel
+    private lateinit var viewModel: PomodoroViewModel
 
     // counter
     private lateinit var counter: CountDownTimer
@@ -32,27 +31,28 @@ class BreakFragment: Fragment(), PomodoroFragmentClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentBreakBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_break, container, false
+        val binding: FragmentPomodoroBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_pomodoro, container, false
         )
 
         binding.listener = this
         binding.lifecycleOwner = viewLifecycleOwner
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[BreakViewModel::class.java]
+        viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
         pomodoroID = requireArguments().getInt("pomodoroID")
+        view.findViewById<TextView>(R.id.InfoText).text = "BREAK"
+
     }
 
 
     // click listener functions
     override fun onStart(view: View) {
-        val binding = DataBindingUtil.findBinding<FragmentBreakBinding>(view)
+        val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
         binding?.let{
             // change the text field to not editable
             binding.Minutes.isEnabled = false
@@ -67,8 +67,8 @@ class BreakFragment: Fragment(), PomodoroFragmentClickListener {
             val second = binding.Seconds.text.toString().toLong()
 
             if (!(minute == 0L && second == 0L)) {
-                viewModel.setMinuteAndSecond(minute, second)
-                counter = viewModel.countDownTime(binding.Minutes,binding.Seconds) // returning counter object
+                viewModel.setMinuteAndSecond(minute, second,1)
+                counter = viewModel.countDownTime(binding,pomodoroID) // returning counter object
                 counter.start()
             }
         }
@@ -93,13 +93,13 @@ class BreakFragment: Fragment(), PomodoroFragmentClickListener {
     }
 
     override fun onResume(view: View) {
-        val binding = DataBindingUtil.findBinding<FragmentBreakBinding>(view)
+        val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
         binding?.let{
             // change the buttons (stop and resume will be visible)
             binding.resmuseButton.visibility = View.GONE
             binding.pauseButton.visibility = View.VISIBLE
             // stop the counter
-            counter = viewModel.countDownTime(binding.Minutes,binding.Seconds)
+            counter = viewModel.countDownTime(binding,pomodoroID)
             counter.start()
         }
 
