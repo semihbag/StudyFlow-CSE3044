@@ -44,11 +44,11 @@ abstract class StudyFlowDB : RoomDatabase() {
                 instance = it
             }
         }
-        // private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
+         private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
         // database versiyon sıkıntısı yaşadığımızda aşağıdaki kodu bi kere çalıştırmak lazım sonra yukardakinden deavm
         // geliştirme aşamasında db deki verileri zaten salladığımız için önemli değil
 
-         private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
+        // private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
     }
 
 
