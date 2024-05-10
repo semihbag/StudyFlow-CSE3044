@@ -11,6 +11,8 @@ data class Pomodoro (
     val startTime: Long,
     @ColumnInfo(name = "endTime")
     val endTime: Long,
+    @ColumnInfo(name = "EnteredTime")
+    val enteredTime: Long,
     @ColumnInfo(name = "pomodoroTime")
     val pomodoroTime: Long,
     @ColumnInfo(name = "breakTime")
@@ -18,7 +20,10 @@ data class Pomodoro (
     @ColumnInfo(name = "inactiveTime")
     val inactiveTime: Long,
     @ColumnInfo(name= "tagId")
-    val tagId: Int
+    val tagId: Int,
+    @ColumnInfo(name= "isFinished")
+    val isFinished: Int
+
 ) {
     @PrimaryKey(true)
     var uuid : Int = 0
