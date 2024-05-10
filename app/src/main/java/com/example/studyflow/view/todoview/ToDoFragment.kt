@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adapter.todo.ToDoMainRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
+import com.example.studyflow.databinding.TagBottomSheetDialogRowBinding
 import com.example.studyflow.databinding.ToDoRowBinding
 import com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
+import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
 import com.example.studyflow.model.ToDoMainRecyclerItem
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
@@ -28,6 +30,7 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener, TagBottomSheetDialog
     private lateinit var viewModel: ToDoViewModel
     private lateinit var recyclerToDoMainAdapter: ToDoMainRecyclerAdapter
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
+    private var toDoSelectedTagUuid = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,16 +76,10 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener, TagBottomSheetDialog
         binding?.let {
             it.editTextAddToDo.setOnKeyListener { v, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-
-                    val toDoSelectedTagUuid = 0
-
-
-                    /// BURDA UUİD ALMAN LAZIM ARFUMANLARDA UNUTMAA
-
-
                     val toDo = ToDo(it.editTextAddToDo.text.toString(), toDoSelectedTagUuid, false)
                     viewModel.storeToDoToDB(toDo)
                     binding.editTextAddToDo.text.clear()
+                    toDoSelectedTagUuid = 0
                     return@setOnKeyListener true
                 }
                 false
@@ -110,29 +107,24 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener, TagBottomSheetDialog
     }
 
 
-    override fun clickAddToDo(view: View) {
-        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
-        binding?.let {
-            val toDoText = it.editTextAddToDo.text.toString()
 
-            val toDoSelectedTagUuid = 0
-
-
-            /// BURDA UUİD ALMAN LAZIM ARFUMANLARDA UNUTMAA
-
-
-            val toDo = ToDo(toDoText, toDoSelectedTagUuid, false)
-            viewModel.storeToDoToDB(toDo)
-            binding.editTextAddToDo.text.clear()
-        }
-    }
 
 
 
     // FUNCTION OF CLICK LISTENER OF TO DO FRAGMENT
+    override fun clickAddToDo(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentToDoBinding>(view)
+        binding?.let {
+            val toDoText = it.editTextAddToDo.text.toString()
+            val toDo = ToDo(toDoText, toDoSelectedTagUuid, false)
+            viewModel.storeToDoToDB(toDo)
+            toDoSelectedTagUuid = 0
+            binding.editTextAddToDo.text.clear()
+        }
+    }
+    
     override fun clickShowTagList(view: View) {
-        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment()
-        Navigation.findNavController(view).navigate(action)
+        tagBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "a")
     }
 
     override fun clickDone(view: View) {
@@ -145,8 +137,16 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener, TagBottomSheetDialog
         }
     }
 
+
+
     // FUNCTION OF CLICK LISTENER OF TAG BOTTOM SHEET DIALOG
     override fun clickSelectTag(view: View) {
-        TODO("Not yet implemented")
+        val binding = DataBindingUtil.findBinding<TagBottomSheetDialogRowBinding>(view)
+        binding?.let {
+            it.tag?.let {
+                toDoSelectedTagUuid = it.uuid
+            }
+        }
+        tagBottomSheetDialogFragment.dismiss()
     }
 }

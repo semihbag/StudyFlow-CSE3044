@@ -18,7 +18,7 @@ import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.tag.TagBottomSheetDialogViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class TagBottomSheetDialogFragment(private val listenerTagBottomSheetDialog : TagBottomSheetDialogClickListener) : BottomSheetDialogFragment()  {
+class TagBottomSheetDialogFragment(private val listener : TagBottomSheetDialogClickListener) : BottomSheetDialogFragment()  {
     private lateinit var viewModel : TagBottomSheetDialogViewModel
     private lateinit var tagBottomSheetDialogRecyclerAdapter : TagBottomSheetDialogRecyclerAdapter
 
@@ -48,7 +48,7 @@ class TagBottomSheetDialogFragment(private val listenerTagBottomSheetDialog : Ta
 
         val tagBottomSheetDialogRecyclerView = view.findViewById<RecyclerView>(R.id.tag_bottom_sheet_dialog_recyclerview)
         tagBottomSheetDialogRecyclerView.layoutManager = LinearLayoutManager(context)
-        tagBottomSheetDialogRecyclerAdapter = TagBottomSheetDialogRecyclerAdapter(ArrayList<Tag>(),listenerTagBottomSheetDialog)
+        tagBottomSheetDialogRecyclerAdapter = TagBottomSheetDialogRecyclerAdapter(ArrayList<Tag>(),listener)
         tagBottomSheetDialogRecyclerView.adapter = tagBottomSheetDialogRecyclerAdapter
 
         observeLiveData()
