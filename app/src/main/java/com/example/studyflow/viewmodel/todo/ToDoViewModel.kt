@@ -28,6 +28,7 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
             val tagUuid = toDo.tagId
             val tag = daoTag.getTag(tagUuid)
             tag.totalNumberOfTodos = tag.totalNumberOfTodos + 1
+            tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
             daoTag.updateTag(tag)
 
             // store to do
