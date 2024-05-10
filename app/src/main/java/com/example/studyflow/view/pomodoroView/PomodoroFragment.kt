@@ -32,7 +32,6 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
     // counter
     private lateinit var counter: CountDownTimer
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,10 +43,8 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         val binding: FragmentPomodoroBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pomodoro, container, false
         )
-
         binding.listener = this
         binding.lifecycleOwner = viewLifecycleOwner
-
         return binding.root
     }
 
@@ -55,17 +52,16 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
-        view.findViewById<TextView>(R.id.InfoText).text = "POMODORO"
-
+        view.findViewById<TextView>(R.id.InfoText).text = "Pomodoro"
     }
 
-    private fun observerLiveData(binding: FragmentPomodoroBinding) {
-        viewModel.pomodoroId.observe(viewLifecycleOwner, Observer {
-            println(viewModel.pomodoroId.value.toString().toInt())
-            val args = bundleOf("pomodoroID" to viewModel.pomodoroId.value.toString().toInt() ) // get the tagID and set here
-            binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
-        })
-    }
+//    private fun observerLiveData(binding: FragmentPomodoroBinding) {
+//        viewModel.pomodoroID.observe(viewLifecycleOwner, Observer {
+//            println(viewModel.pomodoroId.value.toString().toInt())
+//            val args = bundleOf("pomodoroID" to viewModel.pomodoroId.value.toString().toInt() ) // get the tagID and set here
+//            binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
+//        })
+//    }
 
     // click listener functions
     override fun onStart(view: View) {
@@ -78,24 +74,31 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
             binding.startButton.visibility = View.GONE
             binding.stopButton.visibility = View.VISIBLE
 
-            // set the tagID
-
-
 
             val minute = binding.Minutes.text.toString().toLong()
             val second = binding.Seconds.text.toString().toLong()
 
             if (!(minute == 0L && second == 0L)) {
-                viewModel.setMinuteAndSecond(minute, second,0)
-                counter = viewModel.countDownTime(binding,0) // returning counter object
+                viewModel.setMinuteAndSecond(minute, second)
+                counter = viewModel.countDownTime(binding) // returning counter object
                 counter.start()
-                observerLiveData(binding)
+//                observerLiveData(binding)
             }
         }
     }
 
     override fun onStop(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
+        binding?.let{
+            // stop and write database how much time consumed
+            counter.cancel()
+            viewModel.totalTimeInMilsec.value = viewModel.totalTimeInMilsec.value?.minus(viewModel.remaingTimeInMilsec.value!!)
+            counter.onFinish()
+            // onFinish handle the button visibility and text editablelity
 
+            binding.Minutes.setText("00")
+            binding.Seconds.setText("00")
+        }
     }
 
     override fun onPause(view: View) {
@@ -119,7 +122,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
             binding.resmuseButton.visibility = View.GONE
             binding.pauseButton.visibility = View.VISIBLE
             // stop the counter
-            counter = viewModel.countDownTime(binding,0)
+            counter = viewModel.countDownTime(binding)
             counter.start()
         }
 
