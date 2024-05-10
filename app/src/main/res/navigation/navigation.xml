@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_toDoFragment"
             app:destination="@id/toDoFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_pomodoroFragment"
+            app:destination="@id/pomodoroFragment" />
     </fragment>
     <fragment
         android:id="@+id/analysisFragment"
@@ -71,4 +74,5 @@
         android:id="@+id/tagBottomSheetDialogFragment"
         android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
         android:label="TagBottomSheetDialogFragment" />
+
 </navigation>
