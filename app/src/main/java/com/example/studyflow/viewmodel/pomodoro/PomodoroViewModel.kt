@@ -26,6 +26,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
     val focusingSeconds = MutableLiveData<Long>()
     val calendarStart = MutableLiveData<Calendar>()
     val calendarEnd = MutableLiveData<Calendar>()
+    val pomodoroId = MutableLiveData<Int>()
 
     // counter variables
     val totalTimeInMilsec = MutableLiveData<Long>()
@@ -40,12 +41,13 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
     }
 
     // Insert new Pomodoro Item to the Database
-    fun insertPomodoro(pomodoro: Pomodoro) {
+    fun insertPomodoro(pomodoro: Pomodoro){
 
         launch {
             val dao = StudyFlowDB(getApplication()).pomodoroDao()
             val id = dao.insertPomodoro(pomodoro)
             pomodoro.uuid = id.toInt()
+            pomodoroId.value = pomodoro.uuid
         }
     }
 
@@ -92,18 +94,12 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 calendarObject.timeInMillis = System.currentTimeMillis()
                 calendarEnd.value = calendarObject
                 if (calendarStart.value != null && calendarEnd.value != null) {
-                    insertPomodoro(Pomodoro(calendarStart.value!!.timeInMillis,
-                        calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1))
-
-                    // navigate to the break page
-                    val args = bundleOf("pomodoroID" to 12 ) // get the tagID and set here
-                    binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
+                    val pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1)
+                    insertPomodoro(pomodoro)
                 }
             }
-
         }
         return counter
-
     }
 
 }

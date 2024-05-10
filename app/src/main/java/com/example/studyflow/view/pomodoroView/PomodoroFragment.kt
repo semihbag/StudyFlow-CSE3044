@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.databinding.FragmentTagsBinding
@@ -55,6 +57,14 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
     }
 
+    private fun observerLiveData(binding: FragmentPomodoroBinding) {
+        viewModel.pomodoroId.observe(viewLifecycleOwner, Observer {
+            println(viewModel.pomodoroId.value.toString().toInt())
+            val args = bundleOf("pomodoroID" to viewModel.pomodoroId.value.toString().toInt() ) // get the tagID and set here
+            binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
+        })
+    }
+
     // click listener functions
     override fun onStart(view: View) {
         val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
@@ -77,6 +87,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
                 viewModel.setMinuteAndSecond(minute, second)
                 counter = viewModel.countDownTime(binding) // returning counter object
                 counter.start()
+                observerLiveData(binding)
             }
         }
     }
