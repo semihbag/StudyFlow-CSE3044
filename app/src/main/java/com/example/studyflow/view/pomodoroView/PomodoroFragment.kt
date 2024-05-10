@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.databinding.FragmentTagsBinding
@@ -52,7 +55,16 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
+        view.findViewById<TextView>(R.id.InfoText).text = "POMODORO"
 
+    }
+
+    private fun observerLiveData(binding: FragmentPomodoroBinding) {
+        viewModel.pomodoroId.observe(viewLifecycleOwner, Observer {
+            println(viewModel.pomodoroId.value.toString().toInt())
+            val args = bundleOf("pomodoroID" to viewModel.pomodoroId.value.toString().toInt() ) // get the tagID and set here
+            binding.root.findNavController().navigate(R.id.action_pomodoroFragment_to_breakFragment, args)
+        })
     }
 
     // click listener functions
@@ -74,9 +86,10 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
             val second = binding.Seconds.text.toString().toLong()
 
             if (!(minute == 0L && second == 0L)) {
-                viewModel.setMinuteAndSecond(minute, second)
-                counter = viewModel.countDownTime(binding) // returning counter object
+                viewModel.setMinuteAndSecond(minute, second,0)
+                counter = viewModel.countDownTime(binding,0) // returning counter object
                 counter.start()
+                observerLiveData(binding)
             }
         }
     }
@@ -106,7 +119,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
             binding.resmuseButton.visibility = View.GONE
             binding.pauseButton.visibility = View.VISIBLE
             // stop the counter
-            counter = viewModel.countDownTime(binding)
+            counter = viewModel.countDownTime(binding,0)
             counter.start()
         }
 
