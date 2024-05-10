@@ -39,7 +39,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         focusingSeconds.value = seconds
         totalTimeInMilsec.value = (minutes * 60000) + (seconds * 1000)
         remaingTimeInMilsec.value = totalTimeInMilsec.value
-//        enteredTimeInMilsec.value = totalTimeInMilsec.value
+        enteredTimeInMilsec.value = totalTimeInMilsec.value
     }
 
     // Insert new Pomodoro Item to the Database
@@ -107,7 +107,13 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                 calendarEnd.value = calendarObject
                 if (calendarStart.value != null && calendarEnd.value != null) {
                     if (pomodoroID == null) {
-                        val pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1)
+                        var pomodoro: Pomodoro? = null
+                        if (enteredTimeInMilsec.value == totalTimeInMilsec.value) {
+                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1,1)
+                        }
+                        else {
+                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1,0)
+                        }
                         insertPomodoro(pomodoro)
                         binding.InfoText.setText("Break")
                     }
