@@ -16,16 +16,18 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.todo.ToDoMainRecyclerAdapter
 import com.example.studyflow.databinding.FragmentToDoBinding
 import com.example.studyflow.databinding.ToDoRowBinding
-import com.example.studyflow.enums.MyNavigationActionDirection
+import com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener
 import com.example.studyflow.interfaces.todo.ToDoFragmentClickListener
 import com.example.studyflow.model.ToDo
 import com.example.studyflow.model.ToDoMainRecyclerItem
+import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
 
 
-class ToDoFragment : Fragment(), ToDoFragmentClickListener {
+class ToDoFragment : Fragment(), ToDoFragmentClickListener, TagBottomSheetDialogClickListener {
     private lateinit var viewModel: ToDoViewModel
     private lateinit var recyclerToDoMainAdapter: ToDoMainRecyclerAdapter
+    private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +60,9 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
         toDoMainRecyclerView.layoutManager = LinearLayoutManager(context)
         recyclerToDoMainAdapter = ToDoMainRecyclerAdapter(ArrayList<ToDoMainRecyclerItem>(), requireContext(), this)
         toDoMainRecyclerView.adapter = recyclerToDoMainAdapter
+
+
+        tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(this)
 
 
         observeLiveData()
@@ -123,8 +128,10 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
     }
 
 
+
+    // FUNCTION OF CLICK LISTENER OF TO DO FRAGMENT
     override fun clickShowTagList(view: View) {
-        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment(MyNavigationActionDirection.TO_DO)
+        val action = ToDoFragmentDirections.actionToDoFragmentToTagBottomSheetDialogFragment()
         Navigation.findNavController(view).navigate(action)
     }
 
@@ -136,5 +143,10 @@ class ToDoFragment : Fragment(), ToDoFragmentClickListener {
                 viewModel.updateToDo(it)
             }
         }
+    }
+
+    // FUNCTION OF CLICK LISTENER OF TAG BOTTOM SHEET DIALOG
+    override fun clickSelectTag(view: View) {
+        TODO("Not yet implemented")
     }
 }

@@ -7,6 +7,4 @@ import com.example.studyflow.view.HomePageFragmentDirections
 interface TagBottomSheetDialogClickListener {
 
     fun clickSelectTag(view : View)
-
-    fun clickAddTagFromTagBottomSheetDialog(view: View)
 }

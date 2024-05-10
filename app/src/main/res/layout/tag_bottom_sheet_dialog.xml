@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="listener"
-            type="com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener" />
-    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -40,22 +35,7 @@
 
                     </TextView>
 
-
-                    <ImageButton
-                        android:id="@+id/click_add_tag_from_todo"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:onClick="@{listener::clickAddTagFromTagBottomSheetDialog}"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="16dp"
-                        android:background="@null"
-                        android:layout_centerVertical="true"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/icon_plus2">
-
-                    </ImageButton>
-
-                </RelativeLayout>
+                </LinearLayout>
 
 
                 <androidx.recyclerview.widget.RecyclerView

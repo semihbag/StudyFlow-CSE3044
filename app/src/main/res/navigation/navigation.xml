@@ -70,15 +70,5 @@
     <dialog
         android:id="@+id/tagBottomSheetDialogFragment"
         android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
-        android:label="TagBottomSheetDialogFragment" >
-        <action
-            android:id="@+id/action_tagBottomSheetDialogFragment_to_tagsFragment"
-            app:destination="@id/tagsFragment" />
-        <action
-            android:id="@+id/action_tagBottomSheetDialogFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
-        <argument
-            android:name="nextActionDirection"
-            app:argType="com.example.studyflow.enums.MyNavigationActionDirection" />
-    </dialog>
+        android:label="TagBottomSheetDialogFragment" />
 </navigation>
