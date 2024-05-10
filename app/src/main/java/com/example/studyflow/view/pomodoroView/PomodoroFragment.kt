@@ -1,5 +1,6 @@
 package com.example.studyflow.view.pomodoroView
 
+import android.nfc.Tag
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -18,19 +19,28 @@ import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.databinding.FragmentTagsBinding
 import com.example.studyflow.databinding.FragmentToDoBinding
+import com.example.studyflow.databinding.TagBottomSheetDialogRowBinding
 import com.example.studyflow.interfaces.pomodoro.PomodoroFragmentClickListener
+import com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener
+import com.example.studyflow.interfaces.tag.TagFragmentClickListener
+import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.BaseViewModel
 import com.example.studyflow.viewmodel.pomodoro.PomodoroViewModel
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
 import java.util.UUID
 
 
-class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
+class PomodoroFragment : Fragment(), PomodoroFragmentClickListener, TagBottomSheetDialogClickListener {
 
     private lateinit var viewModel: PomodoroViewModel
+    private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
 
     // counter
     private lateinit var counter: CountDownTimer
+
+    // tag
+    private lateinit var selectedTag: com.example.studyflow.model.Tag
+    var tagID = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +55,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
         )
         binding.listener = this
         binding.lifecycleOwner = viewLifecycleOwner
+
         return binding.root
     }
 
@@ -53,6 +64,8 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
         viewModel = ViewModelProvider(this)[PomodoroViewModel::class.java]
         view.findViewById<TextView>(R.id.InfoText).text = "Pomodoro"
+
+        tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(this)
     }
 
 //    private fun observerLiveData(binding: FragmentPomodoroBinding) {
@@ -80,9 +93,13 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
 
             if (!(minute == 0L && second == 0L)) {
                 viewModel.setMinuteAndSecond(minute, second)
-                counter = viewModel.countDownTime(binding) // returning counter object
+                counter = viewModel.countDownTime(binding, tagID) // returning counter object
                 counter.start()
 //                observerLiveData(binding)
+            }
+
+            if (::selectedTag.isInitialized){
+                binding.tag = selectedTag
             }
         }
     }
@@ -122,9 +139,34 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener {
             binding.resmuseButton.visibility = View.GONE
             binding.pauseButton.visibility = View.VISIBLE
             // stop the counter
-            counter = viewModel.countDownTime(binding)
+            counter = viewModel.countDownTime(binding, tagID)
             counter.start()
         }
+    }
 
+    override fun onTag(view: View) {
+        tagBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "a")
+
+    }
+
+    // FUNCTION OF CLICK LISTENER OF TAG BOTTOM SHEET DIALOG
+    override fun clickSelectTag(view: View) {
+        val binding = DataBindingUtil.findBinding<TagBottomSheetDialogRowBinding>(view)
+        binding?.let {
+            it.tag?.let {
+               selectedTag = it
+
+                val myView = getView()
+                myView?.let{
+                    val binding2 = DataBindingUtil.findBinding<FragmentPomodoroBinding>(it)
+                    binding2?.let{
+                        // change the buttons (stop and resume will be visible)
+                        binding2.tagName.text = selectedTag.tagName
+                        tagID = selectedTag.uuid
+                    }
+                }
+            }
+        }
+        tagBottomSheetDialogFragment.dismiss()
     }
 }

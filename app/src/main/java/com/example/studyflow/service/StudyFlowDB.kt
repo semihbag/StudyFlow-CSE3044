@@ -54,7 +54,7 @@ abstract class StudyFlowDB : RoomDatabase() {
         // geliştirme aşamasında db deki verileri zaten salladığımız için önemli değil
 
 
-        // private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
+        //private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
     }
 
 

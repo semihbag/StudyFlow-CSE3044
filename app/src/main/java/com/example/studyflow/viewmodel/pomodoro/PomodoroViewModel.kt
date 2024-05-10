@@ -72,7 +72,7 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
     }
 
     // Verilen süreyi geri sayma işlemi burada yapılacak
-    fun countDownTime(binding: FragmentPomodoroBinding): CountDownTimer {
+    fun countDownTime(binding: FragmentPomodoroBinding, tagID: Int): CountDownTimer {
         // burada da database tablosundaki start columnu için Calendar objesi oluşturuluyor ilk kez
         if (calendarStart.value == null) {
             // Anlık zamanı milisaniye türünde alma
@@ -109,10 +109,10 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
                     if (pomodoroID == null) {
                         var pomodoro: Pomodoro? = null
                         if (enteredTimeInMilsec.value == totalTimeInMilsec.value) {
-                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1,1)
+                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),tagID,1)
                         }
                         else {
-                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),-1,0)
+                            pomodoro = Pomodoro(calendarStart.value!!.timeInMillis, calendarEnd.value!!.timeInMillis,enteredTimeInMilsec.value!!.toLong(),totalTimeInMilsec.value!!.toLong(),0,calculateInActiveTime(),tagID,0)
                         }
                         insertPomodoro(pomodoro)
                         binding.InfoText.setText("Break")

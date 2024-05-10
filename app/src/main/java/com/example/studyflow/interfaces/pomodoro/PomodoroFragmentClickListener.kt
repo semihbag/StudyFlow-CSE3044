@@ -11,4 +11,6 @@ open interface PomodoroFragmentClickListener {
     fun onPause(view: View)
 
     fun onResume(view: View)
+
+    fun onTag(view: View)
 }

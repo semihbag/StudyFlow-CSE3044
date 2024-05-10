@@ -74,5 +74,10 @@
         android:id="@+id/tagBottomSheetDialogFragment"
         android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
         android:label="TagBottomSheetDialogFragment" />
+    <fragment
+        android:id="@+id/pomodoroFragment"
+        android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
+        android:label="fragment_pomodoro"
+        tools:layout="@layout/fragment_pomodoro" />
 
 </navigation>
