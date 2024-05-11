@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,8 +20,10 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.flasmind.FlashMindTagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentFlashMindBinding
 import com.example.studyflow.model.Tag
+import com.example.studyflow.view.HomePageFragmentDirections
 import com.example.studyflow.viewmodel.flashmind.FlashMindViewModel
 import com.example.studyflow.viewmodel.tag.TagViewModel
+import java.util.Locale
 
 class FlashMindFragment : Fragment() {
     private lateinit var viewModel : FlashMindViewModel
@@ -59,10 +62,13 @@ class FlashMindFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewHolder as FlashMindTagRecyclerAdapter.FlashMindTagViewHolder
+                println(viewHolder.view.tag)
                 if (direction == ItemTouchHelper.RIGHT) {
-                        // sağa kaydım
+                    val action = FlashMindFragmentDirections.actionFlashMindFragmentToCardFragment(viewHolder.view.tag)
+                    Navigation.findNavController(view).navigate(action)
                 } else if (direction == ItemTouchHelper.LEFT) {
-                    // sola kaydım
+                        println("sola kaydım")
                 }
             }
 

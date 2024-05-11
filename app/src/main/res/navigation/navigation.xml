@@ -48,7 +48,11 @@
         android:id="@+id/flashMindFragment"
         android:name="com.example.studyflow.view.flashmindview.FlashMindFragment"
         android:label="fragment_flash_mind"
-        tools:layout="@layout/fragment_flash_mind" />
+        tools:layout="@layout/fragment_flash_mind" >
+        <action
+            android:id="@+id/action_flashMindFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tagsFragment"
         android:name="com.example.studyflow.view.tagview.TagsFragment"
@@ -71,4 +75,14 @@
         android:id="@+id/tagBottomSheetDialogFragment"
         android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
         android:label="TagBottomSheetDialogFragment" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag"
+            app:nullable="true" />
+    </fragment>
 </navigation>
