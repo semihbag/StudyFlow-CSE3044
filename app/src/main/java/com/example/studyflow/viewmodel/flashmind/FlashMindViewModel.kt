@@ -20,6 +20,6 @@ class FlashMindViewModel(application: Application) : BaseViewModel(application) 
             val currentTags = daoTag.getAllTag()
             mutableFlashMindTags.value = currentTags
         }
-        
+
     }
 }
