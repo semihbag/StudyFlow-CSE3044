@@ -63,13 +63,16 @@ class FlashMindFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewHolder as FlashMindTagRecyclerAdapter.FlashMindTagViewHolder
-                println(viewHolder.view.tag)
-                if (direction == ItemTouchHelper.RIGHT) {
-                    val action = FlashMindFragmentDirections.actionFlashMindFragmentToCardFragment(viewHolder.view.tag)
-                    Navigation.findNavController(view).navigate(action)
-                } else if (direction == ItemTouchHelper.LEFT) {
-                        println("sola kaydım")
+                viewHolder.view.tag?.let {
+                    if (direction == ItemTouchHelper.RIGHT) {
+                        val action = FlashMindFragmentDirections.actionFlashMindFragmentToCardFragment(it)
+                        Navigation.findNavController(view).navigate(action)
+                    } else if (direction == ItemTouchHelper.LEFT) {
+                        val action = FlashMindFragmentDirections.actionFlashMindFragmentToExerciseFragment(it)
+                        Navigation.findNavController(view).navigate(action)
+                    }
                 }
+
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {

@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_flashMindFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_flashMindFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
     </fragment>
     <fragment
         android:id="@+id/tagsFragment"
@@ -82,7 +85,15 @@
         tools:layout="@layout/fragment_card" >
         <argument
             android:name="tag"
-            app:argType="com.example.studyflow.model.Tag"
-            app:nullable="true" />
+            app:argType="com.example.studyflow.model.Tag" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.studyflow.view.flashmindview.ExerciseFragment"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
     </fragment>
 </navigation>
