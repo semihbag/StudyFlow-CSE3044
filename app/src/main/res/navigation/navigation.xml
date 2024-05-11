@@ -46,7 +46,7 @@
         tools:layout="@layout/fragment_planning" />
     <fragment
         android:id="@+id/flashMindFragment"
-        android:name="com.example.studyflow.view.FlashMindFragment"
+        android:name="com.example.studyflow.view.flashmindview.FlashMindFragment"
         android:label="fragment_flash_mind"
         tools:layout="@layout/fragment_flash_mind" />
     <fragment

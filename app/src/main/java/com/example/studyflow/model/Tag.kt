@@ -23,6 +23,8 @@ data class Tag (
     val totalNumberOfStop: Int = 0,
     @ColumnInfo(name = "totalNumberOfCurrentCorrectAnswer")
     val totalNumberOfCurrentCorrectAnswer: Int = 0,
+    @ColumnInfo("totalNumberOdCurrentFalseAnswer")
+    val totalNumberOdCurrentFalseAnswer : Int  =0,
     @ColumnInfo(name = "cardRatio")
     val cardRatio: Int = 0,
     @ColumnInfo("totalNumberOfTodoDone")
