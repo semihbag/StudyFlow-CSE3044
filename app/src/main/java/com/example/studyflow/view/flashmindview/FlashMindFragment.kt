@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,15 +42,21 @@ class FlashMindFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(FlashMindViewModel::class.java)
-
-        // burda db load fonk gelcek
+        viewModel.loadFlashMindTagsFromDB()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.flash_mind_tag_row_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = recyclerAdapter
 
-        
-
+        observeLiveData()
     }
 
+    fun observeLiveData() {
+        viewModel.mutableFlashMindTags.observe(viewLifecycleOwner, Observer { tags ->
+            tags.let {
+                view?.findViewById<RecyclerView>(R.id.flash_mind_tag_row_recyclerview)?.visibility = View.VISIBLE
+                recyclerAdapter.updateFlashMindTagList(tags)
+            }
+        })
+    }
 }
