@@ -87,7 +87,7 @@ class FlashMindFragment : Fragment() {
                     // Exercise text
                     val textPaintRight = Paint().apply {
                         color = Color.WHITE
-                        textSize = 40f
+                        textSize = 50f
                         textAlign = Paint.Align.CENTER
                     }
                     val textRight = "EXERCISE"
@@ -102,10 +102,10 @@ class FlashMindFragment : Fragment() {
                     // Exercise text
                     val textPaintLeft = Paint().apply {
                         color = Color.WHITE
-                        textSize = 40f
+                        textSize = 50f
                         textAlign = Paint.Align.CENTER
                     }
-                    val textLeft = "MY CARDS"
+                    val textLeft = "CARDS"
                     c.drawText(textLeft, viewHolder.itemView.left.toFloat() + dX / 2, viewHolder.itemView.bottom.toFloat() - viewHolder.itemView.height / 2, textPaintLeft)
 
                 }
