@@ -11,24 +11,24 @@ interface CardDAO {
 
     // insert functions
     @Insert
-    suspend fun insertCard(card : Card) : Long
+    suspend fun insertCard(card: Card): Long
 
     @Insert
-    suspend fun insertAllCard(vararg card : Card) : List<Long>
+    suspend fun insertAllCard(vararg card: Card): List<Long>
 
 
     // get functions
     @Query("SELECT * FROM card")
-    suspend fun getAllCard() : List<Card>
+    suspend fun getAllCard(): List<Card>
 
     @Query("SELECT * FROM card WHERE uuid = :carId")
-    suspend fun getCard(carId : Int) : Card
+    suspend fun getCard(carId: Int): Card
 
     @Query("SELECT * FROM card WHERE tagId = :givenTagId")
-    suspend fun getAllCardWithGivenTagId(givenTagId : Int) : List<Card>
+    suspend fun getAllCardWithGivenTagId(givenTagId: Int): List<Card>
 
     @Query("SELECT * FROM card WHERE tagId = :givenTagId and isMarked = :givenMarked")
-    suspend fun getAllCardWithGivenTagIdAndGivenMarked(givenTagId: Int , givenMarked : Boolean)
+    suspend fun getAllCardWithGivenTagIdAndGivenMarked(givenTagId: Int, givenMarked : Boolean) : List<Card>
 
 
     // delete functions

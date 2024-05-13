@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class ToDo (
+data class ToDo (
     @ColumnInfo(name = "toDoText")
     val toDoText : String,
     @ColumnInfo(name = "tagId")
