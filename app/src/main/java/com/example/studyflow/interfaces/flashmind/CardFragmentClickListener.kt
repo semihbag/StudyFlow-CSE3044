@@ -4,5 +4,6 @@ import android.view.View
 
 interface CardFragmentClickListener {
 
-    fun clickCreateCard(view: View)
+    fun clickAddCard(view: View)
+
 }
