@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.flashmindview.CardFragment">
 
     <data>
+
         <variable
             name="tag"
             type="com.example.studyflow.model.Tag" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -25,14 +27,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#ffffff"
-                android:paddingHorizontal="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp">
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -49,6 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@{tag.tagName}"
+                        android:textAlignment="viewStart"
                         android:textSize="13sp"
                         android:textStyle="bold">
 
@@ -57,15 +60,15 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="10"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="10">
 
                     <ImageButton
-                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
+                        android:padding="2dp"
                         android:scaleType="centerInside"
                         android:src="@drawable/icon_add_card">
 
@@ -91,11 +94,11 @@
 
 
                     <SearchView
-                        android:queryHint="Search Cards"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:iconifiedByDefault="false"
                         android:queryBackground="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:queryHint="Search Cards" />
 
 
                 </LinearLayout>

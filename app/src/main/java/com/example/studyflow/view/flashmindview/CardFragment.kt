@@ -15,16 +15,19 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.flasmind.CardRecyclerAdapter
 import com.example.studyflow.databinding.FragmentCardBinding
 import com.example.studyflow.model.Card
+import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CardViewModel
 
 
 class CardFragment : Fragment() {
     private lateinit var viewModel: CardViewModel
     private val recyclerAdapter = CardRecyclerAdapter(ArrayList<Card>())
+    private lateinit var tag : Tag
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            tag = CardFragmentArgs.fromBundle(it).tag
         }
     }
 
@@ -36,6 +39,7 @@ class CardFragment : Fragment() {
             inflater, R.layout.fragment_card, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.tag = tag
         return binding.root
     }
 

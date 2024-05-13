@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <androidx.cardview.widget.CardView
@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="title"
+                    android:text="@{card.cardTitle}"
                     android:textColor="@color/black"
                     android:textAlignment="center"
                     android:textSize="18sp">
@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="title"
+                    android:text="@{card.textFront}"
                     android:textAlignment="center"
                     android:textSize="14sp">
 
@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="date"
+                    android:text="@{String.valueOf(card.createDate)}"
                     android:textAlignment="center"
                     android:textSize="14sp">
 
