@@ -86,12 +86,24 @@
         <argument
             android:name="tag"
             app:argType="com.example.studyflow.model.Tag" />
+        <action
+            android:id="@+id/action_cardFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/exerciseFragment"
         android:name="com.example.studyflow.view.flashmindview.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardCreateFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardCreateFragment"
+        android:label="fragment_card_create"
+        tools:layout="@layout/fragment_card_create" >
         <argument
             android:name="tag"
             app:argType="com.example.studyflow.model.Tag" />
