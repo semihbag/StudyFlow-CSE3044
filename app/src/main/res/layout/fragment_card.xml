@@ -86,58 +86,16 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
+
+                    <SearchView
+                        android:queryHint="Search Cards"
+                        android:iconifiedByDefault="false"
+                        android:queryBackground="@android:color/transparent"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:paddingHorizontal="5dp">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="10"
-                            android:orientation="vertical">
-
-                            <ImageButton
-                                android:padding="8dp"
-                                android:id="@+id/button_search_card"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@null"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/icon_search">
-
-                            </ImageButton>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="2"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/edit_text_search_card"
-                                android:layout_width="match_parent"
-                                android:layout_height="48dp"
-                                android:layout_marginHorizontal="5dp"
-                                android:background="@null"
-                                android:hint="Search with card title">
-
-                            </EditText>
-
-                        </LinearLayout>
-
-
-
-
-                    </LinearLayout>
-
+                        android:layout_height="match_parent" />
 
 
                 </LinearLayout>
