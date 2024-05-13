@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey
 data class Card(
     @ColumnInfo("cardTitle")
     val cardTitle : String,
+    @ColumnInfo("tagId")
+    val tagId : Int = 0,
     @ColumnInfo("createDate")
     val createDate : Long,
     @ColumnInfo("textFront")
