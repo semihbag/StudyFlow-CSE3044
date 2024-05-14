@@ -62,9 +62,4 @@ class TagBottomSheetDialogFragment(private val listener : TagBottomSheetDialogCl
            }
        })
    }
-
-
-
-
-
 }

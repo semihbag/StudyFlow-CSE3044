@@ -4,6 +4,12 @@
     android:background="@drawable/create_card_bottom_sheet_bg"
     tools:context=".view.flashmindview.CardCreateBottomSheetDialogFragment">
 
+    <data>
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.flashmind.CardCreateBottomSheetClickListener" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +30,7 @@
 
         <LinearLayout
             android:id="@+id/containerEditTextCardTitle"
+            android:onClick="@{listener::clickCardTitle}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -49,6 +56,7 @@
 
         <LinearLayout
             android:id="@+id/containerEditTextCardFront"
+            android:onClick="@{listener::clickEditTextFront}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -75,6 +83,7 @@
         <LinearLayout
             android:id="@+id/containerImageCardFront"
             android:layout_width="match_parent"
+            android:onClick="@{listener::clickImageFront}"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -100,6 +109,7 @@
         <LinearLayout
             android:id="@+id/containerEditTextCardBack"
             android:layout_width="match_parent"
+            android:onClick="@{listener::clickEditTextBack}"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -125,6 +135,7 @@
         <LinearLayout
             android:id="@+id/containerImageCardBack"
             android:layout_width="match_parent"
+            android:onClick="@{listener::clickImageBack}"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
