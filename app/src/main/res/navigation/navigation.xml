@@ -113,7 +113,7 @@
     </fragment>
     <dialog
         android:id="@+id/createCardBottomSheetDialogFragment"
-        android:name="com.example.studyflow.view.flashmindview.CreateCardBottomSheetDialogFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardCreateBottomSheetDialogFragment"
         android:label="create_card_bottom_sheet_dialog"
         tools:layout="@layout/create_card_bottom_sheet_dialog" />
 </navigation>

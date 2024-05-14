@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/create_card_bottom_sheet_bg"
-    tools:context=".view.flashmindview.CreateCardBottomSheetDialogFragment">
+    tools:context=".view.flashmindview.CardCreateBottomSheetDialogFragment">
 
 
     <LinearLayout
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="Edit Text BAck"
+                android:text="Edit Text Back"
                 android:textSize="16sp">
 
             </TextView>

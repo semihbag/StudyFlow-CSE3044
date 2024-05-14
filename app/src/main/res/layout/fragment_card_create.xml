@@ -12,7 +12,7 @@
 
         <variable
             name="listener"
-            type="com.example.studyflow.interfaces.flashmind.CreateCardFragmentClickListener" />
+            type="com.example.studyflow.interfaces.flashmind.CardCreateClickListener" />
     </data>
 
 

@@ -1,14 +1,13 @@
 package com.example.studyflow.view.flashmindview
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.studyflow.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CreateCardBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class CardCreateBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

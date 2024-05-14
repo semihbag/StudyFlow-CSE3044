@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.studyflow.R
-import com.example.studyflow.databinding.FragmentCardBinding
 import com.example.studyflow.databinding.FragmentCardCreateBinding
-import com.example.studyflow.interfaces.flashmind.CreateCardFragmentClickListener
+import com.example.studyflow.interfaces.flashmind.CardCreateClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CreateCardViewModel
 
-class CardCreateFragment : Fragment(), CreateCardFragmentClickListener {
+class CardCreateFragment : Fragment(), CardCreateClickListener{
     private lateinit var viewModel : CreateCardViewModel
     private lateinit var tag : Tag
 
@@ -31,9 +30,8 @@ class CardCreateFragment : Fragment(), CreateCardFragmentClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val binding : FragmentCardCreateBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
-
-        binding.tag = tag
         binding.listener = this
+        binding.tag = tag
 
         return binding.root
     }
@@ -45,22 +43,7 @@ class CardCreateFragment : Fragment(), CreateCardFragmentClickListener {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     override fun clickEditCard(view: View) {
-        println("tıkladım")
         val action = CardCreateFragmentDirections.actionCardCreateFragmentToCreateCardBottomSheetDialogFragment()
         Navigation.findNavController(view).navigate(action)
     }
