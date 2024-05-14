@@ -5,9 +5,7 @@
     tools:context=".view.planningview.PlanningFragment">
 
     <data>
-        <variable
-            name="calenderListener"
-            type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
+
         <variable
             name="planningAddButton"
             type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
@@ -90,7 +88,7 @@
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="@{calenderListener::clickCalenderDay}"/>
+                    />
             </LinearLayout>
 
             <LinearLayout
