@@ -55,7 +55,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickCreateCard(view: View) {
-        TODO("Not yet implemented")
+        println("dur hele daha yazmadım")
     }
 
 
@@ -78,7 +78,11 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickImageFront(v: View) {
-        println("image front tıkladım")
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment()
+        view?.let {
+            Navigation.findNavController(it).navigate(action)
+        }
+        cardCreateBottomSheetDialog.dismiss()
     }
 
     override fun clickEditTextBack(v: View) {
@@ -90,6 +94,10 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickImageBack(v: View) {
-        println("image back tıkladım")
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment()
+        view?.let {
+            Navigation.findNavController(it).navigate(action)
+        }
+        cardCreateBottomSheetDialog.dismiss()
     }
 }

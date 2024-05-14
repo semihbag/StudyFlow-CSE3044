@@ -113,6 +113,9 @@
         <action
             android:id="@+id/action_cardCreateFragment_to_editTextFragment"
             app:destination="@id/editTextFragment" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_editImageFragment"
+            app:destination="@id/editImageFragment" />
     </fragment>
     <dialog
         android:id="@+id/createCardBottomSheetDialogFragment"
@@ -124,4 +127,9 @@
         android:name="com.example.studyflow.view.input_output_edit.EditTextFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/fragment_edit_text" />
+    <fragment
+        android:id="@+id/editImageFragment"
+        android:name="com.example.studyflow.view.input_output_edit.EditImageFragment"
+        android:label="fragment_edit_image"
+        tools:layout="@layout/fragment_edit_image" />
 </navigation>
