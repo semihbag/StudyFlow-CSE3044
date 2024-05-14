@@ -69,7 +69,7 @@ class CardFragment : Fragment(), CardFragmentClickListener {
     }
 
     override fun clickAddCard(view: View) {
-        val action = CardFragmentDirections.actionCardFragmentToCardCreateFragment(tag)
+        val action = CardFragmentDirections.actionCardFragmentToCardCreateFragment(tag,null)
         Navigation.findNavController(view).navigate(action)
     }
 

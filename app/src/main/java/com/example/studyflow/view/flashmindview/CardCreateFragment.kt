@@ -12,18 +12,40 @@ import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentCardCreateBinding
 import com.example.studyflow.interfaces.flashmind.CardCreateBottomSheetClickListener
 import com.example.studyflow.interfaces.flashmind.CardCreateClickListener
+import com.example.studyflow.model.Card
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CreateCardViewModel
 
 class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottomSheetClickListener {
     private lateinit var viewModel: CreateCardViewModel
     private lateinit var cardCreateBottomSheetDialog: CardCreateBottomSheetDialogFragment
+    private lateinit var card : Card
     private lateinit var tag: Tag
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+        arguments?.let { it ->
             tag = CardCreateFragmentArgs.fromBundle(it).tag
+            CardCreateFragmentArgs.fromBundle(it).card?.let {card ->
+                this.card = card
+                println("card geldi")
+            } ?: run {
+                this.card = Card(
+                    "",
+                    tag.uuid,
+                    0,
+                    "",
+                    "",
+                    "",
+                    "",
+                    true,
+                    1,
+                    0,
+                    false,
+                )
+                println("null card geldi")
+            }
         }
     }
 
@@ -62,7 +84,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     // FUNCTION OF CLICK LISTENER OF CARD CREATE BOTTOM SHEET DIALOG
     // buradaki parametre olarak gelen viewları kullanmaya gerek yok ama onu paraemter olarak yazmazsak da fonk çalışmaz
     override fun clickCardTitle(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -70,7 +92,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickEditTextFront(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -86,7 +108,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickEditTextBack(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
