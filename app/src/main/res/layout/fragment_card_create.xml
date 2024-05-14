@@ -102,6 +102,86 @@
                             app:layout_constraintEnd_toEndOf="parent" />
 
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="650dp"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <LinearLayout
+                                android:id="@+id/containerCardTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/textViewCardTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Card Title"
+                                    android:textAlignment="center"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/containerCardFront"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:alpha="1"
+                                android:padding="2dp">
+
+                                <ImageView
+                                    android:id="@+id/imageViewCardFront"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/textViewCardFront"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/containerCardBack"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:alpha="0"
+                                android:padding="2dp">
+
+                                <ImageView
+                                    android:id="@+id/imageViewCardBack"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/textViewCardBack"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
