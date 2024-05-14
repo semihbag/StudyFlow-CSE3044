@@ -7,5 +7,5 @@ interface CreateCardFragmentClickListener {
     fun clickEditCard(view: View)
 
     fun clickCreateCard(view: View)
-    
+
 }

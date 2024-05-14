@@ -9,6 +9,10 @@
         <variable
             name="tag"
             type="com.example.studyflow.model.Tag" />
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.flashmind.CreateCardFragmentClickListener" />
     </data>
 
 
@@ -82,8 +86,8 @@
                             android:layout_width="99dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
+                            android:onClick="@{listener::clickEditCard}"
                             android:src="@drawable/icon_edit"
-
                             app:backgroundTint="@android:color/white"
                             app:elevation="0dp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +99,7 @@
                             android:layout_width="79dp"
                             android:layout_height="wrap_content"
                             android:clickable="true"
+                            android:onClick="@{listener::clickCreateCard}"
                             android:src="@drawable/icon_done"
                             app:backgroundTint="@android:color/white"
 
@@ -134,8 +139,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:orientation="vertical"
                                 android:alpha="1"
+                                android:orientation="vertical"
                                 android:padding="2dp">
 
                                 <ImageView
@@ -160,8 +165,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:orientation="vertical"
                                 android:alpha="0"
+                                android:orientation="vertical"
                                 android:padding="2dp">
 
                                 <ImageView
@@ -180,16 +185,17 @@
                                 </TextView>
 
                             </LinearLayout>
+
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </layout>

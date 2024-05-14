@@ -9,17 +9,19 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adapter.flasmind.CardRecyclerAdapter
 import com.example.studyflow.databinding.FragmentCardBinding
+import com.example.studyflow.interfaces.flashmind.CardFragmentClickListener
 import com.example.studyflow.model.Card
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CardViewModel
 
 
-class CardFragment : Fragment() {
+class CardFragment : Fragment(), CardFragmentClickListener {
     private lateinit var viewModel: CardViewModel
     private val recyclerAdapter = CardRecyclerAdapter(ArrayList<Card>())
     private lateinit var tag : Tag
@@ -39,6 +41,7 @@ class CardFragment : Fragment() {
             inflater, R.layout.fragment_card, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.listener = this
         binding.tag = tag
         return binding.root
     }
@@ -63,6 +66,11 @@ class CardFragment : Fragment() {
                 recyclerAdapter.updateCardList(cards)
             }
         })
+    }
+
+    override fun clickAddCard(view: View) {
+        val action = CardFragmentDirections.actionCardFragmentToCardCreateFragment(tag)
+        Navigation.findNavController(view).navigate(action)
     }
 
 }

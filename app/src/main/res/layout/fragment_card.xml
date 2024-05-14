@@ -9,6 +9,10 @@
         <variable
             name="tag"
             type="com.example.studyflow.model.Tag" />
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.flashmind.CardFragmentClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,60 +27,68 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:paddingHorizontal="5dp">
+                android:background="#ffffff">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="5dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Cards"
-                        android:textAlignment="viewStart"
-                        android:textSize="24sp"
-                        android:textStyle="bold">
-
-                    </TextView>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@{tag.tagName}"
-                        android:textAlignment="viewStart"
-                        android:textSize="13sp"
-                        android:textStyle="bold">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    </TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:layout_marginTop="5dp"
+                            android:text="Cards"
+                            android:textAlignment="viewStart"
+                            android:textSize="24sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@{tag.tagName}"
+                            android:textAlignment="viewStart"
+                            android:textSize="13sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10">
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:onClick="@{listener::clickAddCard}"
+                            android:padding="2dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/icon_add_card">
+
+                        </ImageButton>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10">
+            </androidx.cardview.widget.CardView>
 
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/icon_add_card">
-
-                    </ImageButton>
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
