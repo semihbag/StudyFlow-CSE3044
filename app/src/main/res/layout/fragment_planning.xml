@@ -38,18 +38,45 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="50dp"
                 android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/textView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:text="PLANNER"
-                    android:textAlignment="viewStart"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="359dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:text="Planner"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/floatingActionButton3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:layout_gravity="end"
+                            android:src="@drawable/ic_add" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -70,18 +97,9 @@
                 android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="55dp"
-                    android:onClick="@{planningAddButton::clickAddPlanningButton}"
-                    app:srcCompat="@drawable/ic_add" />
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
