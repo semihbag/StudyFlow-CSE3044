@@ -85,6 +85,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
 
+
     // FUNCTION OF CLICK LISTENER OF CARD CREATE BOTTOM SHEET DIALOG
     // buradaki parametre olarak gelen viewları kullanmaya gerek yok ama onu paraemter olarak yazmazsak da fonk çalışmaz
     override fun clickCardTitle(v: View) {

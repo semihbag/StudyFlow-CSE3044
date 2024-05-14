@@ -143,7 +143,9 @@
             app:argType="com.example.studyflow.enums.EditInputType" />
         <action
             android:id="@+id/action_editTextFragment_to_cardCreateFragment"
-            app:destination="@id/cardCreateFragment" />
+            app:destination="@id/cardCreateFragment"
+            app:popUpTo="@id/cardCreateFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
     <fragment
@@ -163,7 +165,9 @@
             app:argType="com.example.studyflow.enums.EditInputType" />
         <action
             android:id="@+id/action_editImageFragment_to_cardCreateFragment"
-            app:destination="@id/cardCreateFragment" />
+            app:destination="@id/cardCreateFragment"
+            app:popUpTo="@id/cardCreateFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
 </navigation>
