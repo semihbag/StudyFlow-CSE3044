@@ -3,6 +3,7 @@ package com.example.studyflow.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Card(
@@ -28,7 +29,7 @@ data class Card(
     val lastExerciseDate : Long,
     @ColumnInfo("lastAnswer")
     val lastAnswer : Boolean
-) {
+) : Serializable {
     @PrimaryKey(true)
     var uuid : Int = 0
 }
