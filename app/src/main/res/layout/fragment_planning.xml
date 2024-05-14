@@ -72,6 +72,7 @@
                             android:id="@+id/floatingActionButton3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:onClick="@{planningAddButton::clickAddPlanningButton}"
                             android:clickable="true"
                             android:layout_gravity="end"
                             android:src="@drawable/ic_add" />
