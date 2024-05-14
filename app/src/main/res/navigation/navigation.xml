@@ -135,10 +135,21 @@
             android:name="card"
             app:argType="com.example.studyflow.model.Card"
             app:nullable="true" />
+        <argument
+            android:name="editType"
+            app:argType="com.example.studyflow.enums.EditInputType" />
     </fragment>
     <fragment
         android:id="@+id/editImageFragment"
         android:name="com.example.studyflow.view.input_output_edit.EditImageFragment"
         android:label="fragment_edit_image"
-        tools:layout="@layout/fragment_edit_image" />
+        tools:layout="@layout/fragment_edit_image" >
+        <argument
+            android:name="card"
+            app:argType="com.example.studyflow.model.Card"
+            app:nullable="true" />
+        <argument
+            android:name="editType"
+            app:argType="com.example.studyflow.enums.EditInputType" />
+    </fragment>
 </navigation>
