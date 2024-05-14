@@ -11,6 +11,10 @@
             type="com.example.studyflow.model.Tag" />
 
         <variable
+            name="card"
+            type="com.example.studyflow.model.Card" />
+
+        <variable
             name="listener"
             type="com.example.studyflow.interfaces.flashmind.CardCreateClickListener" />
     </data>
@@ -107,7 +111,7 @@
                             app:layout_constraintEnd_toEndOf="parent" />
 
 
-                        <LinearLayout
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -115,33 +119,31 @@
                             android:orientation="vertical"
                             android:padding="2dp">
 
-                            <LinearLayout
-                                android:id="@+id/containerCardTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/textViewCardTitle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Card Title"
-                                    android:textAlignment="center"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold">
-
-                                </TextView>
-
-                            </LinearLayout>
-
 
                             <LinearLayout
                                 android:id="@+id/containerCardFront"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:alpha="1"
+                                android:alpha="0"
                                 android:orientation="vertical"
-                                android:padding="2dp">
+                                android:padding="2dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/textViewCardTitleFront"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Card Title"
+                                    android:text="@{card.cardTitle}"
+                                    android:textAlignment="center"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
 
                                 <ImageView
                                     android:id="@+id/imageViewCardFront"
@@ -154,6 +156,8 @@
                                     android:id="@+id/textViewCardFront"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:text="@{card.textFront}"
+                                    android:textAlignment="center"
                                     android:textSize="14sp">
 
                                 </TextView>
@@ -165,9 +169,25 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:alpha="0"
+                                android:alpha="1"
                                 android:orientation="vertical"
-                                android:padding="2dp">
+                                android:padding="2dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:id="@+id/textViewCardTitleBack"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Card Title"
+                                    android:text="@{card.cardTitle}"
+                                    android:textAlignment="center"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
 
                                 <ImageView
                                     android:id="@+id/imageViewCardBack"
@@ -180,13 +200,15 @@
                                     android:id="@+id/textViewCardBack"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:text="@{card.textBack}"
+                                    android:textAlignment="center"
                                     android:textSize="14sp">
 
                                 </TextView>
 
                             </LinearLayout>
 
-                        </LinearLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

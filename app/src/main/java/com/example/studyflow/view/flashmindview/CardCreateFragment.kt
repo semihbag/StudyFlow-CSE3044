@@ -30,22 +30,6 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
             tag = CardCreateFragmentArgs.fromBundle(it).tag
             CardCreateFragmentArgs.fromBundle(it).card?.let {card ->
                 this.card = card
-                println("card geldi")
-            } ?: run {
-                this.card = Card(
-                    "",
-                    tag.uuid,
-                    0,
-                    "",
-                    "",
-                    "",
-                    "",
-                    true,
-                    1,
-                    0,
-                    false,
-                )
-                println("null card geldi")
             }
         }
     }
@@ -54,10 +38,29 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentCardCreateBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
+        val binding: FragmentCardCreateBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
+
         binding.listener = this
         binding.tag = tag
+
+        if (::card.isInitialized) {
+            binding.card = card
+        }
+        else {
+            this.card = Card(
+                "",
+                tag.uuid,
+                0,
+                "",
+                "",
+                "",
+                "",
+                true,
+                1,
+                0,
+                false,
+            )
+        }
 
         return binding.root
     }
