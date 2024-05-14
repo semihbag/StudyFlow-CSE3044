@@ -4,14 +4,14 @@ import android.view.View
 
 interface CardCreateBottomSheetClickListener {
 
-    fun clickCardTitle(view: View)
+    fun clickCardTitle(v: View)
 
-    fun clickEditTextFront(view: View)
+    fun clickEditTextFront(v: View)
 
-    fun clickImageFront(view: View)
+    fun clickImageFront(v: View)
 
-    fun clickEditTextBack(view : View)
+    fun clickEditTextBack(v : View)
 
-    fun clickImageBack(view: View)
+    fun clickImageBack(v: View)
     
 }

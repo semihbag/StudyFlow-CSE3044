@@ -10,6 +10,7 @@
             name="listener"
             type="com.example.studyflow.interfaces.tag.TagFragmentClickListener" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"

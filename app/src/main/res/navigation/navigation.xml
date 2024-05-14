@@ -110,10 +110,18 @@
         <action
             android:id="@+id/action_cardCreateFragment_to_createCardBottomSheetDialogFragment"
             app:destination="@id/createCardBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_editTextFragment"
+            app:destination="@id/editTextFragment" />
     </fragment>
     <dialog
         android:id="@+id/createCardBottomSheetDialogFragment"
         android:name="com.example.studyflow.view.flashmindview.CardCreateBottomSheetDialogFragment"
         android:label="create_card_bottom_sheet_dialog"
         tools:layout="@layout/create_card_bottom_sheet_dialog" />
+    <fragment
+        android:id="@+id/editTextFragment"
+        android:name="com.example.studyflow.view.input_output_edit.EditTextFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/fragment_edit_text" />
 </navigation>

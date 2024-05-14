@@ -15,10 +15,10 @@ import com.example.studyflow.interfaces.flashmind.CardCreateClickListener
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CreateCardViewModel
 
-class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottomSheetClickListener{
-    private lateinit var viewModel : CreateCardViewModel
-    private lateinit var cardCreateBottomSheetDialog : CardCreateBottomSheetDialogFragment
-    private lateinit var tag : Tag
+class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottomSheetClickListener {
+    private lateinit var viewModel: CreateCardViewModel
+    private lateinit var cardCreateBottomSheetDialog: CardCreateBottomSheetDialogFragment
+    private lateinit var tag: Tag
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,8 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : FragmentCardCreateBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
+        val binding: FragmentCardCreateBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
         binding.listener = this
         binding.tag = tag
 
@@ -48,10 +49,6 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
 
-
-
-
-
     // FUNCTION OF CLICK LISTENER OF CARD CREATE FRAGMENT
     override fun clickEditCard(view: View) {
         cardCreateBottomSheetDialog.show(requireActivity().supportFragmentManager, "b")
@@ -62,28 +59,37 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
 
-
-
-
-
     // FUNCTION OF CLICK LISTENER OF CARD CREATE BOTTOM SHEET DIALOG
-    override fun clickCardTitle(view: View) {
-        println("başlık tıkladım")
+    // buradaki parametre olarak gelen viewları kullanmaya gerek yok ama onu paraemter olarak yazmazsak da fonk çalışmaz
+    override fun clickCardTitle(v: View) {
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        view?.let {
+            Navigation.findNavController(it).navigate(action)
+        }
+        cardCreateBottomSheetDialog.dismiss()
     }
 
-    override fun clickEditTextFront(view: View) {
-        println("text front tıkladım")
+    override fun clickEditTextFront(v: View) {
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        view?.let {
+            Navigation.findNavController(it).navigate(action)
+        }
+        cardCreateBottomSheetDialog.dismiss()
     }
 
-    override fun clickImageFront(view: View) {
+    override fun clickImageFront(v: View) {
         println("image front tıkladım")
     }
 
-    override fun clickEditTextBack(view: View) {
-        println("text back tıkladım")
+    override fun clickEditTextBack(v: View) {
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment()
+        view?.let {
+            Navigation.findNavController(it).navigate(action)
+        }
+        cardCreateBottomSheetDialog.dismiss()
     }
 
-    override fun clickImageBack(view: View) {
+    override fun clickImageBack(v: View) {
         println("image back tıkladım")
     }
 }
