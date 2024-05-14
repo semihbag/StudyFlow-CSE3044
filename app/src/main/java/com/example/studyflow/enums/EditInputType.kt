@@ -1,9 +1,9 @@
 package com.example.studyflow.enums
 
 enum class EditInputType {
-    card_title,
-    text_front,
-    text_back,
-    image_front,
-    image_back
+    CARD_TITLE,
+    TEXT_FRONT,
+    TEXT_BACK,
+    IMAGE_FRONT,
+    IMAGE_BACK
 }

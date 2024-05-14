@@ -85,7 +85,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     // FUNCTION OF CLICK LISTENER OF CARD CREATE BOTTOM SHEET DIALOG
     // buradaki parametre olarak gelen viewları kullanmaya gerek yok ama onu paraemter olarak yazmazsak da fonk çalışmaz
     override fun clickCardTitle(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card, EditInputType.card_title)
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.tag, this.card, EditInputType.CARD_TITLE)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -93,7 +93,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickEditTextFront(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card, EditInputType.text_front)
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.tag, this.card, EditInputType.TEXT_FRONT)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -101,7 +101,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickImageFront(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment(this.card, EditInputType.image_front)
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment(this.tag, this.card, EditInputType.IMAGE_FRONT)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -109,7 +109,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickEditTextBack(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.card, EditInputType.text_back)
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditTextFragment(this.tag, this.card, EditInputType.TEXT_BACK)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }
@@ -117,7 +117,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickImageBack(v: View) {
-        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment(this.card, EditInputType.image_back)
+        val action = CardCreateFragmentDirections.actionCardCreateFragmentToEditImageFragment(this.tag, this.card, EditInputType.IMAGE_BACK)
         view?.let {
             Navigation.findNavController(it).navigate(action)
         }

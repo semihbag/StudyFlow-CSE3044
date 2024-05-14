@@ -8,15 +8,15 @@ import java.io.Serializable
 @Entity
 data class Card(
     @ColumnInfo("cardTitle")
-    val cardTitle : String,
+    var cardTitle : String,
     @ColumnInfo("tagId")
     val tagId : Int = 0,
     @ColumnInfo("createDate")
     val createDate : Long,
     @ColumnInfo("textFront")
-    val textFront : String?,
+    var textFront : String?,
     @ColumnInfo("textBack")
-    val textBack : String?,
+    var textBack : String?,
     @ColumnInfo("imagePathFront")
     val imagePathFront : String?,
     @ColumnInfo("imagePathBack")

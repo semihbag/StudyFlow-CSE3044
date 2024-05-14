@@ -132,12 +132,19 @@
         android:label="fragment_edit_text"
         tools:layout="@layout/fragment_edit_text" >
         <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <argument
             android:name="card"
             app:argType="com.example.studyflow.model.Card"
             app:nullable="true" />
         <argument
             android:name="editType"
             app:argType="com.example.studyflow.enums.EditInputType" />
+        <action
+            android:id="@+id/action_editTextFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/editImageFragment"
@@ -145,11 +152,18 @@
         android:label="fragment_edit_image"
         tools:layout="@layout/fragment_edit_image" >
         <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <argument
             android:name="card"
             app:argType="com.example.studyflow.model.Card"
             app:nullable="true" />
         <argument
             android:name="editType"
             app:argType="com.example.studyflow.enums.EditInputType" />
+        <action
+            android:id="@+id/action_editImageFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment" />
+
     </fragment>
 </navigation>
