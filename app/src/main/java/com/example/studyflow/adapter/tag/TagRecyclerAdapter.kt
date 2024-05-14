@@ -11,7 +11,10 @@ import com.example.studyflow.interfaces.tag.TagFragmentClickListener
 import com.example.studyflow.interfaces.tag.TagRecyclerAdapterClickListener
 import com.example.studyflow.model.Tag
 
-class TagRecyclerAdapter(private val tagList: ArrayList<Tag>, private val listenerFragment : TagFragmentClickListener) : RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(), TagRecyclerAdapterClickListener {
+class TagRecyclerAdapter(private val tagList: ArrayList<Tag>,
+                         private val listenerFragment : TagFragmentClickListener) :
+    RecyclerView.Adapter<TagRecyclerAdapter.TagViewHolder>(),
+    TagRecyclerAdapterClickListener {
 
     // create class
     class TagViewHolder(var view: TagRowBinding) : RecyclerView.ViewHolder(view.root) {
