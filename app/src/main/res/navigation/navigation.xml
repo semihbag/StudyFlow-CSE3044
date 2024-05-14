@@ -107,5 +107,13 @@
         <argument
             android:name="tag"
             app:argType="com.example.studyflow.model.Tag" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_createCardBottomSheetDialogFragment"
+            app:destination="@id/createCardBottomSheetDialogFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/createCardBottomSheetDialogFragment"
+        android:name="com.example.studyflow.view.flashmindview.CreateCardBottomSheetDialogFragment"
+        android:label="create_card_bottom_sheet_dialog"
+        tools:layout="@layout/create_card_bottom_sheet_dialog" />
 </navigation>
