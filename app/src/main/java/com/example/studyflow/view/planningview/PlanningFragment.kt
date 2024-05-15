@@ -45,17 +45,27 @@ class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
         val binding = DataBindingUtil.findBinding<FragmentPlanningBinding>(view)
         binding?.let { fragmentBinding ->
             fragmentBinding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+                // Tarih bileşenlerini al
+                val selectedDay = dayOfMonth.toLong()
+                val selectedMonth = (month + 1).toLong() // Aylar 0 tabanlı olduğu için 1 ekliyoruz
+                val selectedYear = year.toLong()
+
+                // Bu bileşenleri birleştirerek tek bir long değere dönüştürmek
+                val selectedDateLong = selectedYear * 10000 + selectedMonth * 100 + selectedDay
+
+                println("Seçilen tarih: Gün: $selectedDay, Ay: $selectedMonth, Yıl: $selectedYear")
+                println("Seçilen tarih (long): $selectedDateLong")
+
+                // Eğer isterseniz milisaniye olarak da alabilirsiniz
                 val calendar = Calendar.getInstance()
                 calendar.set(year, month, dayOfMonth)
-                val selectedDate = calendar.time
+                val selectedDateInMillis = calendar.timeInMillis
 
-                // Seçilen tarihi kullanarak istediğiniz işlemi yapabilirsiniz
-                println("Seçilen tarih: $selectedDate")
+                println("Seçilen tarih (millis): $selectedDateInMillis")
             }
-
-
         }
     }
+
 
     //BU METODU YAZARKEN KTÜPHANENİN METOTLARINI KULLAN VE DENE BAKALIM OLUYOR MU
 
