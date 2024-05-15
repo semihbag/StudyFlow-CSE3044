@@ -47,6 +47,14 @@ open class PomodoroViewModel(application: Application) : BaseViewModel(applicati
         launch {
             val dao = StudyFlowDB(getApplication()).pomodoroDao()
             val id = dao.insertPomodoro(pomodoro)
+            if (pomodoro.tagId != -1){
+                dao.increasePomodorCount(pomodoro.tagId)
+                dao.increaseFocusedMinute(pomodoro.pomodoroTime.toInt() / 60000, pomodoro.tagId)
+                dao.increaseOutOfFocusedMinute(pomodoro.inactiveTime.toInt() / 60000, pomodoro.tagId)
+                if (pomodoro.isFinished == 0){
+                    dao.increaseStopCount(pomodoro.tagId)
+                }
+            }
             pomodoro.uuid = id.toInt()
             pomodoroID = pomodoro.uuid
         }
