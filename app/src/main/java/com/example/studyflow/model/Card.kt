@@ -18,9 +18,9 @@ data class Card(
     @ColumnInfo("textBack")
     var textBack : String?,
     @ColumnInfo("imagePathFront")
-    val imagePathFront : String?,
+    var imagePathFront : String?,
     @ColumnInfo("imagePathBack")
-    val imagePathBack : String?,
+    var imagePathBack : String?,
     @ColumnInfo("isMarked")
     val isMarked : Boolean = true,
     @ColumnInfo("state")

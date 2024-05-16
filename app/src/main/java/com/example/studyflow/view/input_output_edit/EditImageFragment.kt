@@ -1,8 +1,6 @@
 package com.example.studyflow.view.input_output_edit
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -27,20 +25,28 @@ class EditImageFragment : Fragment(), EditImageFragmentClickListener {
     private lateinit var card: Card
     private lateinit var editType: EditInputType
 
+    // resmi ekrana gömmeyi burda yaptım
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { imageUri ->
-            // Do something with the selected image URI
             binding.imageView.setImageURI(imageUri)
+
+            // card içindeki path güncelledim
+            when (editType) {
+                EditInputType.IMAGE_FRONT -> card.imagePathFront = imageUri.toString()
+                EditInputType.IMAGE_BACK -> card.imagePathBack = imageUri.toString()
+                else -> println("Unknown type")
+            }
         }
     }
 
+    // izin istedim
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
-                // İzin verildi, galeriye erişimi başlat
+                // İzin verildi
                 openGallery()
             } else {
-                // İzin reddedildi, kullanıcıya bilgi ver veya başka bir işlem yap
+                // İzin verilmedi
             }
         }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,10 +96,7 @@ class EditImageFragment : Fragment(), EditImageFragmentClickListener {
         }
     }
 
-
-
     private fun openGallery() {
         getContent.launch("image/*")
     }
-
 }

@@ -42,4 +42,6 @@ interface CardDAO {
     // update functions
     @Update
     suspend fun updateCard(card: Card)
+
+
 }
