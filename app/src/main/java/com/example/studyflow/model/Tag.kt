@@ -12,7 +12,7 @@ data class Tag (
     @ColumnInfo(name = "totalNumberOfPomodoro")
     val totalNumberOfPomodoro: Int = 0,
     @ColumnInfo(name = "totalNumberOfCard")
-    val totalNumberOfCard: Int = 0,
+    var totalNumberOfCard: Int = 0,
     @ColumnInfo(name = "totalNumberOfTodos")
     var totalNumberOfTodos: Int = 0,
     @ColumnInfo(name = "totalNumberOfFocusedMinute")
@@ -26,7 +26,7 @@ data class Tag (
     @ColumnInfo("totalNumberOdCurrentFalseAnswer")
     val totalNumberOdCurrentFalseAnswer : Int  =0,
     @ColumnInfo(name = "cardRatio")
-    val cardRatio: Int = 0,
+    var cardRatio: Int = 0,
     @ColumnInfo("totalNumberOfTodoDone")
     var totalNumberOfTodoDone: Int = 0,
     @ColumnInfo("todoRatio")

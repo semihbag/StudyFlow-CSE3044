@@ -28,7 +28,6 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     private lateinit var card : Card
     private lateinit var tag: Tag
     private lateinit var binding: FragmentCardCreateBinding
-    private var isFrontVisible = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,6 +150,23 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
         card.createDate = currentDate
         card.lastExerciseDate = currentDate
 
+        viewModel.storeCardToDB(card)
+
+        this.card = Card(
+            "",
+            tag.uuid,
+            0,
+            "",
+            "",
+            "",
+            "",
+            true,
+            1,
+            0,
+            false,
+        )
+        binding.card = card
+        Toast.makeText(context, "Card Has Been Added", Toast.LENGTH_SHORT).show()
     }
 
 
