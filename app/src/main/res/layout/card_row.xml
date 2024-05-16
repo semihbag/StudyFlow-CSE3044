@@ -9,54 +9,70 @@
             type="com.example.studyflow.model.Card" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="8dp">
 
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp">
+            android:orientation="vertical"
 
-            <LinearLayout
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/cardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="8dp"
+                android:focusable="true"
+                android:singleLine="true"
+                android:scrollHorizontally="true"
+                android:fadingEdge="horizontal"
+                android:text="@{card.cardTitle}"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold">
 
-                android:padding="5dp">
+            </TextView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{card.cardTitle}"
-                    android:textColor="@color/black"
-                    android:textAlignment="center"
-                    android:textSize="18sp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="10"
+                android:padding="8dp"
+                android:text="@{card.textFront}"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="normal">
 
-                </TextView>
+            </TextView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{card.textFront}"
-                    android:textAlignment="center"
-                    android:textSize="14sp">
+            <TextView
+                android:id="@+id/textViewCardDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="10"
+                android:padding="8dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textColor="#A8AEB1"
+                android:textSize="12sp"
+                android:textStyle="normal">
 
-                </TextView>
+            </TextView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(card.createDate)}"
-                    android:textAlignment="center"
-                    android:textSize="14sp">
+        </LinearLayout>
 
-                </TextView>
+    </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
