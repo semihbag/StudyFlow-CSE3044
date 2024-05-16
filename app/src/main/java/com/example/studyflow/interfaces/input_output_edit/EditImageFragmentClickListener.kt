@@ -6,4 +6,6 @@ interface EditImageFragmentClickListener {
 
     fun clickDone(view: View)
 
+    fun clickSelectImage(view: View)
+
 }

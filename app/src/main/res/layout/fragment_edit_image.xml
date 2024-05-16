@@ -4,10 +4,12 @@
     tools:context=".view.input_output_edit.EditImageFragment">
 
     <data>
+
         <variable
             name="listener"
             type="com.example.studyflow.interfaces.input_output_edit.EditImageFragmentClickListener" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -73,11 +75,27 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <ImageView
+                <TextView
+                    android:id="@+id/textViewHint"
+                    android:layout_margin="10dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{listener::clickSelectImage}"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_image_gray">
 
                 </ImageView>
 
