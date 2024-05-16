@@ -1,5 +1,7 @@
 package com.example.studyflow.view.flashmindview
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +24,8 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     private lateinit var cardCreateBottomSheetDialog: CardCreateBottomSheetDialogFragment
     private lateinit var card : Card
     private lateinit var tag: Tag
-
+    private lateinit var binding: FragmentCardCreateBinding
+    private var isFrontVisible = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentCardCreateBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_card_create, container, false)
 
         binding.listener = this
         binding.tag = tag
@@ -71,6 +74,47 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
         viewModel = ViewModelProvider(this).get(CreateCardViewModel::class.java)
 
         cardCreateBottomSheetDialog = CardCreateBottomSheetDialogFragment(this)
+
+
+        val containerCardFront = binding.containerCardFront
+        val containerCardBack = binding.containerCardBack
+
+        containerCardFront.setOnClickListener {
+            val animatorSet = AnimatorSet()
+
+            val flipRotationFront = ObjectAnimator.ofFloat(containerCardFront, "rotationY", 0f, 90f)
+            val flipRotationBack = ObjectAnimator.ofFloat(containerCardBack, "rotationY", -90f, 0f)
+
+            val flipAlphaFront = ObjectAnimator.ofFloat(containerCardFront, "alpha", 1f, 0f)
+            val flipAlphaBack = ObjectAnimator.ofFloat(containerCardBack, "alpha", 0f, 1f)
+
+            flipRotationFront.duration = 200
+            flipRotationBack.duration = 200
+            flipAlphaFront.duration = 200
+            flipAlphaBack.duration = 200
+
+            animatorSet.playTogether(flipRotationFront, flipRotationBack, flipAlphaFront, flipAlphaBack)
+            animatorSet.start()
+        }
+
+        containerCardBack.setOnClickListener {
+            val animatorSet = AnimatorSet()
+
+            val flipRotationBack = ObjectAnimator.ofFloat(containerCardBack, "rotationY", 0f, -90f)
+            val flipRotationFront = ObjectAnimator.ofFloat(containerCardFront, "rotationY", 90f, 0f)
+
+            val flipAlphaBack = ObjectAnimator.ofFloat(containerCardBack, "alpha", 1f, 0f)
+            val flipAlphaFront = ObjectAnimator.ofFloat(containerCardFront, "alpha", 0f, 1f)
+
+            flipRotationBack.duration = 200
+            flipRotationFront.duration = 200
+            flipAlphaFront.duration = 200
+            flipAlphaBack.duration = 200
+
+            animatorSet.playTogether(flipRotationBack, flipRotationFront, flipAlphaFront, flipAlphaBack)
+            animatorSet.start()
+        }
+
 
     }
 
