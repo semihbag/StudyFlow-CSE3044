@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.example.studyflow.model.Card
 import com.example.studyflow.model.Tag
 import com.example.studyflow.util.convertStringToUri
 import com.example.studyflow.viewmodel.flashmind.CreateCardViewModel
+import java.util.Date
 
 class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottomSheetClickListener {
     private lateinit var viewModel: CreateCardViewModel
@@ -78,7 +80,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
 
         binding.imageViewCardFront.convertStringToUri(card.imagePathFront)
         binding.imageViewCardBack.convertStringToUri(card.imagePathBack)
-        
+
 
         val containerCardFront = binding.containerCardFront
         val containerCardBack = binding.containerCardBack
@@ -129,7 +131,26 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
     }
 
     override fun clickCreateCard(view: View) {
-        println("dur hele daha yazmadım")
+
+        if (card.cardTitle.isNullOrEmpty()) {
+            Toast.makeText(context, "Card Title Can Not Be Empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (card.textFront.isNullOrEmpty() && card.imagePathFront.isNullOrEmpty()) {
+            Toast.makeText(context, "Front Side Can Not Be Empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (card.textBack.isNullOrEmpty() && card.imagePathBack.isNullOrEmpty()) {
+            Toast.makeText(context, "Back Side Can Not Be Empty!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val currentDate = Date().time
+        card.createDate = currentDate
+        card.lastExerciseDate = currentDate
+
     }
 
 

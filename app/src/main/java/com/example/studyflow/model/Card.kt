@@ -8,11 +8,11 @@ import java.io.Serializable
 @Entity
 data class Card(
     @ColumnInfo("cardTitle")
-    var cardTitle : String,
+    var cardTitle : String?,
     @ColumnInfo("tagId")
     val tagId : Int = 0,
     @ColumnInfo("createDate")
-    val createDate : Long,
+    var createDate : Long,
     @ColumnInfo("textFront")
     var textFront : String?,
     @ColumnInfo("textBack")
@@ -26,7 +26,7 @@ data class Card(
     @ColumnInfo("state")
     val state : Int = 1,
     @ColumnInfo("lastExerciseDate")
-    val lastExerciseDate : Long,
+    var lastExerciseDate : Long,
     @ColumnInfo("lastAnswer")
     val lastAnswer : Boolean
 ) : Serializable {

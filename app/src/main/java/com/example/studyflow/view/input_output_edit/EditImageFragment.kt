@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentEditImageBinding
 import com.example.studyflow.enums.EditInputType
@@ -77,7 +78,8 @@ class EditImageFragment : Fragment(), EditImageFragmentClickListener {
 
 
     override fun clickDone(view: View) {
-        TODO("Not yet implemented")
+        val action = EditImageFragmentDirections.actionEditImageFragmentToCardCreateFragment(this.tag, this.card)
+        Navigation.findNavController(view).navigate(action)
     }
 
 
