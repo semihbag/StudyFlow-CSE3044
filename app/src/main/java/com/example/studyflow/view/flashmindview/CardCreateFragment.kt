@@ -17,6 +17,7 @@ import com.example.studyflow.interfaces.flashmind.CardCreateBottomSheetClickList
 import com.example.studyflow.interfaces.flashmind.CardCreateClickListener
 import com.example.studyflow.model.Card
 import com.example.studyflow.model.Tag
+import com.example.studyflow.util.convertStringToUri
 import com.example.studyflow.viewmodel.flashmind.CreateCardViewModel
 
 class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottomSheetClickListener {
@@ -75,6 +76,9 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
 
         cardCreateBottomSheetDialog = CardCreateBottomSheetDialogFragment(this)
 
+        binding.imageViewCardFront.convertStringToUri(card.imagePathFront)
+        binding.imageViewCardBack.convertStringToUri(card.imagePathBack)
+        
 
         val containerCardFront = binding.containerCardFront
         val containerCardBack = binding.containerCardBack
