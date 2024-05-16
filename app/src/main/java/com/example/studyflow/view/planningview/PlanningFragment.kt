@@ -35,6 +35,11 @@ class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
         binding.planningAddButton=this
         binding.lifecycleOwner=viewLifecycleOwner
 
+        binding.planningAddButton.runCatching {
+            var dialog= PlanningDialogFragment()
+            dialog.show(parentFragmentManager, "PlanningDialogFragment")
+
+        }
 
         // Inflate the layout for this fragment
         return binding.root
