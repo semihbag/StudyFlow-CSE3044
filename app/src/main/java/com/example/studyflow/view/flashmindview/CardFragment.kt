@@ -50,7 +50,7 @@ class CardFragment : Fragment(), CardFragmentClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(CardViewModel::class.java)
-        viewModel.loadCardsFromDB()
+        viewModel.loadCardsFromDB(this.tag)
 
         val  recyclerView = view.findViewById<RecyclerView>(R.id.cardRecyclerView)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
