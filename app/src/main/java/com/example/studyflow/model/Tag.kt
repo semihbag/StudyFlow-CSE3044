@@ -24,7 +24,7 @@ data class Tag (
     @ColumnInfo(name = "totalNumberOfCurrentCorrectAnswer")
     val totalNumberOfCurrentCorrectAnswer: Int = 0,
     @ColumnInfo("totalNumberOdCurrentFalseAnswer")
-    val totalNumberOdCurrentFalseAnswer : Int  =0,
+    var totalNumberOdCurrentFalseAnswer : Int  =0,
     @ColumnInfo(name = "cardRatio")
     var cardRatio: Int = 0,
     @ColumnInfo("totalNumberOfTodoDone")

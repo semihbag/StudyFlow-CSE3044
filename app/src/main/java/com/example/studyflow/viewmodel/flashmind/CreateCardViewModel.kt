@@ -20,6 +20,7 @@ class CreateCardViewModel(application: Application) : BaseViewModel(application)
             val tagUuid = card.tagId
             val tag = daoTag.getTag(tagUuid)
             tag.totalNumberOfCard = tag.totalNumberOfCard + 1
+            tag.totalNumberOdCurrentFalseAnswer = tag.totalNumberOdCurrentFalseAnswer + 1
             tag.cardRatio = ((tag.totalNumberOfCurrentCorrectAnswer.toDouble() / tag.totalNumberOfCard.toDouble()) * 100).toInt()
             daoTag.updateTag(tag)
 
