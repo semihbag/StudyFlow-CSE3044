@@ -19,10 +19,12 @@ import com.example.studyflow.interfaces.flashmind.CardFragmentClickListener
 import com.example.studyflow.model.Card
 import com.example.studyflow.model.Tag
 import com.example.studyflow.viewmodel.flashmind.CardViewModel
+import com.google.android.material.search.SearchView
 
 
 class CardFragment : Fragment(), CardFragmentClickListener {
     private lateinit var viewModel: CardViewModel
+    private lateinit var  binding: FragmentCardBinding
     private val recyclerAdapter = CardRecyclerAdapter(ArrayList<Card>())
     private lateinit var tag : Tag
 
@@ -37,7 +39,7 @@ class CardFragment : Fragment(), CardFragmentClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentCardBinding = DataBindingUtil.inflate(
+        binding= DataBindingUtil.inflate(
             inflater, R.layout.fragment_card, container, false
         )
         binding.lifecycleOwner = viewLifecycleOwner
@@ -58,6 +60,20 @@ class CardFragment : Fragment(), CardFragmentClickListener {
         recyclerView.adapter = recyclerAdapter
 
         observeLiveData()
+
+        binding.searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    recyclerAdapter.searchFilter(newText)
+                }
+                return  true
+            }
+
+        })
     }
 
     fun observeLiveData(){

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.CardRowBinding
+import com.example.studyflow.databinding.FragmentCardBinding
 import com.example.studyflow.model.Card
 import java.util.Date
 import java.util.Locale
@@ -16,6 +17,8 @@ class CardRecyclerAdapter(private val cardList: ArrayList<Card>) :
     class CardViewHolder(var view: CardRowBinding) : RecyclerView.ViewHolder(view.root) {
     }
 
+    private val cardListForShow = ArrayList<Card>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view =
@@ -24,11 +27,11 @@ class CardRecyclerAdapter(private val cardList: ArrayList<Card>) :
     }
 
     override fun getItemCount(): Int {
-        return cardList.size
+        return cardListForShow.size
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val card = cardList[position]
+        val card = cardListForShow[position]
         holder.view.card = card
 
         val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
@@ -38,10 +41,26 @@ class CardRecyclerAdapter(private val cardList: ArrayList<Card>) :
         holder.view.cardTitle.isSelected = true
     }
 
+    fun searchFilter(searchText : String) {
+        cardListForShow.clear()
+
+        for (card in cardList) {
+            if (card.cardTitle?.lowercase()?.contains(searchText.lowercase()) == true || card.textFront?.lowercase()?.contains(searchText.lowercase()) == true) {
+                println(card.cardTitle)
+                cardListForShow.add(card)
+            }
+        }
+
+        notifyDataSetChanged()
+    }
 
     fun updateCardList(newList: List<Card>) {
         cardList.clear()
         cardList.addAll(newList)
+
+        cardListForShow.clear()
+        cardListForShow.addAll(cardList)
+
         notifyDataSetChanged()
     }
 }
