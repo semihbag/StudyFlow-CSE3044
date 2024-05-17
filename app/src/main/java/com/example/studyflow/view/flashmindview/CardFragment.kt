@@ -43,6 +43,7 @@ class CardFragment : Fragment(), CardFragmentClickListener {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.listener = this
         binding.tag = tag
+        binding.tagTitle.isSelected = true
         return binding.root
     }
 

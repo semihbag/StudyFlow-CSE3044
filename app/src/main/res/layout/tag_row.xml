@@ -51,6 +51,8 @@
 
                     <TextView
                         android:id="@+id/tagTittle"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
@@ -58,9 +60,14 @@
                         android:text="@{tag.tagName}"
                         android:textAlignment="viewStart"
                         android:textSize="20sp"
+                        android:focusable="true"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"
+                        android:fadingEdge="horizontal"
                         android:textStyle="bold">
 
                     </TextView>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"

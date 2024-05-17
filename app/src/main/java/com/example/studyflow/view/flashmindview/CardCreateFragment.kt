@@ -47,6 +47,7 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
 
         binding.listener = this
         binding.tag = tag
+        binding.tagTitle.isSelected = true
 
         if (::card.isInitialized) {
             binding.card = card

@@ -25,6 +25,7 @@ class FlashMindTagRecyclerAdapter (private val flashMindTagList : ArrayList<Tag>
 
     override fun onBindViewHolder(holder: FlashMindTagViewHolder, position: Int) {
         holder.view.tag = flashMindTagList[position]
+        holder.view.tagName.isSelected = true
     }
 
     fun updateFlashMindTagList(newList : List<Tag>) {

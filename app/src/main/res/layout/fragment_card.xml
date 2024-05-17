@@ -56,14 +56,22 @@
                         </TextView>
 
                         <TextView
+                            android:id="@+id/tagTitle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:ellipsize="marquee"
+                            android:fadingEdge="horizontal"
+                            android:focusable="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
                             android:text="@{tag.tagName}"
                             android:textAlignment="viewStart"
                             android:textSize="13sp"
                             android:textStyle="bold">
 
                         </TextView>
+
 
                     </LinearLayout>
 
@@ -119,10 +127,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_margin="8dp"
                 android:id="@+id/cardRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
