@@ -46,7 +46,6 @@ class CardRecyclerAdapter(private val cardList: ArrayList<Card>) :
 
         for (card in cardList) {
             if (card.cardTitle?.lowercase()?.contains(searchText.lowercase()) == true || card.textFront?.lowercase()?.contains(searchText.lowercase()) == true) {
-                println(card.cardTitle)
                 cardListForShow.add(card)
             }
         }

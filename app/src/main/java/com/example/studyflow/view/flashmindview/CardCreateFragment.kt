@@ -167,6 +167,10 @@ class CardCreateFragment : Fragment(), CardCreateClickListener, CardCreateBottom
             false,
         )
         binding.card = card
+
+        binding.imageViewCardFront.convertStringToUri(card.imagePathFront)
+        binding.imageViewCardBack.convertStringToUri(card.imagePathBack)
+        
         Toast.makeText(context, "Card Has Been Added", Toast.LENGTH_SHORT).show()
     }
 
