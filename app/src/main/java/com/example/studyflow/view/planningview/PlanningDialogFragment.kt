@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.findFragment
 import com.example.studyflow.R
+import com.example.studyflow.interfaces.planning.PlanningDialogFragmentClickListener
+import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 
-class PlanningDialogFragment : DialogFragment() {
+class PlanningDialogFragment : DialogFragment() ,PlanningDialogFragmentClickListener{
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,12 +27,16 @@ class PlanningDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val txt= view.findViewById<TextView>(R.id.txtAddedPlanning)
         val button= view.findViewById<Button>(R.id.saveAddedPlanning)
-        txt.setOnClickListener {
-
-        }
         button.setOnClickListener {
-
+            // EditText'ten girilen metni alma
+            val inputText = txt.text.toString()
+            // Konsola metni yazdırma
+            println(inputText)
         }
+
+    }
+
+    override fun clickSavedPlanningButton(view: View) {
 
 
     }
