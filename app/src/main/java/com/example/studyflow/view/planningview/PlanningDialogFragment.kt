@@ -23,15 +23,12 @@ class PlanningDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button= view.findViewById<Button>(R.id.saveAddedPlan)
-        val txt= view.findViewById<TextView>(R.id.addedPlanningText)
-        //önce txtdeki strı bi değişkene atim
-        //sonra butona tıkladığnda alsın mı yoksa
-        //butona tıkladığında direkt alsın mı nullable değilse
-        txt.setOnClickListener {
+        val txt= view.findViewById<TextView>(R.id.txtAddedPlanning)
+        val button= view.findViewById<Button>(R.id.saveAddedPlanning)
+        button.setOnClickListener {
 
         }
-        button.setOnClickListener {
+        txt.setOnClickListener {
 
         }
 
