@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
@@ -15,73 +17,43 @@ import java.util.Calendar
 import java.util.Date
 
 
-class PlanningFragment : Fragment() ,PlanningFragmentClickListener{
+class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
+    private lateinit var binding: FragmentPlanningBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : FragmentPlanningBinding= DataBindingUtil.inflate(
-            inflater, R.layout.fragment_planning,container,false
-        )
-        binding.planningAddButton=this
-        binding.lifecycleOwner=viewLifecycleOwner
-
-        binding.planningAddButton.runCatching {
-            var dialog= PlanningDialogFragment()
-            dialog.show(parentFragmentManager, "PlanningDialogFragment")
-
-        }
-
-        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_planning, container, false)
+        binding.planningAddButton = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = DataBindingUtil.findBinding<FragmentPlanningBinding>(view)
-        binding?.let { fragmentBinding ->
-            fragmentBinding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-                // Tarih bileşenlerini al
-                val selectedDay = dayOfMonth.toLong()
-                val selectedMonth = (month + 1).toLong() // Aylar 0 tabanlı olduğu için 1 ekliyoruz
-                val selectedYear = year.toLong()
 
-                // Bu bileşenleri birleştirerek tek bir long değere dönüştürmek
-                val selectedDateLong = selectedYear * 10000 + selectedMonth * 100 + selectedDay
 
-                println("Seçilen tarih: Gün: $selectedDay, Ay: $selectedMonth, Yıl: $selectedYear")
-                println("Seçilen tarih (long): $selectedDateLong")
 
-                // Eğer isterseniz milisaniye olarak da alabilirsiniz
-                val calendar = Calendar.getInstance()
-                calendar.set(year, month, dayOfMonth)
-                val selectedDateInMillis = calendar.timeInMillis
+        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val selectedDay = dayOfMonth.toLong()
+            val selectedMonth = (month + 1).toLong()
+            val selectedYear = year.toLong()
+            val selectedDateLong = selectedYear * 10000 + selectedMonth * 100 + selectedDay
 
-                println("Seçilen tarih (millis): $selectedDateInMillis")
-            }
+            println("Seçilen tarih: Gün: $selectedDay, Ay: $selectedMonth, Yıl: $selectedYear")
+            println("Seçilen tarih (long): $selectedDateLong")
+
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+
         }
     }
-
-
-    //BU METODU YAZARKEN KTÜPHANENİN METOTLARINI KULLAN VE DENE BAKALIM OLUYOR MU
-
-
     override fun clickAddPlanningButton(view: View) {
-        val binding = DataBindingUtil.findBinding<FragmentPlanningBinding>(view)
-        binding?.let {
-            println("aaa")
+        println("aagirdkclick")
+        val showAddPlanningPage = PlanningDialogFragment()
+        showAddPlanningPage.show((activity as AppCompatActivity).supportFragmentManager, "showAddPlanningPage")
 
-        }
+
     }
-
-
 }
