@@ -24,4 +24,6 @@ interface PlanningDAO {
     @Query ("DELETE FROM planning WHERE uuid= :planningId")
     suspend fun deletePlanning(planningId: Int)
 
+
+
 }

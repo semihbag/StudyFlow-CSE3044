@@ -3,11 +3,19 @@ package com.example.studyflow.viewmodel.planning
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.example.studyflow.model.Planning
+import com.example.studyflow.service.StudyFlowDB
 import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
 class PlanningViewModel (application: Application): BaseViewModel(application) {
+    private val dB = StudyFlowDB(getApplication())
+    private val daoPlanning= dB.planningDao()
+    private val daoTag = dB.tagDao()
+
+
+
     val mutablePlannings= MutableLiveData<List<Planning>>()
+
 
     /*
      fun loadTagsFromDB() {
@@ -26,6 +34,13 @@ class PlanningViewModel (application: Application): BaseViewModel(application) {
         launch {
 
         }
+    }
+
+    fun storePlanningToDB (planning : Planning){
+        launch {
+
+        }
+
     }
 
 

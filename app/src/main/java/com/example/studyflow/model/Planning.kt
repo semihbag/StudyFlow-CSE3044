@@ -12,7 +12,7 @@ class Planning(@ColumnInfo(name = "planningText")
                @ColumnInfo(name = "tagId")
                val tagId: Int = 0,
                @ColumnInfo(name = "planningDate")
-               val planningDate: Date
+               val planningDate: Long
 )
 {
     @PrimaryKey(true)
