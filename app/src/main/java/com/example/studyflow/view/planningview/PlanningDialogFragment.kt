@@ -25,12 +25,13 @@ class PlanningDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val txt= view.findViewById<TextView>(R.id.txtAddedPlanning)
         val button= view.findViewById<Button>(R.id.saveAddedPlanning)
-        button.setOnClickListener {
-
-        }
         txt.setOnClickListener {
 
         }
+        button.setOnClickListener {
+
+        }
+
 
     }
 

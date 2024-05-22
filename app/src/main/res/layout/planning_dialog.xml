@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp"
@@ -16,28 +16,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtAddedPlanning"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="Add new plan"
-            android:textSize="18sp" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/saveAddedPlanning"
-                android:layout_width="106dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Button" />
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtAddedPlanning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Add New Plan" />
+
+        <Button
+            android:id="@+id/saveAddedPlanning"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Button" />
 
     </LinearLayout>
 
