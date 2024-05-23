@@ -31,10 +31,10 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="85dp"
-            android:layout_height="89dp"
-            android:background="#673AB7"
+            android:layout_height="75dp"
+            android:background="#C0B6D1"
             android:onClick="@{listener::onTag}"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/icon_tag"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.223"
