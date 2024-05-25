@@ -7,11 +7,13 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 import com.example.studyflow.model.Planning
+import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.Calendar
 import java.util.Date
@@ -20,6 +22,8 @@ import java.util.Date
 class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
     private lateinit var binding: FragmentPlanningBinding
+    private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
+    var date : Long=0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,19 +39,31 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
 
 
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedDay = dayOfMonth.toLong()
-            val selectedMonth = (month + 1).toLong()
-            val selectedYear = year.toLong()
-            val selectedDateLong = selectedYear * 10000 + selectedMonth * 100 + selectedDay
+        // fragment_date.xml dosyasındaki CalendarView'i bul
+        val calendarView: CalendarView = view.findViewById(R.id.calendarView)
 
-            println("Seçilen tarih: Gün: $selectedDay, Ay: $selectedMonth, Yıl: $selectedYear")
-            println("Seçilen tarih (long): $selectedDateLong")
-
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, dayOfMonth)
+        // CalendarView'e tarih değişikliği dinleyicisi ekle
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            // Seçilen tarihi yyyyMMdd formatında Long olarak ayarla
+            val formattedDate = String.format("%04d%02d%02d", year, month + 1, dayOfMonth)
+            date = formattedDate.toLong()
 
         }
+
+
+        // Kullanıcı hiçbir güne tıklamazsa, varsayılan olarak bugünün tarihini al
+        if (date == 0L) {
+            val todayCalendar = Calendar.getInstance()
+            val year = todayCalendar.get(Calendar.YEAR)
+            val month = todayCalendar.get(Calendar.MONTH) + 1 // Ayı 1-12 aralığına getir
+            val dayOfMonth = todayCalendar.get(Calendar.DAY_OF_MONTH)
+
+            // Bugünün tarihini yyyyMMdd formatında Long olarak ayarla
+            val formattedToday = String.format("%04d%02d%02d", year, month, dayOfMonth)
+            date = formattedToday.toLong()
+        }
+
+
     }
     override fun clickAddPlanningButton(view: View) {
         println("aagirdkclick")

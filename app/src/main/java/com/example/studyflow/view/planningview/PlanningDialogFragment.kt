@@ -6,13 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.findFragment
 import com.example.studyflow.R
 import com.example.studyflow.interfaces.planning.PlanningDialogFragmentClickListener
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
+import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
+import com.example.studyflow.viewmodel.todo.ToDoViewModel
 
 class PlanningDialogFragment : DialogFragment() ,PlanningDialogFragmentClickListener{
+    private lateinit var viewModel: ToDoViewModel
+    private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +43,7 @@ class PlanningDialogFragment : DialogFragment() ,PlanningDialogFragmentClickList
     }
 
     override fun clickSavedPlanningButton(view: View) {
+        val binding = DataBindingUtil.findBinding<FragmentPlanningDialogBinding>(view)
 
 
     }
