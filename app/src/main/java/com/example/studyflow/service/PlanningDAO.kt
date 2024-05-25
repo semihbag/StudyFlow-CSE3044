@@ -24,6 +24,9 @@ interface PlanningDAO {
     @Query ("DELETE FROM planning WHERE uuid= :planningId")
     suspend fun deletePlanning(planningId: Int)
 
+    @Query ("SELECT * FROM planning WHERE planningDate= :date")
+    suspend fun getPlanningWithGivenDate(date :Long) :List<Planning>
+
 
 
 }

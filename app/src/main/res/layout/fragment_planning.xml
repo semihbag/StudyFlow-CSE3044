@@ -9,6 +9,10 @@
         <variable
             name="planningAddButton"
             type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
+        
+        <variable
+            name="showTagList"
+            type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
 
 
     </data>
@@ -45,15 +49,15 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="5"
                         android:orientation="vertical">
 
                         <ImageButton
-                            android:id="@+id/imageButton4"
+                            android:id="@+id/showTagListForPlanner"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:onClick="@{showTagList::clickShowTagListButton}"
                             android:src="@drawable/icon_tag" />
                     </LinearLayout>
 
@@ -81,7 +85,7 @@
 
                         <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:id="@+id/addPlanningButton"
-                            android:layout_width="44dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
                             android:clickable="true"

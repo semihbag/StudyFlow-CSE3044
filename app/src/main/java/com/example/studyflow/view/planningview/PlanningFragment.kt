@@ -14,13 +14,14 @@ import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 import com.example.studyflow.model.Planning
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
+import com.example.studyflow.viewmodel.todo.ToDoViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.Calendar
 import java.util.Date
 
 
 class PlanningFragment : Fragment(), PlanningFragmentClickListener {
-
+    private lateinit var viewModel: ToDoViewModel //store load fonksiyonlarını kullancan
     private lateinit var binding: FragmentPlanningBinding
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
     var date : Long=0
@@ -69,7 +70,9 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         println("aagirdkclick")
         val showAddPlanningPage = PlanningDialogFragment()
         showAddPlanningPage.show((activity as AppCompatActivity).supportFragmentManager, "showAddPlanningPage")
+    }
 
-
+    override fun clickShowTagListButton(view: View) {
+        tagBottomSheetDialogFragment.show(childFragmentManager, tagBottomSheetDialogFragment.tag)
     }
 }

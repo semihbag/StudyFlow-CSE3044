@@ -6,4 +6,6 @@ interface PlanningFragmentClickListener {
 
     fun clickAddPlanningButton(view: View)
 
+    fun clickShowTagListButton(view :View)
+
 }

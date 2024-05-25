@@ -13,8 +13,7 @@ class Planning(@ColumnInfo(name = "planningText")
                val tagId: Int = 0,
                @ColumnInfo(name = "planningDate")
                val planningDate: Long
-)
-{
+)  {
     @PrimaryKey(true)
     var uuid : Int = 0
 
