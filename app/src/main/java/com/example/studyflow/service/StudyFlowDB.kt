@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.studyflow.model.Planning
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
 
@@ -25,7 +26,7 @@ import com.example.studyflow.model.ToDo
     DAO YU DA EKLEMEYİ UNUTMAYIN
 
 */
-@Database(entities = [Tag::class, ToDo::class], version = 3)
+@Database(entities = [Tag::class, ToDo::class , Planning::class], version = 3)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO

@@ -9,7 +9,7 @@ import com.example.studyflow.model.Planning
 interface PlanningDAO {
 
     @Insert
-    suspend fun insertPlanning(vararg planning: Planning) : Long
+    suspend fun insertPlanning(planning: Planning) : Long
     //döndürdüğü long id ama bunu modele atmadık sadece db bize bi key verdi burda
 
     @Query ("SELECT * FROM planning")
