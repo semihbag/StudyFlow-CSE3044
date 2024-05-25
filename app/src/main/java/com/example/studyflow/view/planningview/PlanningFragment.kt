@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 import com.example.studyflow.model.Planning
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
+import com.example.studyflow.viewmodel.planning.PlanningViewModel
 import com.example.studyflow.viewmodel.todo.ToDoViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.Calendar
@@ -21,7 +23,7 @@ import java.util.Date
 
 
 class PlanningFragment : Fragment(), PlanningFragmentClickListener {
-    private lateinit var viewModel: ToDoViewModel //store load fonksiyonlarını kullancan
+    private lateinit var viewModel: PlanningViewModel // load fonksiyonlarını kullancan
     private lateinit var binding: FragmentPlanningBinding
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
     var date : Long=0
@@ -37,6 +39,11 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel =ViewModelProvider(this).get(PlanningViewModel::class.java)
+        viewModel.loadPlanningFromDB(date)
+        //burada datei gönderme sebebimiz buna göre bir yükleme yapılacak olması
+        //RECYCLER İÇİN METOT YAZILIYOR EKLENECEK
 
 
 

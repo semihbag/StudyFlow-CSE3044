@@ -25,8 +25,8 @@ RecyclerView.Adapter<PlanningRecyclerAdapter.PlanningViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: PlanningViewHolder, position: Int) {
-        //holder.view.planning= planningList[position]
-        //holder.view.listenerAdapter= this
+        holder.view.
+
 
 
     }

@@ -40,7 +40,7 @@ class TagRecyclerAdapter(private val tagList: ArrayList<Tag>,
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
         // holder aslında bi TagViewHolder yani tek bir tagı tutan container adının holder olmasına gerek yok ama mantıklı olan bu
         // ayrıca bu TagViewHolder i da yukarda kendim tanımladım
-        holder.view.tag = tagList[position]
+        holder.view.tag =tagList[position]
         holder.view.listenerAdapter = this
         holder.view.listenerFragment = listenerFragment
         // yukadaki listener aslında bir interface. bu sınıf o interfaceden extend edildiği için this yazabilirim. üzerinde tıklama işini yapacak
