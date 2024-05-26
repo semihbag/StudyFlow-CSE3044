@@ -56,30 +56,16 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
         observeLiveData()
 
-
-        // fragment_date.xml dosyasındaki CalendarView'i bul
         val calendarView: CalendarView = view.findViewById(R.id.calendarView)
 
-        // CalendarView'e tarih değişikliği dinleyicisi ekle
+        // CalendarView'den seçilen tarihi dinleyici ile al
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            // Seçilen tarihi yyyyMMdd formatında Long olarak ayarla
-            val formattedDate = String.format("%04d%02d%02d", year, month + 1, dayOfMonth)
-            date = formattedDate.toLong()
-
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, dayOfMonth)
+            date = selectedCalendar.timeInMillis
         }
+        //default olarak date anlık günü alır model sınıfında
 
-
-        // Kullanıcı hiçbir güne tıklamazsa, varsayılan olarak bugünün tarihini al
-        if (date == 0L) {
-            val todayCalendar = Calendar.getInstance()
-            val year = todayCalendar.get(Calendar.YEAR)
-            val month = todayCalendar.get(Calendar.MONTH) + 1 // Ayı 1-12 aralığına getir
-            val dayOfMonth = todayCalendar.get(Calendar.DAY_OF_MONTH)
-
-            // Bugünün tarihini yyyyMMdd formatında Long olarak ayarla
-            val formattedToday = String.format("%04d%02d%02d", year, month, dayOfMonth)
-            date = formattedToday.toLong()
-        }
 
 
     }
