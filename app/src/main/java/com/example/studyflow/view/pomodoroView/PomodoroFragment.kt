@@ -181,17 +181,16 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener, TagBottomShe
     override fun onStart(view: View) {
         val binding = DataBindingUtil.findBinding<FragmentPomodoroBinding>(view)
         binding?.let{
-            // change the text field to not editable
-            binding.Minutes.isEnabled = false
-            binding.Seconds.isEnabled = false
-            // change the buttons (stop will be visible)
-            binding.startButton.visibility = View.GONE
-            binding.stopButton.visibility = View.VISIBLE
-
             val minute = binding.Minutes.text.toString().toLong()
             val second = binding.Seconds.text.toString().toLong()
 
             if (!(minute == 0L && second == 0L)) {
+                // change the text field to not editable
+                binding.Minutes.isEnabled = false
+                binding.Seconds.isEnabled = false
+                // change the buttons (stop will be visible)
+                binding.startButton.visibility = View.GONE
+                binding.stopButton.visibility = View.VISIBLE
                 setMinuteAndSecond(minute, second)
                 counter = countDownTime(binding, tagID) // returning counter object
                 counter.start()
