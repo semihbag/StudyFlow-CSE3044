@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/analysisFragment"
-        android:name="com.example.studyflow.view.AnalysisFragment"
+        android:name="com.example.studyflow.view.analysisview.AnalysisFragment"
         android:label="fragment_analysis"
         tools:layout="@layout/fragment_analysis" />
     <fragment
