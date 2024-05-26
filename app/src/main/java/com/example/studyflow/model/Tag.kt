@@ -9,17 +9,17 @@ import java.io.Serializable
 data class Tag (
     @ColumnInfo(name = "tagName")
     val tagName: String,
-    @ColumnInfo(name = "totalNumberOfPomodoro")
+    @ColumnInfo(name = "totalNumberOfPomodoro") //
     val totalNumberOfPomodoro: Int = 0,
     @ColumnInfo(name = "totalNumberOfCard")
     var totalNumberOfCard: Int = 0,
     @ColumnInfo(name = "totalNumberOfTodos")
     var totalNumberOfTodos: Int = 0,
-    @ColumnInfo(name = "totalNumberOfFocusedMinute")
+    @ColumnInfo(name = "totalNumberOfFocusedMinute") //
     val totalNumberOfFocusedMinute: Int = 0,
-    @ColumnInfo(name = "totalNumberOfOutOfFocusedMinute")
+    @ColumnInfo(name = "totalNumberOfOutOfFocusedMinute") //
     val totalNumberOfOutOfFocusedMinute: Int = 0,
-    @ColumnInfo(name = "totalNumberOfStop")
+    @ColumnInfo(name = "totalNumberOfStop") //
     val totalNumberOfStop: Int = 0,
     @ColumnInfo(name = "totalNumberOfCurrentCorrectAnswer")
     val totalNumberOfCurrentCorrectAnswer: Int = 0,

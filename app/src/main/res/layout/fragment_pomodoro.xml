@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.pomodoroView.PomodoroFragment"
+    >
+
+    <data>
+        <variable
+            name="pomodoro"
+            type="com.example.studyflow.model.Pomodoro" />
+
+        <variable
+            name="tag"
+            type="com.example.studyflow.model.Tag" />
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.pomodoro.PomodoroFragmentClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="657dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="85dp"
+            android:layout_height="75dp"
+            android:background="#C0B6D1"
+            android:onClick="@{listener::onTag}"
+            android:src="@drawable/icon_tag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.223"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.077" />
+
+        <TextView
+            android:id="@+id/tagName"
+            android:layout_width="156dp"
+            android:layout_height="75dp"
+            android:gravity="center"
+            android:text="@{tag.tagName.toString()}"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.722"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:onClick="@{listener::onStart}"
+            android:text="Start"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.677" />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:onClick="@{listener::onStop}"
+            android:text="Stop"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.718"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.677" />
+
+        <Button
+            android:id="@+id/pauseButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:onClick="@{listener::onPause}"
+            android:text="Pause"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.676" />
+
+        <Button
+            android:id="@+id/resmuseButton"
+            android:layout_width="116dp"
+            android:layout_height="56dp"
+            android:onClick="@{listener::onResume}"
+            android:text="Resume"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.676" />
+
+
+        <EditText
+            android:id="@+id/Minutes"
+            android:layout_width="131dp"
+            android:layout_height="84dp"
+            android:background="#FFFFFF"
+            android:digits="0123456789"
+            android:ems="10"
+            android:enabled="true"
+            android:text="00"
+            android:textAlignment="textEnd"
+            android:textSize="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.143"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.378" />
+
+        <EditText
+            android:id="@+id/Seconds"
+            android:layout_width="131dp"
+            android:layout_height="84dp"
+            android:background="#FFFFFF"
+            android:digits="0123456789"
+            android:ems="10"
+            android:enabled="true"
+            android:text="00"
+            android:textAlignment="textStart"
+            android:textSize="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.874"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.378" />
+
+        <TextView
+            android:id="@+id/colon"
+            android:layout_width="16dp"
+            android:layout_height="66dp"
+            android:text=":"
+            android:textAlignment="center"
+            android:textSize="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.367" />
+
+        <TextView
+            android:id="@+id/InfoText"
+            android:layout_width="119dp"
+            android:layout_height="59dp"
+            android:layout_marginBottom="64dp"
+            android:text="POMODORO"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
