@@ -173,4 +173,9 @@
             app:popUpToInclusive="true" />
 
     </fragment>
+    <fragment
+        android:id="@+id/pomodoroFragment"
+        android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
+        android:label="fragment_pomodoro"
+        tools:layout="@layout/fragment_pomodoro" />
 </navigation>
