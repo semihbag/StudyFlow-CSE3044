@@ -48,9 +48,9 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener, TagBottomShe
 
     // counter
     private lateinit var counter: CountDownTimer
-    private var totalTimeInMilsec: Long = 0
+    private var totalTimeInMilsec: Long = 0 // Çalıştığı toplam süre
     private var remaingTimeInMilsec: Long = 0
-    private var enteredTimeInMilsec: Long = 0
+    private var enteredTimeInMilsec: Long = 0  // İlk başta kaç girdi
 
     // tag
     private lateinit var selectedTag: com.example.studyflow.model.Tag
