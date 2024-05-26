@@ -48,6 +48,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/stand_alone"
+                            android:gravity="center"
                             android:text="Cards"
                             android:textAlignment="viewStart"
                             android:textSize="24sp"
@@ -62,6 +64,7 @@
                             android:ellipsize="marquee"
                             android:fadingEdge="horizontal"
                             android:focusable="true"
+                            android:fontFamily="@font/stand_alone"
                             android:marqueeRepeatLimit="marquee_forever"
                             android:scrollHorizontally="true"
                             android:singleLine="true"
@@ -87,7 +90,7 @@
                             android:onClick="@{listener::clickAddCard}"
                             android:padding="2dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_add_card">
+                            android:src="@drawable/icon_add_card2">
 
                         </ImageButton>
 

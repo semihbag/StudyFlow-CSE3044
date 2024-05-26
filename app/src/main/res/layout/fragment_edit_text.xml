@@ -41,8 +41,10 @@
 
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="28dp"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/stand_alone"
+                            android:gravity="center"
                             android:text="Edit Text"
                             android:textAlignment="viewStart"
                             android:textSize="24sp"
@@ -64,7 +66,7 @@
                             android:onClick="@{listener::clickDone}"
                             android:padding="2dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_done">
+                            android:src="@drawable/icon_done2">
 
                         </ImageButton>
 

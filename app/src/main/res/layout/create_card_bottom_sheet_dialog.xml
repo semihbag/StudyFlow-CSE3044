@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/stand_alone"
+            android:gravity="center"
             android:text="Choose"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -30,16 +32,16 @@
 
         <LinearLayout
             android:id="@+id/containerEditTextCardTitle"
-            android:onClick="@{listener::clickCardTitle}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{listener::clickCardTitle}"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageView
-                android:layout_width="24dp"
+                android:layout_width="18dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icon_edit_text">
+                android:src="@drawable/icon_edit_text2">
 
             </ImageView>
 
@@ -56,16 +58,16 @@
 
         <LinearLayout
             android:id="@+id/containerEditTextCardFront"
-            android:onClick="@{listener::clickEditTextFront}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{listener::clickEditTextFront}"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icon_edit_text">
+                android:src="@drawable/icon_edit_text2">
 
             </ImageView>
 
@@ -83,15 +85,15 @@
         <LinearLayout
             android:id="@+id/containerImageCardFront"
             android:layout_width="match_parent"
-            android:onClick="@{listener::clickImageFront}"
             android:layout_height="wrap_content"
+            android:onClick="@{listener::clickImageFront}"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icon_image">
+                android:src="@drawable/icon_image3">
 
             </ImageView>
 
@@ -109,15 +111,15 @@
         <LinearLayout
             android:id="@+id/containerEditTextCardBack"
             android:layout_width="match_parent"
-            android:onClick="@{listener::clickEditTextBack}"
             android:layout_height="wrap_content"
+            android:onClick="@{listener::clickEditTextBack}"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icon_edit_text">
+                android:src="@drawable/icon_edit_text2">
 
             </ImageView>
 
@@ -135,15 +137,15 @@
         <LinearLayout
             android:id="@+id/containerImageCardBack"
             android:layout_width="match_parent"
-            android:onClick="@{listener::clickImageBack}"
             android:layout_height="wrap_content"
+            android:onClick="@{listener::clickImageBack}"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/icon_image">
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_image3">
 
             </ImageView>
 

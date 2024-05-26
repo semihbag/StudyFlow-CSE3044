@@ -5,6 +5,7 @@
     tools:context=".view.HomePageFragment">
 
     <data>
+
         <variable
             name="listener"
             type="com.example.studyflow.interfaces.home.HomePageFragmentClickListener" />
@@ -31,6 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
+                    android:fontFamily="@font/stand_alone"
+                    android:gravity="center"
                     android:text="Home Page"
                     android:textAlignment="viewStart"
                     android:textSize="24sp"
@@ -52,15 +55,15 @@
                     android:padding="18dp">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp">
+                        android:layout_height="300dp"
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:padding="10dp"
                             android:layout_width="wrap_content"
-                            android:src="@drawable/icon_home_main"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/icon_home_main">
 
                         </ImageView>
 
@@ -68,9 +71,9 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:onClick="@{listener::clickGoFocusPage}"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoFocusPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -138,10 +141,10 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:onClick="@{listener::clickGoFlashMindPage}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoFlashMindPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -209,10 +212,10 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:onClick="@{listener::clickGoAnalysisPage}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoAnalysisPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -280,10 +283,10 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:onClick="@{listener::clickGoPlanningPage}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoPlanningPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -351,10 +354,10 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:onClick="@{listener::clickGoTodoPage}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoTodoPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -422,10 +425,10 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:onClick="@{listener::clickGoTagsPage}"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoTagsPage}"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 

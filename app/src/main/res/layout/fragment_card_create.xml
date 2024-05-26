@@ -49,6 +49,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="28dp"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/stand_alone"
+                            android:gravity="center"
                             android:text="Create Card"
                             android:textAlignment="viewStart"
                             android:textSize="24sp"
@@ -63,6 +65,7 @@
                             android:ellipsize="marquee"
                             android:fadingEdge="horizontal"
                             android:focusable="true"
+                            android:fontFamily="@font/stand_alone"
                             android:marqueeRepeatLimit="marquee_forever"
                             android:scrollHorizontally="true"
                             android:singleLine="true"
@@ -102,11 +105,12 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:onClick="@{listener::clickEditCard}"
-                                android:src="@drawable/icon_edit"
+                                android:src="@drawable/icon_edit2"
                                 app:backgroundTint="@android:color/white"
                                 app:elevation="0dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@null" />
 
 
                             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -114,11 +118,11 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:onClick="@{listener::clickCreateCard}"
-                                android:src="@drawable/icon_done"
+                                android:src="@drawable/icon_done2"
                                 app:backgroundTint="@android:color/white"
-
                                 app:elevation="0dp"
-                                app:layout_constraintEnd_toEndOf="parent" />
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:tint="@null" />
 
 
                             <androidx.constraintlayout.widget.ConstraintLayout
@@ -199,11 +203,12 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:onClick="@{listener::clickEditCard}"
-                                android:src="@drawable/icon_edit"
+                                android:src="@drawable/icon_edit2"
                                 app:backgroundTint="@android:color/white"
                                 app:elevation="0dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@null" />
 
 
                             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -211,11 +216,12 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:onClick="@{listener::clickCreateCard}"
-                                android:src="@drawable/icon_done"
+                                android:src="@drawable/icon_done2"
                                 app:backgroundTint="@android:color/white"
-
                                 app:elevation="0dp"
-                                app:layout_constraintEnd_toEndOf="parent" />
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:tint="@null" />
 
 
                             <androidx.constraintlayout.widget.ConstraintLayout

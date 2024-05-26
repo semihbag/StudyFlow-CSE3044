@@ -82,7 +82,7 @@
                             android:background="@null"
                             android:onClick="@{listenerFragment::clickDeleteTag}"
                             android:scaleType="centerInside"
-                            android:src="@drawable/icon_bin">
+                            android:src="@drawable/icon_bin2">
 
                         </ImageView>
 
