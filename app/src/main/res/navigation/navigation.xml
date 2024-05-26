@@ -14,9 +14,6 @@
             android:id="@+id/action_homePageFragment_to_analysisFragment"
             app:destination="@id/analysisFragment" />
         <action
-            android:id="@+id/action_homePageFragment_to_focusFragment"
-            app:destination="@id/focusFragment" />
-        <action
             android:id="@+id/action_homePageFragment_to_planningFragment"
             app:destination="@id/planningFragment" />
         <action
@@ -37,11 +34,6 @@
         android:name="com.example.studyflow.view.AnalysisFragment"
         android:label="fragment_analysis"
         tools:layout="@layout/fragment_analysis" />
-    <fragment
-        android:id="@+id/focusFragment"
-        android:name="com.example.studyflow.view.FocusFragment"
-        android:label="fragment_focus"
-        tools:layout="@layout/fragment_focus" />
     <fragment
         android:id="@+id/planningFragment"
         android:name="com.example.studyflow.view.PlanningFragment"

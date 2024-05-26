@@ -42,7 +42,7 @@ class HomePageFragment : Fragment(), HomePageFragmentClickListener{
 
 
     override fun clickGoFocusPage(view: View) {
-        val action = HomePageFragmentDirections.actionHomePageFragmentToFocusFragment()
+        val action = HomePageFragmentDirections.actionHomePageFragmentToPomodoroFragment()
         Navigation.findNavController(view).navigate(action)
     }
 
