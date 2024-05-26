@@ -9,6 +9,10 @@
         <variable
             name="card"
             type="com.example.studyflow.model.Card" />
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.flashmind.ExerciseFragmentClickListener" />
     </data>
 
 
@@ -221,6 +225,7 @@
                             android:layout_height="match_parent">
 
                             <ImageButton
+                                android:onClick="@{listener::clickBack}"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
@@ -239,6 +244,7 @@
                             android:layout_height="match_parent">
 
                             <ImageButton
+                                android:onClick="@{listener::clickFalse}"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
@@ -261,6 +267,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@null"
                                 android:padding="5dp"
+                                android:onClick="@{listener::clickFlip}"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/icon_flip">
 
@@ -275,6 +282,7 @@
                             android:layout_height="match_parent">
 
                             <ImageButton
+                                android:onClick="@{listener::clickTrue}"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
@@ -293,6 +301,7 @@
                             android:layout_height="match_parent">
 
                             <ImageButton
+                                android:onClick="@{listener::clickPass}"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@null"
