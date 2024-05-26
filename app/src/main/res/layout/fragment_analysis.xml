@@ -17,7 +17,7 @@
 
         <variable
             name="listener"
-            type="com.example.studyflow.interfaces.pomodoro.PomodoroFragmentClickListener" />
+            type="com.example.studyflow.interfaces.analysis.AnalysisFragmentClickListener" />
 
     </data>
 
