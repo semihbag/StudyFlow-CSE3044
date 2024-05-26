@@ -10,7 +10,10 @@ import android.widget.Button
 import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
+import com.example.studyflow.adapter.planner.PlanningRecyclerAdapter
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
 import com.example.studyflow.model.Planning
@@ -26,6 +29,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
     private lateinit var viewModel: PlanningViewModel // load fonksiyonlarını kullancan
     private lateinit var binding: FragmentPlanningBinding
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
+    private lateinit var planningRecyclerAdapter: PlanningRecyclerAdapter
     var date : Long=0
 
     override fun onCreateView(
@@ -43,8 +47,14 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         viewModel =ViewModelProvider(this).get(PlanningViewModel::class.java)
         viewModel.loadPlanningFromDB(date)
         //burada datei gönderme sebebimiz buna göre bir yükleme yapılacak olması
-        //RECYCLER İÇİN METOT YAZILIYOR EKLENECEK
 
+        //recycler ile adapteri bağlayalm bakalm
+        val recyclerView =view.findViewById<RecyclerView>(R.id.planning_recycler_row)
+        recyclerView.layoutManager =LinearLayoutManager(context)
+        recyclerView.adapter =planningRecyclerAdapter
+
+
+        observeLiveData()
 
 
         // fragment_date.xml dosyasındaki CalendarView'i bul
@@ -73,6 +83,20 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
 
     }
+
+
+
+    fun observeLiveData(){
+        viewModel.mutableSelectPlanningDay.observe(viewLifecycleOwner,{plannings->
+            plannings.let {
+                view?.findViewById<RecyclerView>(R.id.planning_recycler_row)?.visibility =View.VISIBLE
+                planningRecyclerAdapter.updatePlanningList(plannings)
+            }
+        })
+    }
+
+
+
     override fun clickAddPlanningButton(view: View) {
         println("aagirdkclick")
         val showAddPlanningPage = PlanningDialogFragment()

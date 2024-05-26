@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.planningview.PlanningFragment">
+
+    <data>
+        <variable
+            name="planning"
+            type="com.example.studyflow.model.Planning" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/planning_recycler_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{planning.planningText}"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        ></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
