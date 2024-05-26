@@ -1,88 +1,510 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#03A9F4"
-    android:backgroundTint="@color/white"
     tools:context=".view.HomePageFragment">
 
-    <Button
-        android:id="@+id/focusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="141dp"
-        android:layout_marginBottom="139dp"
-        android:onClick="goFocusPage"
-        android:text="Focus"
-        app:layout_constraintBottom_toTopOf="@+id/planningButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <Button
-        android:id="@+id/flashMindButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:onClick="goFlashMindPage"
-        android:text="Flash Mind"
-        app:layout_constraintBaseline_toBaselineOf="@+id/focusButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:toggleCheckedStateOnClick="false" />
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.home.HomePageFragmentClickListener" />
+    </data>
 
-    <Button
-        android:id="@+id/planningButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="328dp"
-        android:onClick="goPlanningPage"
-        android:text="Planning"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <Button
-        android:id="@+id/todoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="79dp"
-        android:onClick="goToDoPage"
-        android:text="To Do"
-        app:layout_constraintBaseline_toBaselineOf="@+id/planningButton"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f4f4">
 
-    <Button
-        android:id="@+id/analysisButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="296dp"
-        android:onClick="goAnalysisPage"
-        android:text="Analysis"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/planningButton"
-        app:layout_constraintStart_toStartOf="@+id/planningButton" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="home page"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/myTagsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="97dp"
-        android:layout_marginBottom="79dp"
-        android:onClick="goTagPage"
-        android:text="MyTags"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/stand_alone"
+                    android:gravity="center"
+                    android:text="Home Page"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp"
+                    android:textStyle="bold">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:src="@drawable/icon_home_main">
+
+                        </ImageView>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoFocusPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_focus">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="focus"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textFocus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoFlashMindPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_card">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="flash mind"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textFlashMind"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoAnalysisPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_analysis">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="analysis"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textAnalysis"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoPlanningPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_planning">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="planning"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textPlaning"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoTodoPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_todo">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="to do"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textToDo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginVertical="8dp"
+                        android:onClick="@{listener::clickGoTagsPage}"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:src="@drawable/icon_home_tag">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:padding="8dp"
+                                    android:text="tags"
+                                    android:textAlignment="center"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/textTags"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="marquee"
+                                    android:fontFamily="@font/stand_alone"
+                                    android:gravity="center"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:maxLines="3"
+                                    android:padding="8dp"
+                                    android:scrollHorizontally="true"
+                                    android:singleLine="true"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam commodo velit lacus, sed dictum turpis facilisis sit amet. "
+                                    android:textAlignment="center"
+                                    android:textSize="18sp">
+
+                                </TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+
+

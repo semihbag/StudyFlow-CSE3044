@@ -1,24 +1,12 @@
 package com.example.studyflow.viewmodel.pomodoro
 
 import android.app.Application
-import android.os.CountDownTimer
-import android.renderscript.ScriptGroup.Binding
-import android.view.View
-import android.widget.EditText
-import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat.FocusDirection
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import com.example.studyflow.R
-import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.model.Pomodoro
 import com.example.studyflow.service.StudyFlowDB
-import com.example.studyflow.view.FocusFragment
 import com.example.studyflow.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
-import java.util.*
+
 open class PomodoroViewModel(application: Application) : BaseViewModel(application) {
 
 

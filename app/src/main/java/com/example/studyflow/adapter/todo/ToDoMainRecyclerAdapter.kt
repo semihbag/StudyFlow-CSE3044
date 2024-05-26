@@ -44,6 +44,7 @@ class ToDoMainRecyclerAdapter(
     override fun onBindViewHolder(holder: ToDoMainRecyclerItemViewHolder, position: Int) {
 
         holder.view.mainItem = toDoMainRecyclerItemList[position]
+        holder.view.tagTitle.isSelected = true
 
         holder.view.innerToToRecyclerview.layoutManager = LinearLayoutManager(context)
 

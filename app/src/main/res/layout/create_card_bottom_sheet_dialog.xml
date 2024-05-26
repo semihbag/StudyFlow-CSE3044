@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/create_card_bottom_sheet_bg"
+    tools:context=".view.flashmindview.CardCreateBottomSheetDialogFragment">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.example.studyflow.interfaces.flashmind.CardCreateBottomSheetClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/stand_alone"
+            android:gravity="center"
+            android:text="Choose"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/containerEditTextCardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{listener::clickCardTitle}"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_edit_text2">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Card Title (necessary!)"
+                android:textSize="16sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerEditTextCardFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{listener::clickEditTextFront}"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_edit_text2">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Edit Text Front"
+                android:textSize="16sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerImageCardFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{listener::clickImageFront}"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_image3">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Image Front"
+                android:textSize="16sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerEditTextCardBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{listener::clickEditTextBack}"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_edit_text2">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Edit Text Back"
+                android:textSize="16sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerImageCardBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{listener::clickImageBack}"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_image3">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Image Back"
+                android:textSize="16sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -39,6 +39,7 @@ class TagBottomSheetDialogRecyclerAdapter(
     override fun onBindViewHolder(holder: TagBottomSheetDialogViewHolder, position: Int) {
         holder.view.tag = tagList[position]
         holder.view.listener = listener
+        holder.view.tagTitle.isSelected = true
     }
 
     fun updateTagList(newTagList: List<Tag>) {

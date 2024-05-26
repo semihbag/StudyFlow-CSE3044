@@ -40,6 +40,8 @@ class TagRecyclerAdapter(private val tagList: ArrayList<Tag>, private val listen
         holder.view.tag = tagList[position]
         holder.view.listenerAdapter = this
         holder.view.listenerFragment = listenerFragment
+        holder.view.tagTittle.isSelected = true
+
         // yukadaki listener aslında bir interface. bu sınıf o interfaceden extend edildiği için this yazabilirim. üzerinde tıklama işini yapacak
         // clickTag fonksiyonu da zaten bunun için overrride edildi (aşağıda)
 

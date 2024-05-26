@@ -6,66 +6,68 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.studyflow.R
+import com.example.studyflow.databinding.FragmentHomePageBinding
+import com.example.studyflow.interfaces.home.HomePageFragmentClickListener
 
 
-
-
-class HomePageFragment : Fragment() {
-
+class HomePageFragment : Fragment(), HomePageFragmentClickListener{
+    private lateinit var binding: FragmentHomePageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_home_page, container, false
+        )
+        binding.listener = this
+
+        binding.textFocus.isSelected = true
+        binding.textFlashMind.isSelected = true
+        binding.textAnalysis.isSelected = true
+        binding.textPlaning.isSelected = true
+        binding.textToDo.isSelected = true
+        binding.textTags.isSelected = true
+
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val focusButton = view.findViewById<Button>(R.id.focusButton)
-        focusButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToPomodoroFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        val analysisButton = view.findViewById<Button>(R.id.analysisButton)
-        analysisButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToAnalysisFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        val flashMindButton = view.findViewById<Button>(R.id.flashMindButton)
-        flashMindButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToFlashMindFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        val planningButton = view.findViewById<Button>(R.id.planningButton)
-        planningButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToPlanningFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        val toDoButton = view.findViewById<Button>(R.id.todoButton)
-        toDoButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToToDoFragment(null)
-            Navigation.findNavController(it).navigate(action)
-        }
 
 
-        val tagsButton = view.findViewById<Button>(R.id.myTagsButton)
-        tagsButton.setOnClickListener {
-            val action = HomePageFragmentDirections.actionHomePageFragmentToTagsFragment()
-            Navigation.findNavController(it).navigate(action)
+    override fun clickGoFocusPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToPomodoroFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
 
-        }
+    override fun clickGoFlashMindPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToFlashMindFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    override fun clickGoAnalysisPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToAnalysisFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    override fun clickGoPlanningPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToPlanningFragment()
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    override fun clickGoTodoPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToToDoFragment(null)
+        Navigation.findNavController(view).navigate(action)
+    }
+
+    override fun clickGoTagsPage(view: View) {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToTagsFragment()
+        Navigation.findNavController(view).navigate(action)
     }
 }

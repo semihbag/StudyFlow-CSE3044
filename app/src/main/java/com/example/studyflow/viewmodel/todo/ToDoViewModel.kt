@@ -26,9 +26,13 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
 
             // update linked tag
             val tagUuid = toDo.tagId
-            val tag = daoTag.getTag(tagUuid)
-            tag.totalNumberOfTodos = tag.totalNumberOfTodos + 1
-            daoTag.updateTag(tag)
+            if (tagUuid != 0) {
+                val tag = daoTag.getTag(tagUuid)
+                tag.totalNumberOfTodos = tag.totalNumberOfTodos + 1
+                tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
+                daoTag.updateTag(tag)
+            }
+
 
             // store to do
             val id = daoToDo.insertToDo(toDo)
@@ -69,11 +73,12 @@ class ToDoViewModel (application: Application) : BaseViewModel(application) {
 
             // update linked tag
             val tagUuid = todo.tagId
-            val tag = daoTag.getTag(tagUuid)
-            if (todo.done) tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone + 1 else tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone - 1
-            tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
-            println(tag.todoRatio)
-            daoTag.updateTag(tag)
+            if (tagUuid != 0) {
+                val tag = daoTag.getTag(tagUuid)
+                if (todo.done) tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone + 1 else tag.totalNumberOfTodoDone = tag.totalNumberOfTodoDone - 1
+                tag.todoRatio = ((tag.totalNumberOfTodoDone.toDouble() / tag.totalNumberOfTodos.toDouble()) * 100).toInt()
+                daoTag.updateTag(tag)
+            }
 
             // update to do
             daoToDo.updateToDo(todo)

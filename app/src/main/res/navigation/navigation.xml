@@ -14,9 +14,6 @@
             android:id="@+id/action_homePageFragment_to_analysisFragment"
             app:destination="@id/analysisFragment" />
         <action
-            android:id="@+id/action_homePageFragment_to_focusFragment"
-            app:destination="@id/focusFragment" />
-        <action
             android:id="@+id/action_homePageFragment_to_planningFragment"
             app:destination="@id/planningFragment" />
         <action
@@ -38,20 +35,22 @@
         android:label="fragment_analysis"
         tools:layout="@layout/fragment_analysis" />
     <fragment
-        android:id="@+id/focusFragment"
-        android:name="com.example.studyflow.view.FocusFragment"
-        android:label="fragment_focus"
-        tools:layout="@layout/fragment_focus" />
-    <fragment
         android:id="@+id/planningFragment"
         android:name="com.example.studyflow.view.PlanningFragment"
         android:label="fragment_planning"
         tools:layout="@layout/fragment_planning" />
     <fragment
         android:id="@+id/flashMindFragment"
-        android:name="com.example.studyflow.view.FlashMindFragment"
+        android:name="com.example.studyflow.view.flashmindview.FlashMindFragment"
         android:label="fragment_flash_mind"
-        tools:layout="@layout/fragment_flash_mind" />
+        tools:layout="@layout/fragment_flash_mind" >
+        <action
+            android:id="@+id/action_flashMindFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_flashMindFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tagsFragment"
         android:name="com.example.studyflow.view.tagview.TagsFragment"
@@ -75,9 +74,100 @@
         android:name="com.example.studyflow.view.tagview.TagBottomSheetDialogFragment"
         android:label="TagBottomSheetDialogFragment" />
     <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <action
+            android:id="@+id/action_cardFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.studyflow.view.flashmindview.ExerciseFragment"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardCreateFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardCreateFragment"
+        android:label="fragment_card_create"
+        tools:layout="@layout/fragment_card_create" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_createCardBottomSheetDialogFragment"
+            app:destination="@id/createCardBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_editTextFragment"
+            app:destination="@id/editTextFragment" />
+        <action
+            android:id="@+id/action_cardCreateFragment_to_editImageFragment"
+            app:destination="@id/editImageFragment" />
+        <argument
+            android:name="card"
+            app:argType="com.example.studyflow.model.Card"
+            app:nullable="true" />
+    </fragment>
+    <dialog
+        android:id="@+id/createCardBottomSheetDialogFragment"
+        android:name="com.example.studyflow.view.flashmindview.CardCreateBottomSheetDialogFragment"
+        android:label="create_card_bottom_sheet_dialog"
+        tools:layout="@layout/create_card_bottom_sheet_dialog" />
+    <fragment
+        android:id="@+id/editTextFragment"
+        android:name="com.example.studyflow.view.input_output_edit.EditTextFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/fragment_edit_text" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <argument
+            android:name="card"
+            app:argType="com.example.studyflow.model.Card"
+            app:nullable="true" />
+        <argument
+            android:name="editType"
+            app:argType="com.example.studyflow.enums.EditInputType" />
+        <action
+            android:id="@+id/action_editTextFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment"
+            app:popUpTo="@id/cardCreateFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/editImageFragment"
+        android:name="com.example.studyflow.view.input_output_edit.EditImageFragment"
+        android:label="fragment_edit_image"
+        tools:layout="@layout/fragment_edit_image" >
+        <argument
+            android:name="tag"
+            app:argType="com.example.studyflow.model.Tag" />
+        <argument
+            android:name="card"
+            app:argType="com.example.studyflow.model.Card"
+            app:nullable="true" />
+        <argument
+            android:name="editType"
+            app:argType="com.example.studyflow.enums.EditInputType" />
+        <action
+            android:id="@+id/action_editImageFragment_to_cardCreateFragment"
+            app:destination="@id/cardCreateFragment"
+            app:popUpTo="@id/cardCreateFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+    <fragment
         android:id="@+id/pomodoroFragment"
         android:name="com.example.studyflow.view.pomodoroView.PomodoroFragment"
         android:label="fragment_pomodoro"
         tools:layout="@layout/fragment_pomodoro" />
-
 </navigation>

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.studyflow.model.Card
 import com.example.studyflow.model.Pomodoro
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
@@ -27,12 +28,12 @@ import com.example.studyflow.model.ToDo
 
 */
 
-@Database(entities = [Tag::class, ToDo::class, Pomodoro::class], version = 6)
+@Database(entities = [Tag::class, ToDo::class, Card::class,  Pomodoro::class], version = 12)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO
-
-    abstract fun pomodoroDao(): PomodoroDAO
+    abstract fun cardDao() : CardDAO
+        abstract fun pomodoroDao(): PomodoroDAO
 
 
     // SINGLETON - OOP DERSINDE DE GORMUSTUK BUNU BI DESING PATTERN
@@ -48,13 +49,11 @@ abstract class StudyFlowDB : RoomDatabase() {
                 instance = it
             }
         }
-        
-         private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
+        // private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").build()
         // database versiyon sıkıntısı yaşadığımızda aşağıdaki kodu bi kere çalıştırmak lazım sonra yukardakinden deavm
         // geliştirme aşamasında db deki verileri zaten salladığımız için önemli değil
 
-
-     //   private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
+        private fun createDB(contex : Context) = Room.databaseBuilder(contex.applicationContext,StudyFlowDB::class.java, "studyflowdatabase").fallbackToDestructiveMigration().build()
     }
 
 
