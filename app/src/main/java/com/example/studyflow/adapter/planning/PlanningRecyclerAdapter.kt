@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.databinding.PlanningRowBinding
+import com.example.studyflow.interfaces.planning.PlanningRecyclerAdapterClickListener
 import com.example.studyflow.model.Planning
 
-class PlanningRecyclerAdapter(private val planningList: ArrayList<Planning>):
+class PlanningRecyclerAdapter(private val planningList: ArrayList<Planning>,
+    private val planningRecyclerAdapterClickListener: PlanningRecyclerAdapterClickListener):
 RecyclerView.Adapter<PlanningRecyclerAdapter.PlanningViewHolder>(){
     class PlanningViewHolder(var view: PlanningRowBinding) : RecyclerView.ViewHolder(view.root){
     }
@@ -28,6 +30,8 @@ RecyclerView.Adapter<PlanningRecyclerAdapter.PlanningViewHolder>(){
     //sayfada bi tıklama işlemi olmayacak silme olacaksa o eklenecek
     override fun onBindViewHolder(holder: PlanningViewHolder, position: Int) {
         holder.view.planning =planningList[position]
+        holder.view.deleteButton =planningRecyclerAdapterClickListener
+        //bakcam dönünce fragmentta bu metodu tanmlcz daha xml düzenlncek
 
     }
 
