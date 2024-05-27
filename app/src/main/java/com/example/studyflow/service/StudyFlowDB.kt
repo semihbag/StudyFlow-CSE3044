@@ -29,7 +29,7 @@ import com.example.studyflow.model.ToDo
 
 */
 
-@Database(entities = [Tag::class, ToDo::class, Card::class,  Pomodoro::class, Plan::class], version = 15)
+@Database(entities = [Tag::class, ToDo::class, Card::class,  Pomodoro::class, Plan::class], version = 20)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO

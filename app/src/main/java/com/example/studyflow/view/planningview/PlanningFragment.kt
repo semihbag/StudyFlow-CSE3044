@@ -100,7 +100,14 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
     }
 
     override fun clickAddPlan(view: View) {
-        val plan = Plan(binding.editText.text.toString(), selectedTag.uuid, date)
+        val plan : Plan
+        if (::selectedTag.isInitialized) {
+             plan = Plan(binding.editText.text.toString(), selectedTag.uuid, date)
+        }
+        else {
+            plan = Plan(binding.editText.text.toString(), null, date)
+        }
+        binding.editText.text.clear()
         viewmodel.storePlanningToDB(plan)
     }
 }

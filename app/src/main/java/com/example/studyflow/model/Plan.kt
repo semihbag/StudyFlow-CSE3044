@@ -10,7 +10,7 @@ data class Plan (
     @ColumnInfo(name = "planText")
     val planText : String,
     @ColumnInfo("tagId")
-    val tagId : Int,
+    val tagId : Int?,
     @ColumnInfo("date")
     val date : Long = Calendar.getInstance().timeInMillis
 ) {
