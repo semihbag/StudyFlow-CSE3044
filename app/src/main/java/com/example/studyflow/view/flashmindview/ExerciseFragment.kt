@@ -27,7 +27,7 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     private lateinit var tag : Tag
     private lateinit var binding : FragmentExerciseBinding
     private var markedCardList = ArrayList<Card>()
-    private val index = 0
+    private var index = 0
     private var isFront = true
     private var isAnswerSeen = false
 
@@ -179,7 +179,18 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     }
 
     override fun clickPass(view: View) {
-        TODO("Not yet implemented")
+        if (index < markedCardList.size - 1) {
+            index += 1
+            this.card = markedCardList.get(index)
+            binding.card = this.card
+            return
+        }
+        if (index == markedCardList.size - 1) {
+            index = 0
+            this.card = markedCardList.get(index)
+            binding.card = this.card
+            return
+        }
     }
 
 }
