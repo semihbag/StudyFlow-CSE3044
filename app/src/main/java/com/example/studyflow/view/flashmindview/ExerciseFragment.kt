@@ -49,15 +49,7 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
 
         observeLiveData()
 
-        if (markedCardList.size == 0) {
-            binding.nothingToShow.visibility = View.VISIBLE
-            binding.scrollView.visibility = View.GONE
-        }
-        else {
-            binding.nothingToShow.visibility = View.GONE
-            binding.scrollView.visibility = View.VISIBLE
-            this.card = markedCardList.get(index)
-        }
+
     }
 
     fun observeLiveData() {
@@ -65,6 +57,16 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
         viewModel.mutableMarkedCardList.observe(viewLifecycleOwner, Observer { markedCards ->
             markedCards.let {
                 markedCardList = ArrayList(markedCards)
+
+                if (markedCardList.size == 0) {
+                    binding.nothingToShow.visibility = View.VISIBLE
+                    binding.scrollView.visibility = View.GONE
+                }
+                else {
+                    binding.nothingToShow.visibility = View.GONE
+                    binding.scrollView.visibility = View.VISIBLE
+                    this.card = markedCardList.get(index)
+                }
             }
         })
     }
