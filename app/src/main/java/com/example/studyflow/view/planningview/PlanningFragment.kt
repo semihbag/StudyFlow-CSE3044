@@ -32,7 +32,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_planning, container, false)
-        binding.planningAddButton = this
+        binding.listener = this
         return binding.root
     }
 
@@ -49,7 +49,8 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         recyclerView.layoutManager =LinearLayoutManager(context)
         recyclerView.adapter =planningRecyclerAdapter
 
-
+        tagBottomSheetDialogFragment = TagBottomSheetDialogFragment()
+        
         observeLiveData()
 
         val calendarView: CalendarView = view.findViewById(R.id.calendarView)

@@ -7,13 +7,8 @@
     <data>
 
         <variable
-            name="planningAddButton"
+            name="listener"
             type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
-        
-        <variable
-            name="showTagList"
-            type="com.example.studyflow.interfaces.planning.PlanningFragmentClickListener" />
-
 
     </data>
 
@@ -59,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:clickable="true"
-                            android:onClick="@{showTagList::clickShowTagListButton}"
+                            android:onClick="@{listener::clickShowTagListButton}"
                             android:src="@drawable/icon_tag" />
                     </LinearLayout>
 
@@ -91,7 +86,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
                             android:clickable="true"
-                            android:onClick="@{planningAddButton::clickAddPlanningButton}"
+                            android:onClick="@{listener::clickAddPlanningButton}"
                             android:src="@drawable/ic_add" />
                     </LinearLayout>
                 </LinearLayout>
