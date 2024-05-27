@@ -91,6 +91,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
     }
 
     override fun clickShowTagListButton(view: View) {
+        println("show aga")
         tagBottomSheetDialogFragment.show(childFragmentManager, tagBottomSheetDialogFragment.tag)
     }
 }

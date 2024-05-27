@@ -53,11 +53,12 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <ImageButton
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
                             android:id="@+id/showTagListForPlanner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:onClick="@{showTagList::clickShowTagListButton}"
+                            android:clickable="true"
                             android:src="@drawable/icon_tag" />
                     </LinearLayout>
 
