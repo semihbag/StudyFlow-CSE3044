@@ -9,7 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
+import com.example.studyflow.adapter.analysis.AnalysisDetailAdapter
+import com.example.studyflow.adapter.tag.TagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentAnalysisBinding
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.databinding.TagBottomSheetDialogRowBinding
@@ -29,6 +33,9 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
 
     private lateinit var selectedTag: com.example.studyflow.model.Tag
     private var tagID = -1
+
+    // For AnalysisDetailAdapter
+    private val recyclerAdapter = AnalysisDetailAdapter(ArrayList<Pomodoro>())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +66,13 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
 
         viewModel = ViewModelProvider(this)[AnalysisViewModel::class.java]
         tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(this)
+
+        // recyclerı birbirine bağlayacağız
+        // yukarda bi adapter oluşturduk ama oluşturduğumuz gibi kalmıştı
+        // şimdi onu ilgili adapter ile bağlayacağız ki bu da recycleview in adapteri
+        val recyclerView = view.findViewById<RecyclerView>(R.id.analysisRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = recyclerAdapter
     }
 
 
