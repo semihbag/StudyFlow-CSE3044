@@ -5,5 +5,6 @@ import android.view.View
 interface PlanningRecyclerAdapterClickListener {
 
     fun clickDeleteButton (view :View)
+    //OLMAYACAK
 
 }

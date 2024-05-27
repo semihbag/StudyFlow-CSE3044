@@ -8,24 +8,21 @@
         <variable
             name="planning"
             type="com.example.studyflow.model.Planning" />
-        <variable
-            name="deleteButton"
-            type="com.example.studyflow.interfaces.planning.PlanningRecyclerAdapterClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Horizontal LinearLayout containing TextView and ImageButton -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!-- TextView to display planning text -->
+
             <TextView
-                android:id="@+id/planning_text_view"
+                android:id="@+id/planning_recycler_row"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -33,13 +30,7 @@
                 android:textSize="20sp"
                 android:layout_margin="5dp"/>
 
-            <!-- ImageButton for delete action -->
-            <ImageButton
-                android:id="@+id/delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_bin"
-                android:onClick="@{deleteButton::clickDeleteButton}"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
