@@ -18,6 +18,7 @@ import com.example.studyflow.model.Plan
 import com.example.studyflow.model.Tag
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.planning.PlanningViewModel
+import java.util.Calendar
 
 
 class PlanningFragment : Fragment(), PlanningFragmentClickListener,
@@ -27,6 +28,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
     private val recyclerAdapter = PlanningRecyclerAdapter(ArrayList<Plan>())
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
     private lateinit var selectedTag : Tag
+    private var date : Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,18 +57,14 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
 
         tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(this)
 
+
+        // CalendarView'den seçilen tarihi dinleyici ile al
         binding.calender.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            // Calendar sınıfı ile seçilen tarihi ayarla
-            val calendar = binding.calender.getInstance()
-            calendar.set(year, month, dayOfMonth, 0, 0, 0)
-            calendar.set(binding.calender.MILLISECOND, 0)
-
-            // Tarihi long olarak al
-            val selectedDateInMillis: Long = calendar.timeInMillis
-
-            // Burada long olarak alınan tarihi kullanabilirsiniz
-            println("Seçilen Tarih (Millis): $selectedDateInMillis")
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, dayOfMonth)
+            date = selectedCalendar.timeInMillis
         }
+        //default olarak date anlık günü alır model sınıfında
     }
 
 
@@ -88,6 +86,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
     }
 
     override fun clickAddPlan(view: View) {
-        TODO("Not yet implemented")
+        val plan = Plan(binding.editText.text.toString(), selectedTag.uuid, date)
+
     }
 }
