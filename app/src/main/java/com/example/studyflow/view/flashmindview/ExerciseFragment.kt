@@ -179,17 +179,19 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     }
 
     override fun clickPass(view: View) {
-        if (index < markedCardList.size - 1) {
-            index += 1
-            this.card = markedCardList.get(index)
-            binding.card = this.card
-            return
-        }
-        if (index == markedCardList.size - 1) {
-            index = 0
-            this.card = markedCardList.get(index)
-            binding.card = this.card
-            return
+        if (!isAnswerSeen) {
+            if (index < markedCardList.size - 1) {
+                index += 1
+                this.card = markedCardList.get(index)
+                binding.card = this.card
+                return
+            }
+            if (index == markedCardList.size - 1) {
+                index = 0
+                this.card = markedCardList.get(index)
+                binding.card = this.card
+                return
+            }
         }
     }
 
