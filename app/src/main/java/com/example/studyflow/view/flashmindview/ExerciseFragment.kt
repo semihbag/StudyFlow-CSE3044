@@ -130,8 +130,23 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     }
 
     override fun clickFalse(view: View) {
-        TODO("Not yet implemented")
-    }
+        if (isAnswerSeen) {
+            // update card
+            card.isMarked = false
+            card.state = if (card.state == 1) 1 else (card.state - 1)
+            card.lastExerciseDate = Date().time
+            card.lastAnswer = false
+            viewModel.updateCard(tag, card)
+
+            if (!isFront) {
+                flipBackToFront(0)
+            }
+
+            isAnswerSeen = false
+        }
+        else {
+            Toast.makeText(context, "You haven't even seen the correct answer yet!", Toast.LENGTH_LONG).show()
+        }    }
 
     override fun clickFlip(view: View) {
         isAnswerSeen = true
