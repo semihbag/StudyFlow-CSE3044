@@ -56,7 +56,7 @@
             app:layout_constraintVertical_bias="0.078" />
 
         <TextView
-            android:id="@+id/TotalTimeText"
+            android:id="@+id/TotalMinText"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -68,7 +68,7 @@
             app:layout_constraintVertical_bias="0.246" />
 
         <TextView
-            android:id="@+id/TotalMinText"
+            android:id="@+id/TotalSecText"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -80,7 +80,7 @@
             app:layout_constraintVertical_bias="0.246" />
 
         <TextView
-            android:id="@+id/TotalSecText"
+            android:id="@+id/TotalText"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
             android:text="TotalTime:"
