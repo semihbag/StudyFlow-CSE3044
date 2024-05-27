@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -16,13 +15,9 @@ import com.example.studyflow.R
 import com.example.studyflow.adapter.planner.PlanningRecyclerAdapter
 import com.example.studyflow.databinding.FragmentPlanningBinding
 import com.example.studyflow.interfaces.planning.PlanningFragmentClickListener
-import com.example.studyflow.model.Planning
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.planning.PlanningViewModel
-import com.example.studyflow.viewmodel.todo.ToDoViewModel
-import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.Calendar
-import java.util.Date
 
 
 class PlanningFragment : Fragment(), PlanningFragmentClickListener {
@@ -85,7 +80,6 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
 
 
     override fun clickAddPlanningButton(view: View) {
-        println("aagirdkclick")
         val showAddPlanningPage = PlanningDialogFragment()
         showAddPlanningPage.show((activity as AppCompatActivity).supportFragmentManager, "showAddPlanningPage")
     }

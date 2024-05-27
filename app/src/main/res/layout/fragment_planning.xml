@@ -57,8 +57,9 @@
                             android:id="@+id/showTagListForPlanner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:onClick="@{showTagList::clickShowTagListButton}"
+                            android:layout_gravity="start"
                             android:clickable="true"
+                            android:onClick="@{showTagList::clickShowTagListButton}"
                             android:src="@drawable/icon_tag" />
                     </LinearLayout>
 
