@@ -22,13 +22,13 @@ data class Card(
     @ColumnInfo("imagePathBack")
     var imagePathBack : String?,
     @ColumnInfo("isMarked")
-    val isMarked : Boolean = true,
+    var isMarked : Boolean = true,
     @ColumnInfo("state")
-    val state : Int = 1,
+    var state : Int = 1,
     @ColumnInfo("lastExerciseDate")
     var lastExerciseDate : Long,
     @ColumnInfo("lastAnswer")
-    val lastAnswer : Boolean
+    var lastAnswer : Boolean
 ) : Serializable {
     @PrimaryKey(true)
     var uuid : Int = 0

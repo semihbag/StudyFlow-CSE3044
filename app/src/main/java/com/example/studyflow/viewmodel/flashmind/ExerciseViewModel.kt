@@ -21,7 +21,21 @@ class ExerciseViewModel(application: Application) : BaseViewModel(application) {
 
             val currentMarkedCards = daoCard.getAllCardWithGivenTagIdAndGivenMarked(tag.uuid,true)
             mutableMarkedCardList.value = currentMarkedCards
+            println(currentMarkedCards.size)
 
         }
+    }
+
+    fun updateCard(tag : Tag, card : Card) {
+
+        launch {
+
+            // update linked tag
+            // sonra yazcam
+
+            daoCard.updateCard(card)
+            loadMarkedCardsFromDB(tag)
+        }
+
     }
 }
