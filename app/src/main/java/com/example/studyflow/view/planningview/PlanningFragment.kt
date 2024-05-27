@@ -47,6 +47,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         viewModel =ViewModelProvider(this).get(PlanningViewModel::class.java)
         viewModel.loadPlanningFromDB(date)
         //burada datei gönderme sebebimiz buna göre bir yükleme yapılacak olması
+        planningRecyclerAdapter = PlanningRecyclerAdapter(ArrayList())
 
         //recycler ile adapteri bağlayalm bakalm
         val recyclerView =view.findViewById<RecyclerView>(R.id.planningRecyclerView)

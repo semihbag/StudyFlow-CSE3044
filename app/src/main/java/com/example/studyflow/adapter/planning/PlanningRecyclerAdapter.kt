@@ -10,9 +10,8 @@ import com.example.studyflow.interfaces.planning.PlanningRecyclerAdapterClickLis
 import com.example.studyflow.model.Planning
 
 class PlanningRecyclerAdapter(
-    private val planningList: ArrayList<Planning>,
-    private val planningRecyclerAdapterClickListener: PlanningRecyclerAdapterClickListener
-) : RecyclerView.Adapter<PlanningRecyclerAdapter.PlanningViewHolder>() {
+    private val planningList: ArrayList<Planning>) :
+    RecyclerView.Adapter<PlanningRecyclerAdapter.PlanningViewHolder>() {
 
     class PlanningViewHolder(var view: PlanningRowBinding) : RecyclerView.ViewHolder(view.root)
 
