@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
 import com.example.studyflow.adapter.planning.PlanningRecyclerAdapter
 import com.example.studyflow.databinding.FragmentPlanningBinding
@@ -23,12 +25,12 @@ import java.util.Calendar
 
 class PlanningFragment : Fragment(), PlanningFragmentClickListener,
     TagBottomSheetDialogClickListener {
-    private lateinit var viewmodel : PlanningViewModel
-    private lateinit var binding : FragmentPlanningBinding
+    private lateinit var viewmodel: PlanningViewModel
+    private lateinit var binding: FragmentPlanningBinding
     private val recyclerAdapter = PlanningRecyclerAdapter(ArrayList<Plan>())
     private lateinit var tagBottomSheetDialogFragment: TagBottomSheetDialogFragment
-    private lateinit var selectedTag : Tag
-    private var date : Long = 0
+    private lateinit var selectedTag: Tag
+    private var date: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_planning, container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_planning, container, false)
 
         binding.listener = this
         binding.lifecycleOwner = viewLifecycleOwner
@@ -63,12 +65,23 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
             val selectedCalendar = Calendar.getInstance()
             selectedCalendar.set(year, month, dayOfMonth)
             date = selectedCalendar.timeInMillis
+            viewmodel.loadPlanningFromDB(date)
         }
         //default olarak date anlık günü alır model sınıfında
+
+
+        observe()
     }
 
-
-
+    fun observe() {
+        viewmodel.mutableSelectPlanningDay.observe(viewLifecycleOwner, Observer { plans ->
+            plans.let {
+                view?.findViewById<RecyclerView>(R.id.planingRecyclerView)?.visibility =
+                    View.VISIBLE
+                recyclerAdapter.updatePlanList(plans)
+            }
+        })
+    }
 
 
     override fun clickSelectTag(view: View) {
@@ -79,7 +92,8 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
                 binding.tag = it
             }
         }
-        tagBottomSheetDialogFragment.dismiss()    }
+        tagBottomSheetDialogFragment.dismiss()
+    }
 
     override fun clickShowTagList(view: View) {
         tagBottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "a")
@@ -87,6 +101,6 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
 
     override fun clickAddPlan(view: View) {
         val plan = Plan(binding.editText.text.toString(), selectedTag.uuid, date)
-
+        viewmodel.storePlanningToDB(plan)
     }
 }
