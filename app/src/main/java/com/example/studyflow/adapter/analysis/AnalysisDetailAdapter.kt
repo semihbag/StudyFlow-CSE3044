@@ -5,11 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
-import com.example.studyflow.adapter.tag.TagRecyclerAdapter
 import com.example.studyflow.databinding.AnalysisRowBinding
-import com.example.studyflow.databinding.FragmentAnalysisBinding
-import com.example.studyflow.databinding.TagRowBinding
-import com.example.studyflow.model.Card
 import com.example.studyflow.model.Pomodoro
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -37,16 +33,24 @@ class AnalysisDetailAdapter(private val pomodoroList: ArrayList<Pomodoro>):
         holder.view.pomodoroTime.text = pomodoroList[position].pomodoroTime.toString()
         holder.view.inactiveTime.text = pomodoroList[position].inactiveTime.toString()
         if ( 1 == pomodoroList[position].isFinished){
-            holder.view.isCompleted.setBackgroundResource(R.drawable.icon_done2)
+//            holder.view.isCompleted.setBackgroundResource(R.drawable.icon_done2)
+            holder.view.isCompleted.text = "+"
         }
         else {
-            holder.view.isCompleted.setBackgroundResource(R.drawable.icon_done)
+//            holder.view.isCompleted.setBackgroundResource(R.drawable.icon_done)
+            holder.view.isCompleted.text = "-"
         }
     }
 
     // sanırım bunu arkaplanda otomatik kendi kullanıyor
     override fun getItemCount(): Int {
         return pomodoroList.size
+    }
+
+    fun updatePomodoroList(newTagList: List<Pomodoro>) {
+        pomodoroList.clear()
+        pomodoroList.addAll(newTagList)
+        notifyDataSetChanged()
     }
 
 }

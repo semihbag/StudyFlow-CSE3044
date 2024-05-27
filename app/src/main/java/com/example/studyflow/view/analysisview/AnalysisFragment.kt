@@ -58,6 +58,9 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
         viewModel.pomodoroItems.observe(viewLifecycleOwner, Observer { pomodoros ->
             allPomodorosOfTag = pomodoros
             calculateTotalTime()
+
+            view?.findViewById<RecyclerView>(R.id.analysisRecyclerView)?.visibility = View.VISIBLE
+            recyclerAdapter.updatePomodoroList(pomodoros)
         })
     }
 

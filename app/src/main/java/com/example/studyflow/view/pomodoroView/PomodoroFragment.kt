@@ -154,6 +154,7 @@ class PomodoroFragment : Fragment(), PomodoroFragmentClickListener, TagBottomShe
                             pomodoro = Pomodoro(calendarStart!!.timeInMillis, calendarEnd!!.timeInMillis,enteredTimeInMilsec,totalTimeInMilsec,0,calculateInActiveTime(),tagID,0)
                         }
                         viewModel.insertPomodoro(pomodoro)
+                        pomodoroID = viewModel.pomodoroID.value
                         observeLiveData()
                         binding.InfoText.setText("Break")
                     }
