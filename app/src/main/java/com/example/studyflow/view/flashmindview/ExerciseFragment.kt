@@ -1,10 +1,14 @@
 package com.example.studyflow.view.flashmindview
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +27,9 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     private lateinit var binding : FragmentExerciseBinding
     private var markedCardList = ArrayList<Card>()
     private val index = 0
+    private var isFront = true
+    private var isAnswerSeen = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,11 +96,47 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
     }
 
     override fun clickFlip(view: View) {
-        TODO("Not yet implemented")
+        isAnswerSeen = true
+        if (isFront) {
+            val animatorSet = AnimatorSet()
+
+            val flipRotationFront = ObjectAnimator.ofFloat(binding.containerCardFront, "rotationY", 0f, 90f)
+            val flipRotationBack = ObjectAnimator.ofFloat(binding.containerCardBack, "rotationY", -90f, 0f)
+
+            val flipAlphaFront = ObjectAnimator.ofFloat(binding.containerCardFront, "alpha", 1f, 0f)
+            val flipAlphaBack = ObjectAnimator.ofFloat(binding.containerCardBack, "alpha", 0f, 1f)
+
+            flipRotationFront.duration = 200
+            flipRotationBack.duration = 200
+            flipAlphaFront.duration = 200
+            flipAlphaBack.duration = 200
+
+            animatorSet.playTogether(flipRotationFront, flipRotationBack, flipAlphaFront, flipAlphaBack)
+            animatorSet.start()
+            isFront = false
+        }
+        else {
+            val animatorSet = AnimatorSet()
+
+            val flipRotationBack = ObjectAnimator.ofFloat(binding.containerCardBack, "rotationY", 0f, -90f)
+            val flipRotationFront = ObjectAnimator.ofFloat(binding.containerCardFront, "rotationY", 90f, 0f)
+
+            val flipAlphaBack = ObjectAnimator.ofFloat(binding.containerCardBack, "alpha", 1f, 0f)
+            val flipAlphaFront = ObjectAnimator.ofFloat(binding.containerCardFront, "alpha", 0f, 1f)
+
+            flipRotationBack.duration = 200
+            flipRotationFront.duration = 200
+            flipAlphaFront.duration = 200
+            flipAlphaBack.duration = 200
+
+            animatorSet.playTogether(flipRotationBack, flipRotationFront, flipAlphaFront, flipAlphaBack)
+            animatorSet.start()
+            isFront = true
+        }
     }
 
     override fun clickTrue(view: View) {
-        TODO("Not yet implemented")
+      
     }
 
     override fun clickPass(view: View) {
