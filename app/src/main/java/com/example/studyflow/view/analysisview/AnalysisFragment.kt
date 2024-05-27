@@ -64,8 +64,23 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
 
     private fun calculateTotalTime() {
         var totalTime: Long = 0
+        var totalPomodoro: Long = 0
+        var totalBreak: Long = 0
+        var totalInActive: Long = 0
+        var totalDone: Int = 0
+        var totalCancel: Int = 0
+
         for (pomodoro in allPomodorosOfTag) {
             totalTime += (pomodoro.endTime - pomodoro.startTime)
+            totalPomodoro += (pomodoro.pomodoroTime)
+            totalBreak += (pomodoro.breakTime)
+            totalInActive += (pomodoro.inactiveTime)
+            if (pomodoro.isFinished == 1) {
+                totalDone += 1
+            }
+            else {
+                totalCancel += 1
+            }
         }
 
         view?.let {
@@ -73,6 +88,14 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
             binding?.let { bind ->
                 bind.TotalMinText.text = (totalTime / 60000).toString()
                 bind.TotalSecText.text = (totalTime % 60000 / 1000).toString()
+                bind.TotalPomodoroMin.text = (totalPomodoro / 60000).toString()
+                bind.TotalPomodoroSec.text = (totalPomodoro % 60000 / 1000).toString()
+                bind.TotalBreakMin.text = (totalBreak / 60000).toString()
+                bind.TotalBreakSec.text = (totalBreak % 60000 / 1000).toString()
+                bind.TotalInActiveTimeMin.text = (totalInActive / 60000).toString()
+                bind.TotalInActiveTimeSec.text = (totalInActive % 60000 / 1000).toString()
+                bind.TotalDoneNumber.text = totalDone.toString()
+                bind.TotalCancelNumber.text = totalCancel.toString()
             }
         }
     }
