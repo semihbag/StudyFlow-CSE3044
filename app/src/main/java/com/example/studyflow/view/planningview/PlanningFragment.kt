@@ -49,7 +49,7 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener {
         //burada datei gönderme sebebimiz buna göre bir yükleme yapılacak olması
 
         //recycler ile adapteri bağlayalm bakalm
-        val recyclerView =view.findViewById<RecyclerView>(R.id.planning_recycler_row)
+        val recyclerView =view.findViewById<RecyclerView>(R.id.planningRecyclerView)
         recyclerView.layoutManager =LinearLayoutManager(context)
         recyclerView.adapter =planningRecyclerAdapter
 
