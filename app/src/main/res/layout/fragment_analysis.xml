@@ -56,9 +56,11 @@
             app:layout_constraintVertical_bias="0.078" />
 
         <TextView
-            android:id="@+id/TotalTimeText"
+            android:id="@+id/TotalMinText"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textEnd"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,9 +70,81 @@
             app:layout_constraintVertical_bias="0.246" />
 
         <TextView
-            android:id="@+id/TotalMinText"
+            android:id="@+id/TotalPomodoroMin"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.314" />
+
+        <TextView
+            android:id="@+id/TotalBreakMin"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.388" />
+
+        <TextView
+            android:id="@+id/TotalCancelNumber"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.595" />
+
+        <TextView
+            android:id="@+id/TotalDoneNumber"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
+
+        <TextView
+            android:id="@+id/TotalInActiveTimeMin"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.457" />
+
+        <TextView
+            android:id="@+id/TotalSecText"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textStart"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,17 +154,124 @@
             app:layout_constraintVertical_bias="0.246" />
 
         <TextView
-            android:id="@+id/TotalSecText"
+            android:id="@+id/TotalPomodoroSec"
             android:layout_width="85sp"
             android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.312" />
+
+        <TextView
+            android:id="@+id/TotalBreakSec"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.388" />
+
+        <TextView
+            android:id="@+id/TotalInActiveTimeSec"
+            android:layout_width="85sp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textStart"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.455" />
+
+        <TextView
+            android:id="@+id/TotalText"
+            android:layout_width="100dp"
+            android:layout_height="27dp"
             android:text="TotalTime:"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.223"
+            app:layout_constraintHorizontal_bias="0.186"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.245" />
+            app:layout_constraintVertical_bias="0.246" />
+
+        <TextView
+            android:id="@+id/TotalPomodoro"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="TotalPomodoro:"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.313" />
+
+        <TextView
+            android:id="@+id/TotalBreak"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="TotalBreak:"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.389" />
+
+        <TextView
+            android:id="@+id/TotalInActiveTime"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="TotalInActiveTime:"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.462" />
+
+        <TextView
+            android:id="@+id/TotalDonePomodoro"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="TotalDone:"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.534" />
+
+        <TextView
+            android:id="@+id/TotalCancel"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="TotalCancel:"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.597" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="658dp"
