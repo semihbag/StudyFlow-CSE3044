@@ -93,6 +93,11 @@
         <argument
             android:name="tag"
             app:argType="com.example.studyflow.model.Tag" />
+        <action
+            android:id="@+id/action_exerciseFragment_to_flashMindFragment"
+            app:destination="@id/flashMindFragment"
+            app:popUpTo="@id/flashMindFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/cardCreateFragment"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.studyflow.R
 import com.example.studyflow.databinding.FragmentExerciseBinding
 import com.example.studyflow.interfaces.flashmind.ExerciseFragmentClickListener
@@ -66,6 +67,8 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
                     binding.nothingToShow.visibility = View.GONE
                     binding.scrollView.visibility = View.VISIBLE
                     this.card = markedCardList.get(index)
+                    binding.card = this.card
+                    println(this.card.cardTitle)
                 }
             }
         })
@@ -76,13 +79,9 @@ class ExerciseFragment : Fragment(), ExerciseFragmentClickListener {
 
 
 
-
-
-
-
-
     override fun clickBack(view: View) {
-        TODO("Not yet implemented")
+        val action = ExerciseFragmentDirections.actionExerciseFragmentToFlashMindFragment()
+        Navigation.findNavController(view).navigate(action)
     }
 
     override fun clickFalse(view: View) {
