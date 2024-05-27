@@ -6,12 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.studyflow.R
+import com.example.studyflow.adapter.analysis.AnalysisDetailAdapter
+import com.example.studyflow.adapter.tag.TagRecyclerAdapter
 import com.example.studyflow.databinding.FragmentAnalysisBinding
 import com.example.studyflow.databinding.FragmentPomodoroBinding
 import com.example.studyflow.databinding.TagBottomSheetDialogRowBinding
 import com.example.studyflow.interfaces.analysis.AnalysisFragmentClickListener
 import com.example.studyflow.interfaces.tag.TagBottomSheetDialogClickListener
+import com.example.studyflow.model.Pomodoro
+import com.example.studyflow.model.Tag
 import com.example.studyflow.view.tagview.TagBottomSheetDialogFragment
 import com.example.studyflow.viewmodel.pomodoro.PomodoroViewModel
 
@@ -23,6 +29,9 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
 
     private lateinit var selectedTag: com.example.studyflow.model.Tag
     private var tagID = -1
+
+    // For AnalysisDetailAdapter
+    private val recyclerAdapter = AnalysisDetailAdapter(ArrayList<Pomodoro>())
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +53,13 @@ class AnalysisFragment : Fragment(), TagBottomSheetDialogClickListener, Analysis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tagBottomSheetDialogFragment = TagBottomSheetDialogFragment(this)
+
+        // recyclerı birbirine bağlayacağız
+        // yukarda bi adapter oluşturduk ama oluşturduğumuz gibi kalmıştı
+        // şimdi onu ilgili adapter ile bağlayacağız ki bu da recycleview in adapteri
+        val recyclerView = view.findViewById<RecyclerView>(R.id.analysisRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = recyclerAdapter
     }
 
     override fun onTag(view: View) {
