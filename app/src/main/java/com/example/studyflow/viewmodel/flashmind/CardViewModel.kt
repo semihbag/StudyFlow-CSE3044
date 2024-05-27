@@ -20,6 +20,7 @@ class CardViewModel(application: Application) : BaseViewModel(application) {
 
             val currentCards = daoCard.getAllCardWithGivenTagId(tag.uuid)
             mutableCard.value = currentCards
+
         }
 
     }
