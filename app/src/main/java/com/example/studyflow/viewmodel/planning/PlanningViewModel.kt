@@ -34,6 +34,7 @@ class PlanningViewModel (application: Application): BaseViewModel(application) {
 
     //save butonuna tıklandığında çağırılacak metot
     fun storePlanningToDB (planning : Plan){
+        println(planning)
         launch {
             val id =daoPlanning.insertPlanning(planning)
             planning.uuid =id.toInt()

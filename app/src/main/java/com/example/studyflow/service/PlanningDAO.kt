@@ -27,6 +27,4 @@ interface PlanningDAO {
     @Query ("SELECT * FROM `plan` WHERE date= :date")
     suspend fun getPlanningWithGivenDate(date :Long) :List<Plan>
 
-
-
 }

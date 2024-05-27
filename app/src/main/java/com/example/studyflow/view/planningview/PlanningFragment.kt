@@ -62,9 +62,14 @@ class PlanningFragment : Fragment(), PlanningFragmentClickListener,
 
         // CalendarView'den seçilen tarihi dinleyici ile al
         binding.calender.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val selectedCalendar = Calendar.getInstance()
-            selectedCalendar.set(year, month, dayOfMonth)
-            date = selectedCalendar.timeInMillis
+            val selectedCalendar = Calendar.getInstance().apply {
+                timeInMillis = date
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+        
             viewmodel.loadPlanningFromDB(date)
         }
         //default olarak date anlık günü alır model sınıfında
