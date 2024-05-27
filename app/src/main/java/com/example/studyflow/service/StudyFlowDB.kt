@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.studyflow.model.Card
+import com.example.studyflow.model.Planning
 import com.example.studyflow.model.Pomodoro
 import com.example.studyflow.model.Tag
 import com.example.studyflow.model.ToDo
@@ -28,12 +29,16 @@ import com.example.studyflow.model.ToDo
 
 */
 
-@Database(entities = [Tag::class, ToDo::class, Card::class,  Pomodoro::class], version = 12)
+@Database(entities = [Tag::class, ToDo::class, Card::class,  Pomodoro::class,  Planning::class], version = 13)
 abstract class StudyFlowDB : RoomDatabase() {
     abstract fun tagDao() : TagDAO
     abstract fun toDoDao() : ToDoDAO
     abstract fun cardDao() : CardDAO
-        abstract fun pomodoroDao(): PomodoroDAO
+    abstract fun pomodoroDao(): PomodoroDAO
+
+    abstract fun planningDao(): PlanningDAO
+
+
 
 
     // SINGLETON - OOP DERSINDE DE GORMUSTUK BUNU BI DESING PATTERN
